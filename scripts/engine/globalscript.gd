@@ -5,7 +5,7 @@ var pausemenu = preload("res://scenes/engine/mainmenu.tscn")
 var root : Node = null
 var currentScene : Node = null
 
-var consoleScene : Node = null
+var consoleScene : PackedScene = null
 
 func _ready():
 	root = get_tree().get_root()
@@ -18,10 +18,12 @@ func _input(event):
 		if(!consoleScene):
 			consoleScene = overlayScene("res://scenes/engine/console.tscn")
 		elif(consoleScene):
-			if(consoleScene.visible):
-				consoleScene.hide()
+			var consoleWindow = consoleScene.instance().get_node("WindowDialog")
+
+			if(consoleWindow.visible):
+				consoleWindow.hide()
 			else:
-				consoleScene.show()
+				consoleWindow.show()
 
 func hello():
 	print("Hello, dzejmod!")

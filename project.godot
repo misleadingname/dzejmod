@@ -27,6 +27,7 @@ config/icon="res://icon.png"
 [autoload]
 
 dzej="*res://scripts/engine/globalscript.gd"
+con="*res://scripts/engine/concommands.gd"
 
 [display]
 
