@@ -5,6 +5,8 @@ var pausemenu = preload("res://scenes/engine/mainmenu.tscn")
 var root : Node = null
 var currentScene : Node = null
 
+var consoleScene : Node = null
+
 func _ready():
 	root = get_tree().get_root()
 	currentScene = root.get_child(root.get_child_count() - 1)
@@ -12,13 +14,29 @@ func _ready():
 	print("dzejscript loaded.\nreference using dzej.X")
 
 func _input(event):
-
-	
 	if(Input.is_action_just_pressed("ui_console")):
-		overlayScene("res://scenes/engine/console.tscn")
+		if(!consoleScene):
+			consoleScene = overlayScene("res://scenes/engine/console.tscn")
+		elif(consoleScene):
+			if(consoleScene.visible):
+				consoleScene.hide()
+			else:
+				consoleScene.show()
 
 func hello():
 	print("Hello, dzejmod!")
 
+# SCENE MANAGEMENT
+
 func overlayScene(resname : String):
-	root.add_child(load(resname).instance())
+	var scene = load(resname)
+	root.add_child(scene.instance())
+
+	return scene
+
+func removeScene(sceneRef : Node):
+	if(sceneRef != null):
+		sceneRef.queue_free()
+		return "Removed scene " + sceneRef.get_name()
+	else:
+		return "Scene not found."
