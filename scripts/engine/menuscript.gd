@@ -29,16 +29,20 @@ func _on_resumeButton_pressed():
 	buttonClick()
 	
 	self.get_parent().visible = false
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	dzej.lockMouse(true)
 
-# MENU PAUSE
+func _on_disconnectButton_pressed():
+	buttonClick()
+	
+	dzej.switchScene("res://scenes/engine/backgroundmainmenu.tscn", true)
+
+# MENU TOGGLE
+
 func _input(event):
 	if(event.is_action_pressed("ui_cancel")):
 		if(self.get_parent().visible):
 			self.get_parent().visible = false
-			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			dzej.lockMouse(true)
 		else:
 			self.get_parent().visible = true
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-
-
+			dzej.lockMouse(false)

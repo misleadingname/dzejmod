@@ -59,7 +59,7 @@ shortcut_in_tooltip = false
 text = "options"
 underline = 2
 
-[node name="exitButton" type="LinkButton" parent="VBoxContainer"]
+[node name="disconnectButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
 margin_top = 36.0
 margin_right = 70.0
@@ -69,7 +69,7 @@ shortcut_in_tooltip = false
 text = "disconnect"
 underline = 2
 
-[node name="exitButton2" type="LinkButton" parent="VBoxContainer"]
+[node name="exitButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
 margin_top = 54.0
 margin_right = 70.0
@@ -82,7 +82,7 @@ underline = 2
 [connection signal="mouse_entered" from="VBoxContainer/resumeButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="pressed" from="VBoxContainer/resumeButton" to="VBoxContainer" method="_on_resumeButton_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/optionsButton" to="VBoxContainer" method="buttonHover"]
+[connection signal="mouse_entered" from="VBoxContainer/disconnectButton" to="VBoxContainer" method="buttonHover"]
+[connection signal="pressed" from="VBoxContainer/disconnectButton" to="VBoxContainer" method="_on_disconnectButton_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/exitButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="pressed" from="VBoxContainer/exitButton" to="VBoxContainer" method="_on_exitButton_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer/exitButton2" to="VBoxContainer" method="buttonHover"]
-[connection signal="pressed" from="VBoxContainer/exitButton2" to="VBoxContainer" method="_on_exitButton_pressed"]

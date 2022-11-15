@@ -11,6 +11,7 @@ enum {
 const valid = [
 	["help", [ARG_NULL]],
 	["echo", [ARG_STRING]],
+	["version", [ARG_NULL]],
 
 	["cl_getvar" [ARG_STRING]],
 
@@ -33,6 +34,9 @@ func cl_getvar(varname):
 	return get(varname)
 
 # GENERAL
+
+func version():
+	return "dzejmod 0.0.0 development version Work in progress.\n(DC) japannt#7318\n(TG) @japannt"
 
 func echo(text):
 	return text

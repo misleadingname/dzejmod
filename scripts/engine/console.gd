@@ -52,3 +52,14 @@ func parseCommand(text):
 			outText(con.callv(command_word, words))
 			return
 	outText(str('Command "', command_word, '" does not exist.'))
+
+# CONSOLE TOGGLE
+
+func _input(event):
+	if(event.is_action_pressed("ui_console")):
+		if(!self.is_visible()):
+			self.popup()
+			dzej.lockMouse(false)
+		else:
+			self.hide()
+			dzej.lockMouse(true)

@@ -38,16 +38,32 @@ func removeScene(sceneRef : Node, soft : bool = false):
 	else:
 		return false
 
-func switchScene(resname : String):
+func switchScene(resname : String, nomenu : bool = false):
 	var scene = load(resname).instance()
 	root.add_child(scene)
 	currentScene.queue_free()
 	currentScene = scene
 
-	removeScene(pauseScene, true)
-	removeScene(consoleScene, true)
+	if(nomenu):
+		removeScene(pauseScene, false)
 
-	overlayScene(pauseScene)
+		pauseScene = load("res://scenes/engine/pausemenu.tscn").instance()
+	else:
+		removeScene(pauseScene, true)
+		overlayScene(pauseScene)
+
+	removeScene(consoleScene, true)
 	overlayScene(consoleScene)
 
 	return scene
+
+# LOCAL PLAYER MANAGEMENT
+
+func lockMouse(type : bool = 0):
+	if(type):
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	else:
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func isMouseLocked():
+	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED	
