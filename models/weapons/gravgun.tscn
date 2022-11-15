@@ -40,4 +40,5 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0950283, -0.547287, -0.46913
 [node name="Physcannon_reference001" type="MeshInstance" parent="RootNode"]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
 layers = 2
+cast_shadow = 0
 mesh = SubResource( 1 )

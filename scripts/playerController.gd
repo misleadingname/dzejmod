@@ -5,7 +5,7 @@ class_name dzejPlayer
 const MOUSESENS = 7
 
 export var moveSpeed : float = 5
-export var jumpForce : float = 16
+export var jumpForce : float = 4
 export var gravity : float = 10
 
 export var accel : float = 6
@@ -48,31 +48,30 @@ func _physics_process(delta):
 		input.x -= 1
 	if Input.is_action_pressed("movement_right"):
 		input.x += 1
-
-	input = input.normalized()
-
-	var forward = global_transform.basis.z
-	var right = global_transform.basis.x
-
-	var relativeDir = (forward * input.y + right * input.x)
-
+		
 	if is_on_floor():
+		input = input.normalized()
 		grav = 0
-		if Input.is_action_pressed("movement_jump"):
+		if(Input.is_action_pressed("movement_jump")):
 			grav = jumpForce
 	else:
 		grav -= gravity * delta
 
-	vel = vel.linear_interpolate(relativeDir * moveSpeed, decel * delta)
+	var forward = global_transform.basis.z
+	var right = global_transform.basis.x
 	
-	if(grav > 0.2):
-		vel.y = 0
-	else:
-		vel.y = grav
-					
-	move_and_slide(vel, Vector3.UP)
+	var relativeDir = (forward * input.y + right * input.x)
 
-	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_usec() * 0.000005) * vel.length() * 0.0125
+	vel = vel.linear_interpolate(relativeDir * moveSpeed, decel * delta)
+
+	if(!is_on_floor() && vel.length() > 0.1):
+			vel.x *= 1 + (1.5 * delta)
+			vel.z *= 1 + (1.5 * delta)
+					
+	print(move_and_slide(vel, Vector3.UP))
+
+	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0.5, 100) * 0.005
+	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0.5, 100) * 0.0125
 
 
 func _input(event):
