@@ -21,6 +21,7 @@ onready var viewmodel = $RotationHelper/view
 
 onready var cam = $RotationHelper/Camera
 onready var viewmodelcam = $RotationHelper/ViewportContainer/Viewport/viewmodelCam
+onready var OnFloorHelper = $OnFloor
 
 onready var ogViewmodelPos = viewmodel.translation
 
@@ -48,27 +49,30 @@ func _physics_process(delta):
 		input.x -= 1
 	if Input.is_action_pressed("movement_right"):
 		input.x += 1
-		
-	if is_on_floor():
-		input = input.normalized()
+	
+	#eeky fix :/
+	if OnFloorHelper.is_colliding():
 		grav = 0
+		input = input.normalized()
 		if(Input.is_action_pressed("movement_jump")):
 			grav = jumpForce
 	else:
 		grav -= gravity * delta
-
+	
+	vel.y = grav
+	
 	var forward = global_transform.basis.z
 	var right = global_transform.basis.x
 	
 	var relativeDir = (forward * input.y + right * input.x)
-
+	
 	vel = vel.linear_interpolate(relativeDir * moveSpeed, decel * delta)
 
 	if(!is_on_floor() && vel.length() > 0.1):
 			vel.x *= 1 + (1.5 * delta)
 			vel.z *= 1 + (1.5 * delta)
 					
-	print(move_and_slide(vel, Vector3.UP))
+	vel = move_and_slide(vel, Vector3.UP)
 
 	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0.5, 100) * 0.005
 	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0.5, 100) * 0.0125

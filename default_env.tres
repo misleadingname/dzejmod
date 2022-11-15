@@ -4,3 +4,5 @@
 
 [resource]
 background_sky = SubResource( 1 )
+tonemap_mode = 4
+tonemap_exposure = 0.5
