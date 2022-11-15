@@ -4,7 +4,7 @@ onready var inputBox = $LineEdit
 onready var outputBox = $TextEdit
 
 func _ready():
-	self.visible = true
+	print("Hello World")
 
 func _on_LineEdit_text_entered(new_text):
 	outText(new_text)

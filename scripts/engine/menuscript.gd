@@ -3,14 +3,13 @@ extends VBoxContainer
 onready var hoverPlayer = $buttonHover
 onready var clickPlayer = $buttonClick
 
-func _ready():
-	dzej.paused = true
-
 func buttonHover():
 	hoverPlayer.play()
 
 func buttonClick():
 	clickPlayer.play()
+
+# SHARED
 
 func _on_exitButton_pressed():
 	buttonClick()
@@ -28,9 +27,18 @@ func _on_newgameButton_pressed():
 
 func _on_resumeButton_pressed():
 	buttonClick()
-
+	
+	self.get_parent().visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	dzej.paused = false
+# MENU PAUSE
+func _input(event):
+	if(event.is_action_pressed("ui_cancel")):
+		if(self.get_parent().visible):
+			self.get_parent().visible = false
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			self.get_parent().visible = true
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-	dzej.removeScene(self.get_parent())
+

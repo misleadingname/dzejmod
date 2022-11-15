@@ -1,6 +1,7 @@
 extends Node
 
-var pausemenu = preload("res://scenes/engine/mainmenu.tscn")
+onready var pauseScene : Node = load("res://scenes/engine/pausemenu.tscn").instance()
+onready var consoleScene : Node = load("res://scenes/engine/console.tscn").instance()
 
 onready var root : Node = get_tree().get_root()
 var currentScene : Node = null
@@ -17,16 +18,23 @@ func hello():
 
 # SCENE MANAGEMENT
 
-func overlayScene(resname : String):
+func overlayNewScene(resname : String):
 	var scene = load(resname).instance()
 	root.add_child(scene)
 
 	return scene
 
-func removeScene(sceneRef : Node):
+func overlayScene(scene : Node):
+	return root.add_child(scene)
+
+func removeScene(sceneRef : Node, soft : bool = false):
 	if(sceneRef != null):
-		sceneRef.queue_free()
-		return true
+		root.remove_child(sceneRef)
+		if(!soft):
+			sceneRef.queue_free()
+			return true
+		else:
+			return true
 	else:
 		return false
 
@@ -36,15 +44,10 @@ func switchScene(resname : String):
 	currentScene.queue_free()
 	currentScene = scene
 
-	return scene
+	removeScene(pauseScene, true)
+	removeScene(consoleScene, true)
 
-# MENUS
-func _input(event):
-	if(Input.is_action_just_pressed("ui_cancel")):
-		if(paused):
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-			overlayScene("res://scenes/engine/pausemenu.tscn")
-	
-	if(Input.is_action_just_pressed("ui_console")):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		overlayScene("res://scenes/engine/console.tscn")
+	overlayScene(pauseScene)
+	overlayScene(consoleScene)
+
+	return scene

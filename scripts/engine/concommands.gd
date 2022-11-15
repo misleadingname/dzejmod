@@ -17,11 +17,22 @@ const valid = [
 	["cl_hello", [ARG_NULL]]
 ]
 
+# SV
+
+func sv_map(map):
+	if(dzej.switchScene(map) != null):
+		return true
+	else:
+		return false
+# CL
+
 func cl_hello():
 	return "hello dzejmod console"
 
 func cl_getvar(varname):
 	return get(varname)
+
+# GENERAL
 
 func echo(text):
 	return text
