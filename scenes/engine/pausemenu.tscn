@@ -9,6 +9,11 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 
+[node name="bgrect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.196078 )
+
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -34,19 +39,19 @@ stream = ExtResource( 3 )
 [node name="buttonClick" type="AudioStreamPlayer" parent="VBoxContainer"]
 stream = ExtResource( 4 )
 
-[node name="newgameButton" type="LinkButton" parent="VBoxContainer"]
+[node name="resumeButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_right = 65.0
+margin_right = 70.0
 margin_bottom = 14.0
 focus_mode = 2
 shortcut_in_tooltip = false
-text = "new game"
+text = "resume"
 underline = 2
 
 [node name="optionsButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
 margin_top = 18.0
-margin_right = 65.0
+margin_right = 70.0
 margin_bottom = 32.0
 focus_mode = 2
 shortcut_in_tooltip = false
@@ -56,15 +61,27 @@ underline = 2
 [node name="exitButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
 margin_top = 36.0
-margin_right = 65.0
+margin_right = 70.0
 margin_bottom = 50.0
+focus_mode = 2
+shortcut_in_tooltip = false
+text = "disconnect"
+underline = 2
+
+[node name="exitButton2" type="LinkButton" parent="VBoxContainer"]
+pause_mode = 2
+margin_top = 54.0
+margin_right = 70.0
+margin_bottom = 68.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "quit"
 underline = 2
 
-[connection signal="mouse_entered" from="VBoxContainer/newgameButton" to="VBoxContainer" method="buttonHover"]
-[connection signal="pressed" from="VBoxContainer/newgameButton" to="VBoxContainer" method="_on_newgameButton_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/resumeButton" to="VBoxContainer" method="buttonHover"]
+[connection signal="pressed" from="VBoxContainer/resumeButton" to="VBoxContainer" method="_on_resumeButton_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/optionsButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="mouse_entered" from="VBoxContainer/exitButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="pressed" from="VBoxContainer/exitButton" to="VBoxContainer" method="_on_exitButton_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/exitButton2" to="VBoxContainer" method="buttonHover"]
+[connection signal="pressed" from="VBoxContainer/exitButton2" to="VBoxContainer" method="_on_exitButton_pressed"]

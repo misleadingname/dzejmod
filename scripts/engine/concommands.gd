@@ -1,12 +1,31 @@
 extends Node
 
-var commands = {
-	"cl_hello": "dzej.hello()",
+enum {
+	ARG_INT,
+	ARG_FLOAT,
+	ARG_STRING,
+	ARG_BOOL,
+	ARG_NULL
 }
 
-func addCommand(command : String, function : String):
-	if(!commands.has(command)):
-		commands[command] = function
-		return "[con] Command added: " + command + " -> " + function
-	else:
-		return "[con] unable to define command. command already exists."
+const valid = [
+	["help", [ARG_NULL]],
+	["echo", [ARG_STRING]],
+
+	["cl_getvar" [ARG_STRING]],
+
+	["cl_hello", [ARG_NULL]]
+]
+
+func cl_hello():
+	return "hello dzejmod console"
+
+func cl_getvar(varname):
+	return get(varname)
+
+func echo(text):
+	return text
+
+func help():
+	return "FIXME: help"
+			

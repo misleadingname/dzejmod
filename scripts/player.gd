@@ -78,9 +78,3 @@ func _physics_process(delta):
 func _input(event):
 	if(event is InputEventMouseMotion):
 		mouseDelta = event.relative
-		
-	if(Input.is_action_just_pressed("ui_cancel")):
-		get_tree().paused = true
-		
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		dzej.overlayScene("res://scenes/engine/mainmenu.tscn")
