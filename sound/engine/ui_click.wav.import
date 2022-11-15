@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/select_not_copyright.wav-30d8512abc8bf16bbb65cbb17cf4f52f.sample"
+path="res://.import/ui_click.wav-f207b38bfb5ba566bd1aad2577a4986c.sample"
 
 [deps]
 
-source_file="res://sound/engine/select_not_copyright.wav"
-dest_files=[ "res://.import/select_not_copyright.wav-30d8512abc8bf16bbb65cbb17cf4f52f.sample" ]
+source_file="res://sound/engine/ui_click.wav"
+dest_files=[ "res://.import/ui_click.wav-f207b38bfb5ba566bd1aad2577a4986c.sample" ]
 
 [params]
 

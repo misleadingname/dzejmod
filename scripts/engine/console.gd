@@ -13,7 +13,14 @@ func _on_LineEdit_text_entered(new_text):
 	parseCommand(new_text)
 
 func outText(text):
-	outputBox.text += text + "\n"
+	if(outputBox != null):
+		if(typeof(text) == TYPE_STRING):
+			outputBox.text += text + "\n"
+		else:
+			outputBox.text += str("command returned: ", text) + "\n"
+		outputBox.set_v_scroll(outputBox.get_v_scroll() + 1000)
+	else:
+		return false
 
 func checkType(string, type):
 	if type == con.ARG_INT:
@@ -59,7 +66,12 @@ func _input(event):
 	if(event.is_action_pressed("ui_console")):
 		if(!self.is_visible()):
 			self.popup()
-			dzej.lockMouse(false)
 		else:
 			self.hide()
-			dzej.lockMouse(true)
+
+
+func consoleClose():
+	dzej.lockMouse(true)
+
+func consoleOpen():
+	dzej.lockMouse(false)

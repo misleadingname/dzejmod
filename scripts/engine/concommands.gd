@@ -13,18 +13,23 @@ const valid = [
 	["echo", [ARG_STRING]],
 	["version", [ARG_NULL]],
 
-	["cl_getvar" [ARG_STRING]],
+	["sv_map", [ARG_STRING]],
 
+	["cl_getvar" [ARG_STRING]],
 	["cl_hello", [ARG_NULL]]
 ]
 
 # SV
 
 func sv_map(map):
-	if(dzej.switchScene(map) != null):
-		return true
-	else:
+	dzej.msg("attemting to load map: " + map)
+	var out = dzej.switchScene(map)
+	if(typeof(out) == TYPE_STRING && out == false):
+		dzej.msg("error loading map: " + map)
 		return false
+	else:
+		dzej.msg("map loaded: " + map)
+		return true
 # CL
 
 func cl_hello():

@@ -11,7 +11,12 @@ var paused : bool = false
 func _ready():
 	currentScene = root.get_child(root.get_child_count() - 1)
 
-	print("dzejscript loaded.\nreference using dzej.X")
+	msg("[dzej] Dzejmod 0.1\nBy japannt.")
+	msg("[dzej] enigne initalizing...")
+	msg("[dzej] console loaded")
+
+	msg("[dzej] dzejscript loaded.\nreference using dzej.method()")
+	overlayScene(consoleScene)
 
 func hello():
 	return "hello dzejmod"
@@ -29,19 +34,33 @@ func overlayScene(scene : Node):
 
 func removeScene(sceneRef : Node, soft : bool = false):
 	if(sceneRef != null):
+		msg("[dzej] removing scene: " + sceneRef.get_name())
 		root.remove_child(sceneRef)
 		if(!soft):
+			msg("[dzej] freeing scene: " + sceneRef.get_name())
 			sceneRef.queue_free()
-			return true
-		else:
-			return true
+		return true
+		msg("[dzej] scene removed.")
 	else:
+		msg("[dzej] scene not found")
 		return false
 
 func switchScene(resname : String, nomenu : bool = false):
+	if(resname == null || resname == ""):
+		msg("[dzej] invalid scene name")
+		return false
+
+	if(!ResourceLoader.exists(resname)):
+		msg("[dzej] scene " + resname + " does not exist")
+		return false
+	
+	msg("[dzej] switching to scene " + resname)
 	var scene = load(resname).instance()
+	msg("[dzej] instantiated scene")
 	root.add_child(scene)
+	msg("[dzej] added scene to root")
 	currentScene.queue_free()
+	msg("[dzej] removed current scene")
 	currentScene = scene
 
 	if(nomenu):
@@ -54,16 +73,25 @@ func switchScene(resname : String, nomenu : bool = false):
 
 	removeScene(consoleScene, true)
 	overlayScene(consoleScene)
+	msg("[dzej] engine windows re-added " + resname)
 
 	return scene
+
+
+# CONSOLE
+
+func msg(msg : String):
+	consoleScene.get_node("ConsoleWindow").call("outText", msg)
 
 # LOCAL PLAYER MANAGEMENT
 
 func lockMouse(type : bool = 0):
 	if(type):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		msg("[dzej] mouse locked")
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		msg("[dzej] mouse unlocked")
 
 func isMouseLocked():
 	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED	

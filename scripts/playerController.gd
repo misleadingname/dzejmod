@@ -4,7 +4,7 @@ class_name dzejPlayer
 
 const MOUSESENS = 7
 
-export var moveSpeed : float = 5
+export var moveSpeed : float = 4
 export var jumpForce : float = 4
 export var gravity : float = 10
 
@@ -68,14 +68,14 @@ func _physics_process(delta):
 	
 	vel = vel.linear_interpolate(relativeDir * moveSpeed, decel * delta)
 
-	if(!is_on_floor() && vel.length() > 0.1):
-			vel.x *= 1 + (1.5 * delta)
-			vel.z *= 1 + (1.5 * delta)
+	if(!OnFloorHelper.is_colliding() && vel.length() > 0.1):
+			vel.x *= 1 + (2 * delta)
+			vel.z *= 1 + (2 * delta)
 					
 	vel = move_and_slide(vel, Vector3.UP)
 
-	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0.5, 100) * 0.005
-	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0.5, 100) * 0.0125
+	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0, 100) * 0.005
+	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0, 100) * 0.0125
 
 
 func _input(event):
