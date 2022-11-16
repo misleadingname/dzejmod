@@ -73,8 +73,8 @@ func _physics_process(delta):
 	if(!OnFloorHelper.is_colliding() && vel.length() > 0.1):
 			vel.x *= 1 + (2 * delta)
 			vel.z *= 1 + (2 * delta)
-					
-	vel = move_and_slide(vel, Vector3.UP)
+	
+	vel = move_and_slide(vel, Vector3.UP, true)
 
 	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0, 100) * 0.005
 	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0, 100) * 0.0125

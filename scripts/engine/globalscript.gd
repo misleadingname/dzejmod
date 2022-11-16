@@ -8,6 +8,8 @@ var currentScene : Node = null
 
 var paused : bool = false
 
+var playercount = 0
+
 func _ready():
 	currentScene = root.get_child(root.get_child_count() - 1)
 	consoleScene = load("res://scenes/engine/console.tscn").instance()

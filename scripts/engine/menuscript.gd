@@ -22,7 +22,7 @@ func _on_exitButton_pressed():
 func _on_newgameButton_pressed():
 	buttonClick()
 	
-	dzej.switchScene("res://scenes/defaultmap.tscn")
+	dzej.switchScene("res://scenes/engine/GameplayWorld.tscn")
 
 # IN GAME
 

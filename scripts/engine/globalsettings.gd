@@ -1,6 +1,7 @@
 extends Node
 
 var all_settings : Dictionary = {
+	"max_players": 8,
 	"fxaa": false,
 	"mouse_sens": 7.0
 }
