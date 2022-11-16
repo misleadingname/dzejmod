@@ -1,7 +1,7 @@
 extends Node
 
-onready var pauseScene : Node = load("res://scenes/engine/pausemenu.tscn").instance()
-onready var consoleScene : Node = load("res://scenes/engine/console.tscn").instance()
+onready var pauseScene : Node = preload("res://scenes/engine/pausemenu.tscn").instance()
+onready var consoleScene : Node = preload("res://scenes/engine/console.tscn").instance()
 
 onready var root : Node = get_tree().get_root()
 var currentScene : Node = null
@@ -10,13 +10,15 @@ var paused : bool = false
 
 func _ready():
 	currentScene = root.get_child(root.get_child_count() - 1)
+	consoleScene = load("res://scenes/engine/console.tscn").instance()
+
+	get_tree().get_root().add_child(consoleScene)
 
 	msg("[dzej] Dzejmod 0.1\nBy japannt.")
 	msg("[dzej] enigne initalizing...")
 	msg("[dzej] console loaded")
 
 	msg("[dzej] dzejscript loaded.\nreference using dzej.method()")
-	overlayScene(consoleScene)
 
 func hello():
 	return "hello dzejmod"
@@ -73,8 +75,8 @@ func switchScene(resname : String, nomenu : bool = false):
 
 	removeScene(consoleScene, true)
 	overlayScene(consoleScene)
-	msg("[dzej] engine windows re-added " + resname)
 
+	msg("[dzej] engine windows re-added " + resname)
 	return scene
 
 
