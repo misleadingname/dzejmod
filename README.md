@@ -4,11 +4,11 @@
 ![awesome logo](/mat/ui/github_logo.png)
 
 ## Todo/W.I.P
-[x] Core engine
-[ ] lots of stuff lol
-[ ] DSL - dzejmod scripting language and exposed an GDScript api
-[ ] Multiplayer
-[ ] License
+- [x] Core engine
+- [ ] lots of stuff lol
+- [ ] DSL - dzejmod scripting language and exposed an GDScript api
+- [ ] Multiplayer
+- [ ] License
 
 ## Credits
 - `Japan`: **founder**, most of the code, logo
