@@ -73,8 +73,6 @@ func _physics_process(delta):
 	if(!OnFloorHelper.is_colliding() && vel.length() > 0.1):
 			vel.x *= 1 + (4 * delta)
 			vel.z *= 1 + (4 * delta)
-	
-	dzej.msg(vel.length())
 
 	vel = move_and_slide(vel, Vector3.UP, true)
 

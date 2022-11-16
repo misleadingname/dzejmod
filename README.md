@@ -6,7 +6,7 @@
 ## Todo/W.I.P
 - [x] Core engine
 - [ ] Map loader and managment (Idea by dark)
-- [ ] DSL - dzejmod scripting language and exposed an GDScript api
+- [ ] DSL - dzejmod scripting language and an exposed GDScript api
 - [ ] Multiplayer
 
 ## Credits
