@@ -14,5 +14,5 @@ BUG 2:
 	Everything is rotated by 90 degrees. WHY
 	load dzej_jumpy to see it.
 
-	SOLUTION: Rewrite dark's spawnpoint code. It's a mess. <33
+	SOLUTION: Rewrite dark's spawnpoint code. It's a mess.
 	STATUS: fixed
