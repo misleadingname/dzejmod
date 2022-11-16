@@ -11,5 +11,5 @@
 - [ ] License
 
 ## Credits
-- `Japan`: **founder**, most of the code, logo
-- `Dark`: certain assets, code/idea contributions
+- `japannt`: **founder**, most of the code, logo
+- `darksoulmaster`: certain assets, idea contributions
