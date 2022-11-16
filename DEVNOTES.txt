@@ -1,0 +1,9 @@
+BUG 1:
+When you disconnect and start a new game, this will happen, see img1 for the showcase
+	LOAD 1: The camera is at the player's feet
+	LOAD 2: The camera is at the player's head but now tilted
+	LOAD 3: Everything seems to be normal, but the game is super laggy
+	LOAD 4: Crash, see img2
+
+	img1: https://files.catbox.moe/ntdlr5.mp4
+	img2: https://files.catbox.moe/eyfydm.png
