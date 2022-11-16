@@ -35,6 +35,8 @@ func _on_resumeButton_pressed():
 func _on_disconnectButton_pressed():
 	buttonClick()
 	
+	dzej.playercount = 0 # Probably not the best way to do this
+
 	dzej.switchScene("res://scenes/engine/backgroundmainmenu.tscn", true)
 
 # MENU TOGGLE

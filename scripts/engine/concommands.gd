@@ -36,7 +36,7 @@ func cl_hello():
 	return "hello dzejmod console"
 
 func cl_getvar(varname):
-	return get(varname)
+	return str(get(varname))
 
 # GENERAL
 

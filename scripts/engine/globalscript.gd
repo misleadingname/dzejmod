@@ -43,8 +43,8 @@ func removeScene(sceneRef : Node, soft : bool = false):
 		if(!soft):
 			msg("[dzej] freeing scene: " + sceneRef.get_name())
 			sceneRef.queue_free()
-		return true
 		msg("[dzej] scene removed.")
+		return true
 	else:
 		msg("[dzej] scene not found")
 		return false
@@ -84,7 +84,8 @@ func switchScene(resname : String, nomenu : bool = false):
 
 # CONSOLE
 
-func msg(msg : String):
+func msg(msg):
+	msg = str(msg)
 	consoleScene.get_node("ConsoleWindow").call("outText", msg)
 
 # LOCAL PLAYER MANAGEMENT
