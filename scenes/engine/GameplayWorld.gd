@@ -1,14 +1,14 @@
 extends Spatial
 
-#temporarily instancing default map until japan makes map selector/implements map selection in console
-onready var map = preload("res://scenes/dzej_jumpy.tscn")
-onready var player = preload("res://imports/player.tscn")
+var scene = dzej.addSceneToCustomParent(dzej.targetScene, self)[0]
+var player = dzej.addSceneToCustomParent("res://imports/player.tscn", self)[0]
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	#botched world loader
-	if dzej.playercount < settings.all_settings.get("max_players"):
-		dzej.playercount += 1
-		add_child(map.instance())
-		#gets the first node (the world), and adds the player in the player position node7
-		get_child(0).get_child(dzej.playercount - 1).add_child(player.instance())
+
+	for i in scene.get_children():
+		if(i.name == "PlayerSpawn"):
+			dzej.msg(i.get_name())
+			player.translation = i.translation
+			player.rotation.y = i.rotation.y
+

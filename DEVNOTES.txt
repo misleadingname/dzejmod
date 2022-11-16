@@ -8,8 +8,11 @@ When you disconnect and start a new game, this will happen, see img1 for the sho
 	img1: https://files.catbox.moe/ntdlr5.mp4
 	img2: https://files.catbox.moe/eyfydm.png
 
-Seems fixed?
+	STATUS: fixed
 
 BUG 2:
 	Everything is rotated by 90 degrees. WHY
 	load dzej_jumpy to see it.
+
+	SOLUTION: Rewrite dark's spawnpoint code. It's a mess. <33
+	STATUS: fixed

@@ -13,7 +13,7 @@ size = Vector2( 8, 8 )
 background_mode = 2
 background_sky = SubResource( 2 )
 
-[node name="Spatial" type="Spatial"]
+[node name="bgmap" type="Spatial"]
 
 [node name="mainmenu" parent="." instance=ExtResource( 2 )]
 

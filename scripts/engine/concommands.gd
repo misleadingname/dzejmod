@@ -23,7 +23,14 @@ const valid = [
 
 func sv_map(map):
 	dzej.msg("attemting to load map: " + map)
-	var out = dzej.switchScene(map)
+
+	dzej.targetScene = "scenes/" + map
+
+	if(!ResourceLoader.exists(dzej.targetScene)):
+		dzej.msg("[dzej] scene " + dzej.targetScene + " does not exist")
+		return false
+
+	var out = dzej.switchScene("res://scenes/engine/GameplayWorld.tscn")
 	if(typeof(out) == TYPE_STRING && out == false):
 		dzej.msg("error loading map: " + map)
 		return false

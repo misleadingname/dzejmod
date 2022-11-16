@@ -16,6 +16,8 @@ func outText(text):
 		else:
 			outputBox.text += str("command returned: ", text) + "\n"
 		outputBox.set_v_scroll(outputBox.get_v_scroll() + 1000)
+		if(outputBox.get_line_count() > 100):
+			outputBox.text
 	else:
 		return false
 
@@ -36,7 +38,7 @@ func parseCommand(text):
 	var words = text.split(" ")
 	words = Array(words)
 	
-	for i in range(words.count("")):
+	for _i in range(words.count("")):
 		words.erase("")
 	
 	if words.size() == 0:

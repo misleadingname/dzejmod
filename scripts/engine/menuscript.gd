@@ -35,8 +35,6 @@ func _on_resumeButton_pressed():
 func _on_disconnectButton_pressed():
 	buttonClick()
 	
-	dzej.playercount = 0 # Probably not the best way to do this
-
 	dzej.switchScene("res://scenes/engine/backgroundmainmenu.tscn", true)
 
 # MENU TOGGLE
@@ -44,7 +42,6 @@ func _on_disconnectButton_pressed():
 func _input(event):
 	if(event.is_action_pressed("ui_cancel")):
 		if(self.get_parent().visible and get_parent().name != "mainmenu"):
-			print(get_parent().name)
 			self.get_parent().visible = false
 			dzej.lockMouse(true)
 		else:
