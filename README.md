@@ -12,4 +12,4 @@
 
 ## Credits
 - `japannt` - Creator, code.
-- `darksoulmaster` - Assets, ideas, assisting, gud bud :))
+- `darksoulmaster` - Assets, maps, ideas, assisting, gud bud :))
