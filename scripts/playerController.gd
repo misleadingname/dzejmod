@@ -2,7 +2,7 @@ extends KinematicBody
 
 class_name dzejPlayer
 
-const MOUSESENS = 7
+var MOUSESENS = 0
 
 export var moveSpeed : float = 4
 export var jumpForce : float = 4
@@ -29,10 +29,12 @@ func _ready():
 	dzej.lockMouse(true)
 
 func _process(delta):
-	rothelper.rotation_degrees.x -= mouseDelta.y * MOUSESENS * delta
-	rothelper.rotation_degrees.x = clamp(rothelper.rotation_degrees.x, -90, 90)
+	MOUSESENS = settings.all_settings.get("mouse_sens")
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		rothelper.rotation_degrees.x -= mouseDelta.y * MOUSESENS * delta
+		rothelper.rotation_degrees.x = clamp(rothelper.rotation_degrees.x, -90, 90)
 
-	rotation_degrees.y -= mouseDelta.x * MOUSESENS * delta
+		rotation_degrees.y -= mouseDelta.x * MOUSESENS * delta
 
 	mouseDelta = Vector2()
 	

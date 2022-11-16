@@ -2,6 +2,7 @@ extends VBoxContainer
 
 onready var hoverPlayer = $buttonHover
 onready var clickPlayer = $buttonClick
+onready var settings = get_parent().get_node("Settings")
 
 func buttonHover():
 	hoverPlayer.play()
@@ -40,9 +41,17 @@ func _on_disconnectButton_pressed():
 
 func _input(event):
 	if(event.is_action_pressed("ui_cancel")):
-		if(self.get_parent().visible):
+		if(self.get_parent().visible and get_parent().name != "mainmenu"):
+			print(get_parent().name)
 			self.get_parent().visible = false
 			dzej.lockMouse(true)
 		else:
 			self.get_parent().visible = true
 			dzej.lockMouse(false)
+
+
+func _on_optionsButton_pressed():
+	buttonClick()
+	
+	settings.get_node("WindowDialog").popup()
+	
