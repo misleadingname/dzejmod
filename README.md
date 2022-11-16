@@ -5,10 +5,9 @@
 
 ## Todo/W.I.P
 - [x] Core engine
-- [ ] lots of stuff lol
+- [ ] Map loader and managment (Idea by dark)
 - [ ] DSL - dzejmod scripting language and exposed an GDScript api
 - [ ] Multiplayer
-- [ ] License
 
 ## Credits
 - `japannt` - Creator, code.
