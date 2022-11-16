@@ -11,5 +11,5 @@
 - [ ] License
 
 ## Credits
-- `japannt`: **founder**, most of the code, logo
-- `darksoulmaster`: certain assets, idea contributions
+- `japannt` - Creator, code.
+- `darksoulmaster` - Assets, ideas, assisting, gud bud :))
