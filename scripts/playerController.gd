@@ -5,11 +5,13 @@ class_name dzejPlayer
 var MOUSESENS = 0
 
 export var moveSpeed : float = 4
-export var jumpForce : float = 4
+export var jumpForce : float = 5
 export var gravity : float = 10
+export var push_strength : float = 0.5
 
 export var accel : float = 6
 export var decel : float = 8
+
 
 var vel : Vector3 = Vector3()
 var grav : float = 0
@@ -21,7 +23,6 @@ onready var viewmodel = $RotationHelper/view
 
 onready var cam = $RotationHelper/Camera
 onready var viewmodelcam = $RotationHelper/ViewportContainer/Viewport/viewmodelCam
-onready var OnFloorHelper = $OnFloor
 
 onready var ogViewmodelPos = viewmodel.translation
 
@@ -53,7 +54,7 @@ func _physics_process(delta):
 		input.x += 1
 	
 	#eeky fix :/
-	if OnFloorHelper.is_colliding():
+	if is_on_floor():
 		grav = 0
 		input = input.normalized()
 		if(Input.is_action_pressed("movement_jump")):
@@ -70,12 +71,18 @@ func _physics_process(delta):
 	
 	vel = vel.linear_interpolate(relativeDir * moveSpeed, decel * delta)
 
-	if(!OnFloorHelper.is_colliding() && vel.length() > 0.1):
+	if(!is_on_floor() && vel.length() > 0.1):
 			vel.x *= 1 + (4 * delta)
 			vel.z *= 1 + (4 * delta)
 
-	vel = move_and_slide(vel, Vector3.UP, true)
+	vel = move_and_slide(vel, Vector3.UP, true, 4, deg2rad(75), false)
 
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider is RigidBody:
+			collision.collider.apply_central_impulse(-collision.normal * push_strength)
+	
 	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0, 100) * 0.005
 	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0, 100) * 0.0125
 

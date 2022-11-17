@@ -11,7 +11,7 @@ func _ready():
 	else:
 		scene = dzej.addSceneToCustomParent(dzej.targetScene, self)[0]
 
-		spinnerAnimation.play()
+		spinnerAnimation.play("spinner")
 
 		for i in scene.get_children():
 			if(i.name == "PlayerSpawn"):
