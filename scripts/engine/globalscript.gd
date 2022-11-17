@@ -16,11 +16,11 @@ func _ready():
 	consoleScene = load("res://scenes/engine/console.tscn").instance()
 	get_tree().get_root().add_child(consoleScene)
 		
-	msg("[dzej] Dzejmod 0.1\nBy japannt.")
-	msg("[dzej] enigne initalizing...")
-	msg("[dzej] console loaded")
+	msg("[INFO] Dzejmod 0.1\nBy japannt.")
+	msg("[INFO] enigne initalizing...")
+	msg("[INFO] console loaded")
 
-	msg("[dzej] dzejscript loaded.\nreference using dzej.method()")
+	msg("[INFO] dzejscript loaded.\nreference using dzej.method()")
 
 func hello():
 	return "hello dzejmod"
@@ -29,18 +29,18 @@ func hello():
 
 func addSceneToCustomParent(resname : String, parent : Node):
 	if(parent == null):
-		msg("[dzej] parent is null")
+		msg("[ERROR] parent is null")
 		return false
 
 	if(resname == null || resname == ""):
-		msg("[dzej] invalid scene name")
+		msg("[ERROR] invalid scene name")
 		return false
 
 	if(!ResourceLoader.exists(resname)):
-		msg("[dzej] scene " + resname + " does not exist")
+		msg("[ERROR] scene " + resname + " does not exist")
 		return false
 	
-	msg("[dzej] adding " + resname + " to " + str(parent))
+	msg("[INFO] adding " + resname + " to " + str(parent))
 	var scene = load(resname)
 	scene = scene.instance()
 
@@ -50,52 +50,52 @@ func addSceneToCustomParent(resname : String, parent : Node):
 
 func overlayNewScene(resname : String):
 	if(resname == null || resname == ""):
-		msg("[dzej] invalid scene name")
+		msg("[ERROR] invalid scene name")
 		return false
 
 	if(!ResourceLoader.exists(resname)):
-		msg("[dzej] scene " + resname + " does not exist")
+		msg("[ERROR] scene " + resname + " does not exist")
 		return false
 
-	msg("[dzej] overlaying new scene at root: " + resname)
+	msg("[INFO] overlaying new scene at root: " + resname)
 	var scene = load(resname).instance()
 	root.add_child(scene)
 
 	return scene
 
 func overlayScene(scene : Node):
-	msg("[dzej] overlaying " + str(scene))
+	msg("[INFO] overlaying " + str(scene))
 	return root.add_child(scene)
 
 func removeScene(sceneRef : Node, soft : bool = false):
 	if(sceneRef != null):
-		msg("[dzej] removing scene: " + sceneRef.get_name())
+		msg("[INFO] removing scene: " + sceneRef.get_name())
 		root.remove_child(sceneRef)
 		if(!soft):
-			msg("[dzej] freeing scene: " + sceneRef.get_name())
+			msg("[INFO] freeing scene: " + sceneRef.get_name())
 			sceneRef.queue_free()
-		msg("[dzej] scene removed.")
+		msg("[INFO] scene removed.")
 		return true
 	else:
-		msg("[dzej] scene not found")
+		msg("[INFO] invalid scene")
 		return false
 
 func switchScene(resname : String, nomenu : bool = false):
 	if(resname == null || resname == ""):
-		msg("[dzej] invalid scene name")
+		msg("[ERROR] invalid scene name")
 		return false
 
 	if(!ResourceLoader.exists(resname)):
-		msg("[dzej] scene " + resname + " does not exist")
+		msg("[ERROR] scene " + resname + " does not exist")
 		return false
 	
-	msg("[dzej] switching to scene " + resname)
+	msg("[INFO] switching to scene " + resname)
 	var scene = load(resname).instance()
-	msg("[dzej] instantiated scene")
+	msg("[INFO] instantiated scene")
 	root.add_child(scene)
-	msg("[dzej] added scene to root")
+	msg("[INFO] added scene to root")
 	removeScene(currentScene)
-	msg("[dzej] removed current scene")
+	msg("[INFO] removed current scene")
 	currentScene = scene
 
 	if(nomenu):
@@ -109,7 +109,7 @@ func switchScene(resname : String, nomenu : bool = false):
 	removeScene(consoleScene, true)
 	overlayScene(consoleScene)
 
-	msg("[dzej] engine windows re-added " + resname)
+	msg("[INFO] engine windows re-added " + resname)
 	return scene
 
 # CONSOLE
@@ -123,10 +123,8 @@ func msg(msg):
 func lockMouse(type : bool = 0):
 	if(type):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		msg("[dzej] mouse locked")
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		msg("[dzej] mouse unlocked")
 
 func isMouseLocked():
 	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED	

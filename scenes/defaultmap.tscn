@@ -1,8 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://models/maps/Grass.material" type="Material" id=2]
 [ext_resource path="res://models/maps/Concrete.material" type="Material" id=3]
 [ext_resource path="res://scenes/defaultmap.lmbake" type="BakedLightmapData" id=4]
+
+[sub_resource type="ConvexPolygonShape" id=6]
+points = PoolVector3Array( -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1 )
+
+[sub_resource type="CubeMesh" id=5]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "testmap_Plane001"
@@ -44,6 +49,18 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0 )
 
 [node name="testmap" type="Spatial" parent="."]
 transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0 )
+
+[node name="RigidBody" type="RigidBody" parent="testmap"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3121, 2.84291, -12.6355 )
+contact_monitor = true
+linear_velocity = Vector3( 0, 10, 0 )
+
+[node name="CollisionShape" type="CollisionShape" parent="testmap/RigidBody"]
+shape = SubResource( 6 )
+
+[node name="MeshInstance" type="MeshInstance" parent="testmap/RigidBody"]
+mesh = SubResource( 5 )
+skeleton = NodePath("")
 
 [node name="Plane" type="MeshInstance" parent="testmap"]
 use_in_baked_light = true
