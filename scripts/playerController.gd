@@ -50,15 +50,16 @@ func _process(delta):
 func _physics_process(delta):
 	var input = Vector2()
 
-	if Input.is_action_pressed("movement_forward"):
-		input.y -= 1
-	if Input.is_action_pressed("movement_backward"):
-		input.y += 1
-	if Input.is_action_pressed("movement_left"):
-		input.x -= 1
-	if Input.is_action_pressed("movement_right"):
-		input.x += 1
-	
+	if(dzej.isMouseLocked()):
+		if Input.is_action_pressed("movement_forward"):
+			input.y -= 1
+		if Input.is_action_pressed("movement_backward"):
+			input.y += 1
+		if Input.is_action_pressed("movement_left"):
+			input.x -= 1
+		if Input.is_action_pressed("movement_right"):
+			input.x += 1
+		
 	if is_on_floor():
 		grav = 0
 		input = input.normalized()
@@ -68,12 +69,12 @@ func _physics_process(delta):
 		grav -= gravity * delta
 	
 	vel.y = grav
-	
+		
 	var forward = global_transform.basis.z
 	var right = global_transform.basis.x
-	
+		
 	var relativeDir = (forward * input.y + right * input.x)
-	
+			
 	vel = vel.linear_interpolate(relativeDir * moveSpeed, decel * delta)
 
 	if(!is_on_floor() && vel.length() > 0.1):
@@ -82,15 +83,21 @@ func _physics_process(delta):
 
 	vel = move_and_slide(vel, Vector3.UP, true, 4, deg2rad(75), false)
 
-	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider is RigidBody:
 			collision.collider.apply_central_impulse(-collision.normal * push_strength)
-	
-	viewmodel.translation.y = ogViewmodelPos.y + cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0, 100) * 0.005
-	viewmodel.translation.x = ogViewmodelPos.x + sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0, 100) * 0.0125
+		
+	var viewmodelPos = ogViewmodelPos
 
+	if(dzej.isMouseLocked()):
+		viewmodelPos.x += mouseDelta.x * 0.002
+		viewmodelPos.y += mouseDelta.y * 0.002
+		
+	viewmodel.translation.y = cos(OS.get_ticks_msec() * 0.01) * clamp(vel.length(), 0, 50) * 0.0025 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).y
+	viewmodel.translation.x = sin(OS.get_ticks_msec() * 0.005) * clamp(vel.length(), 0, 50) * 0.00625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).x
+
+	# I LOVE INVISIBLE UNICODE :YUM:
 
 func _input(event):
 	if(event is InputEventMouseMotion):
