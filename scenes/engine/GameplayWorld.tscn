@@ -1,21 +1,109 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/engine/worldloader.gd" type="Script" id=1]
 [ext_resource path="res://mat/ui/spinner.png" type="Texture" id=2]
+[ext_resource path="res://sound/engine/finish.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../bannerPanel:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../bannerPanel:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.3 ]
+}
+
+[sub_resource type="Animation" id=3]
 resource_name = "slideDown"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect_position")
+tracks/0/path = NodePath(".:anchor_top")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 2, 0 ),
+"transitions": PoolRealArray( 2, 1 ),
 "update": 0,
-"values": [ Vector2( 24, 546 ), Vector2( 24, 650 ) ]
+"values": [ 1.0, 1.1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_bottom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 1.0, 1.1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../bannerPanel:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0.3, -0.1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../bannerPanel:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0.3, -0.1 ]
 }
 
 [sub_resource type="Animation" id=1]
@@ -42,7 +130,33 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Panel" type="Panel" parent="UI"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI"]
+root_node = NodePath("../throbberPanel")
+anims/RESET = SubResource( 2 )
+anims/slideDown = SubResource( 3 )
+anims/spinner = SubResource( 1 )
+
+[node name="bannerPanel" type="PanelContainer" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.3
+anchor_right = 0.5
+anchor_bottom = 0.3
+margin_left = -57.0
+margin_top = -14.0
+margin_right = 57.0
+margin_bottom = 14.0
+grow_horizontal = 2
+
+[node name="Label" type="Label" parent="UI/bannerPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 107.0
+margin_bottom = 21.0
+text = "Uhhh..."
+align = 1
+valign = 1
+
+[node name="throbberPanel" type="Panel" parent="UI"]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 24.0
@@ -50,19 +164,18 @@ margin_top = -54.0
 margin_right = 124.0
 margin_bottom = -24.0
 
-[node name="Label" type="Label" parent="UI/Panel"]
+[node name="Label" type="Label" parent="UI/throbberPanel"]
 anchor_bottom = 1.0
 margin_right = 73.0
 text = "Loading"
 align = 1
 valign = 1
 
-[node name="Sprite" type="Sprite" parent="UI/Panel"]
+[node name="Sprite" type="Sprite" parent="UI/throbberPanel"]
 position = Vector2( 84, 15 )
+rotation = 2.51327
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 2 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Panel"]
-method_call_mode = 1
-anims/slideDown = SubResource( 2 )
-anims/spinner = SubResource( 1 )
+[node name="finishSound" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 3 )

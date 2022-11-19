@@ -23,11 +23,17 @@ onready var viewmodel = $RotationHelper/view
 
 onready var cam = $RotationHelper/Camera
 onready var viewmodelcam = $RotationHelper/ViewportContainer/Viewport/viewmodelCam
+onready var viewmodelViewport = $RotationHelper/ViewportContainer/Viewport
 
 onready var ogViewmodelPos = viewmodel.translation
 
 func _ready():
 	dzej.lockMouse(true)
+	dzej.root.connect("size_changed", self, "screenResized")
+	screenResized()
+
+func screenResized():
+	viewmodelViewport.size = dzej.root.size
 
 func _process(delta):
 	MOUSESENS = settings.all_settings.get("mouse_sens")
@@ -53,7 +59,6 @@ func _physics_process(delta):
 	if Input.is_action_pressed("movement_right"):
 		input.x += 1
 	
-	#eeky fix :/
 	if is_on_floor():
 		grav = 0
 		input = input.normalized()

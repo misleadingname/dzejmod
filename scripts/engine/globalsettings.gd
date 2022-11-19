@@ -6,6 +6,10 @@ var all_settings : Dictionary = {
 	"mouse_sens": 7.0
 }
 
+func _input(event):
+	if(event.is_action_pressed("engine_fullscreen")):
+		OS.window_fullscreen = !OS.window_fullscreen
+
 func apply_video_settings():
 	ProjectSettings.set_setting("rendering/quality/filters/use_fxaa", all_settings.get("fxaa"))
 	

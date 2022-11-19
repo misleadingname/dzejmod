@@ -59,7 +59,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Viewport" type="Viewport" parent="KinematicBody/RotationHelper/ViewportContainer"]
-size = Vector2( 1024, 600 )
+size = Vector2( 100, 100 )
+size_override_stretch = true
 transparent_bg = true
 handle_input_locally = false
 render_target_clear_mode = 1

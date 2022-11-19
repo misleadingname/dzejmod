@@ -1,6 +1,8 @@
 extends Spatial
 
-onready var spinnerAnimation = $UI/Panel/AnimationPlayer
+onready var spinnerAnimation = $UI/AnimationPlayer
+onready var bannerText = $UI/bannerPanel/Label
+onready var finishSound = $UI/finishSound
 
 var scene : Node = null
 var loadedScene : Node = null
@@ -8,10 +10,18 @@ var loadedScene : Node = null
 var loadingStatus = null
 
 func _ready():
-	if(dzej.targetScene == "engine/GameplayWorld.tscn" || dzej.targetScene == "res://GameplayWorld.tscn"):
+	scene = null
+	loadedScene = null
+	loadingStatus = null
+
+	if(dzej.targetScene == "scenes/engine/GameplayWorld.tscn" || dzej.targetScene == "res://scenes/engine/GameplayWorld.tscn"):
+		bannerText.text = "Error, check console for details."
 		dzej.msg("[FATAL] Don't use GameplayWorld as the target scene!")
+		spinnerAnimation.play("slideDown")
 	else:
+		yield(get_tree(), "idle_frame")
 		spinnerAnimation.play("spinner")
+		bannerText.text = "Now loading\n" + dzej.targetScene
 
 		var loader = ResourceLoader.load_interactive(dzej.targetScene)
 
@@ -25,7 +35,9 @@ func _ready():
 				loadedScene = dzej.addNodeToParent(loader.get_resource().instance(), self)[0]
 				break
 
+		finishSound.play()
 		dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
+		bannerText.text = "Done! :D"
 
 		var player : Node = dzej.addSceneToCustomParent("res://imports/player.tscn", self)[0]
 

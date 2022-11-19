@@ -14,7 +14,7 @@ func _ready():
 	currentScene = root.get_child(root.get_child_count() - 1)
 
 	consoleScene = load("res://scenes/engine/console.tscn").instance()
-	get_tree().get_root().add_child(consoleScene)
+	root.add_child(consoleScene)
 		
 	msg("[INFO] Dzejmod 0.1\nBy japannt.")
 	msg("[INFO] enigne initalizing...")
