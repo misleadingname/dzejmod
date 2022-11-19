@@ -48,6 +48,20 @@ func addSceneToCustomParent(resname : String, parent : Node):
 
 	return [scene, parent]
 
+func addNodeToParent(node : Node, parent : Node):
+	if(parent == null):
+		msg("[ERROR] parent is null")
+		return false
+
+	if(node == null):
+		msg("[ERROR] node is null")
+		return false
+
+	msg("[INFO] adding " + str(node) + " to " + str(parent))
+	parent.add_child(node)
+
+	return [node, parent]
+
 func overlayNewScene(resname : String):
 	if(resname == null || resname == ""):
 		msg("[ERROR] invalid scene name")

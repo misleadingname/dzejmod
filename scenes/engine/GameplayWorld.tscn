@@ -1,7 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/engine/worldloader.gd" type="Script" id=1]
 [ext_resource path="res://mat/ui/spinner.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=2]
+resource_name = "slideDown"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 2, 0 ),
+"update": 0,
+"values": [ Vector2( 24, 546 ), Vector2( 24, 650 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "spinner"
@@ -44,10 +59,10 @@ valign = 1
 
 [node name="Sprite" type="Sprite" parent="UI/Panel"]
 position = Vector2( 84, 15 )
-rotation = 3.40524
 scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Panel"]
 method_call_mode = 1
+anims/slideDown = SubResource( 2 )
 anims/spinner = SubResource( 1 )
