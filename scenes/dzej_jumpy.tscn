@@ -2162,7 +2162,7 @@ mesh = SubResource( 72 )
 material/0 = ExtResource( 1 )
 
 [node name="entity0_brush69" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 1.40663, -22.9043, -5.72269 )
 mesh = SubResource( 73 )
 material/0 = ExtResource( 1 )
 
@@ -2177,7 +2177,7 @@ mesh = SubResource( 74 )
 material/0 = ExtResource( 1 )
 
 [node name="entity0_brush70" type="MeshInstance" parent="."]
-transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 0, -1, 0, 1, 0, -11.4355, 7.61513, -18.2362 )
 mesh = SubResource( 75 )
 material/0 = ExtResource( 1 )
 

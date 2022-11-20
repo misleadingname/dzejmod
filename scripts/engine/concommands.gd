@@ -9,6 +9,7 @@ enum {
 }
 
 const valid = [
+	["quit", [ARG_NULL]],
 	["help", [ARG_NULL]],
 	["echo", [ARG_STRING]],
 	["version", [ARG_NULL]],
@@ -23,7 +24,9 @@ const valid = [
 # SV
 
 func sv_phys_fps(fps):
-	pass
+	Engine.iterations_per_second = int(fps)
+	dzej.msg("Server physics set to " + fps + "fps")
+	return true
 
 func sv_map(map):
 	dzej.msg("attemting to load map: " + map)
@@ -59,4 +62,8 @@ func echo(text):
 
 func help():
 	return "FIXME: help"
-			
+
+func quit():
+	dzej.msg("Goodbye!")
+	get_tree().quit()
+	return true
