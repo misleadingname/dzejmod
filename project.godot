@@ -33,6 +33,8 @@ settings="*res://scripts/engine/globalsettings.gd"
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+theme/custom="res://mat/ui/theme.tres"
+theme/custom_font="res://mat/ui/font/FreeSans.tres"
 
 [input]
 
