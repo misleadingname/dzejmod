@@ -2,16 +2,18 @@ extends KinematicBody
 
 class_name dzejPlayer
 
-export var moveSpeed : float = 5
+export var walkSpeed : float = 5
+export var sprintSpeed : float = 7
 export var jumpForce : float = 5
 export var pushStrength : float = 2
 
 export var gravityDefault : float = 9.8
-export var accelDefault : float = 7
+export var accelDefault : float = 8
 export var accelAir : float = 1
 
 onready var accel : float = accelDefault
 onready var gravity : float = gravityDefault
+onready var movementSpeed = walkSpeed
 
 var direction : Vector3 = Vector3()
 var velocity : Vector3 = Vector3()
@@ -58,6 +60,7 @@ func _physics_process(delta):
 	var f_input : float = 0.0
 	var h_input : float = 0.0
 	var h_rot = global_transform.basis.get_euler().y
+
 	if(dzej.isMouseLocked()):
 		f_input = Input.get_action_strength("movement_backward") - Input.get_action_strength("movement_forward")
 		h_input = Input.get_action_strength("movement_right") - Input.get_action_strength("movement_left")
@@ -75,11 +78,17 @@ func _physics_process(delta):
 		accel = accelAir
 		gravity_vec += Vector3.DOWN * gravity * delta
 		
-	if Input.is_action_just_pressed("movement_jump") and is_on_floor():
-		snap = Vector3.ZERO
-		gravity_vec = Vector3.UP * jumpForce
+	if(dzej.isMouseLocked()):
+		if(Input.is_action_pressed("movement_sprint") and is_on_floor()):
+			movementSpeed = sprintSpeed
+		else:
+			movementSpeed = walkSpeed
+
+		if(Input.is_action_just_pressed("movement_jump") and is_on_floor()):
+			snap = Vector3.ZERO
+			gravity_vec = Vector3.UP * jumpForce
 	
-	velocity = velocity.linear_interpolate(direction * moveSpeed, accel * delta)
+	velocity = velocity.linear_interpolate(direction * movementSpeed, accel * delta)
 	movement = velocity + gravity_vec
 	
 	for i in get_slide_count():
@@ -90,7 +99,7 @@ func _physics_process(delta):
 	var viewmodelPos = ogViewmodelPos
 
 	if(dzej.isMouseLocked()):
-		viewmodelPos.x += mouseDelta.x * 0.002
+		viewmodelPos.x += -mouseDelta.x * 0.002
 		viewmodelPos.y += mouseDelta.y * 0.002
 		
 	viewmodel.translation.y = cos(OS.get_ticks_msec() * 0.01) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).y
