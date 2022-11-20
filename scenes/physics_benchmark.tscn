@@ -1,0 +1,3926 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://mat/default.tres" type="Material" id=1]
+
+[sub_resource type="PlaneMesh" id=1]
+size = Vector2( 50, 50 )
+
+[sub_resource type="ConcavePolygonShape" id=2]
+data = PoolVector3Array( 25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25 )
+
+[sub_resource type="CubeMesh" id=3]
+material = ExtResource( 1 )
+size = Vector3( 1, 1, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=4]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="ConvexPolygonShape" id=5]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="ConvexPolygonShape" id=6]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="ConvexPolygonShape" id=7]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="ConvexPolygonShape" id=8]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="ConvexPolygonShape" id=10]
+points = PoolVector3Array( 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5 )
+
+[sub_resource type="CubeMesh" id=11]
+material = ExtResource( 1 )
+size = Vector3( 5, 0.1, 25 )
+
+[sub_resource type="ConvexPolygonShape" id=12]
+points = PoolVector3Array( 2.5, 0.05, 12.5, 2.5, -0.05, 12.5, 2.5, 0.05, -12.5, -2.5, 0.05, 12.5, -2.5, -0.05, 12.5, 2.5, -0.05, -12.5, -2.5, 0.05, -12.5, -2.5, -0.05, -12.5 )
+
+[node name="world" type="Spatial"]
+
+[node name="plane" type="MeshInstance" parent="."]
+mesh = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="plane"]
+
+[node name="CollisionShape" type="CollisionShape" parent="plane/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="plane2" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 73 )
+mesh = SubResource( 1 )
+
+[node name="StaticBody" type="StaticBody" parent="plane2"]
+
+[node name="CollisionShape" type="CollisionShape" parent="plane2/StaticBody"]
+shape = SubResource( 2 )
+
+[node name="pile of boxes" type="Spatial" parent="."]
+
+[node name="RigidBody" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody"]
+shape = SubResource( 4 )
+
+[node name="RigidBody2" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody2"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody2"]
+shape = SubResource( 5 )
+
+[node name="RigidBody3" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody3"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody3"]
+shape = SubResource( 6 )
+
+[node name="RigidBody4" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody4"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody4"]
+shape = SubResource( 7 )
+
+[node name="RigidBody5" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody5"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody5"]
+shape = SubResource( 8 )
+
+[node name="RigidBody6" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody6"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody7" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody7"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody7"]
+shape = SubResource( 10 )
+
+[node name="RigidBody8" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody8"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody8"]
+shape = SubResource( 4 )
+
+[node name="RigidBody120" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody120"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody120"]
+shape = SubResource( 4 )
+
+[node name="RigidBody121" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody121"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody121"]
+shape = SubResource( 5 )
+
+[node name="RigidBody122" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody122"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody122"]
+shape = SubResource( 6 )
+
+[node name="RigidBody123" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody123"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody123"]
+shape = SubResource( 7 )
+
+[node name="RigidBody124" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody124"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody124"]
+shape = SubResource( 8 )
+
+[node name="RigidBody125" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody125"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody125"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody126" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody126"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody126"]
+shape = SubResource( 10 )
+
+[node name="RigidBody127" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody127"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody127"]
+shape = SubResource( 4 )
+
+[node name="RigidBody128" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody128"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody128"]
+shape = SubResource( 4 )
+
+[node name="RigidBody129" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody129"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody129"]
+shape = SubResource( 5 )
+
+[node name="RigidBody130" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody130"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody130"]
+shape = SubResource( 6 )
+
+[node name="RigidBody131" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody131"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody131"]
+shape = SubResource( 7 )
+
+[node name="RigidBody132" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody132"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody132"]
+shape = SubResource( 8 )
+
+[node name="RigidBody133" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody133"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody133"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody134" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody134"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody134"]
+shape = SubResource( 10 )
+
+[node name="RigidBody135" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody135"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody135"]
+shape = SubResource( 4 )
+
+[node name="RigidBody136" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody136"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody136"]
+shape = SubResource( 4 )
+
+[node name="RigidBody137" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody137"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody137"]
+shape = SubResource( 5 )
+
+[node name="RigidBody138" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody138"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody138"]
+shape = SubResource( 6 )
+
+[node name="RigidBody139" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody139"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody139"]
+shape = SubResource( 7 )
+
+[node name="RigidBody140" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody140"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody140"]
+shape = SubResource( 8 )
+
+[node name="RigidBody141" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody141"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody141"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody142" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody142"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody142"]
+shape = SubResource( 10 )
+
+[node name="RigidBody143" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody143"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody143"]
+shape = SubResource( 4 )
+
+[node name="RigidBody144" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody144"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody144"]
+shape = SubResource( 4 )
+
+[node name="RigidBody145" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody145"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody145"]
+shape = SubResource( 5 )
+
+[node name="RigidBody146" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody146"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody146"]
+shape = SubResource( 6 )
+
+[node name="RigidBody147" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody147"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody147"]
+shape = SubResource( 7 )
+
+[node name="RigidBody148" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody148"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody148"]
+shape = SubResource( 8 )
+
+[node name="RigidBody149" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody149"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody149"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody150" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody150"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody150"]
+shape = SubResource( 10 )
+
+[node name="RigidBody151" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody151"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody151"]
+shape = SubResource( 4 )
+
+[node name="RigidBody152" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody152"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody152"]
+shape = SubResource( 4 )
+
+[node name="RigidBody153" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody153"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody153"]
+shape = SubResource( 5 )
+
+[node name="RigidBody154" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody154"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody154"]
+shape = SubResource( 6 )
+
+[node name="RigidBody155" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody155"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody155"]
+shape = SubResource( 7 )
+
+[node name="RigidBody156" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody156"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody156"]
+shape = SubResource( 8 )
+
+[node name="RigidBody157" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody157"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody157"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody158" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody158"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody158"]
+shape = SubResource( 10 )
+
+[node name="RigidBody159" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody159"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody159"]
+shape = SubResource( 4 )
+
+[node name="RigidBody160" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody160"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody160"]
+shape = SubResource( 4 )
+
+[node name="RigidBody161" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody161"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody161"]
+shape = SubResource( 5 )
+
+[node name="RigidBody162" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody162"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody162"]
+shape = SubResource( 6 )
+
+[node name="RigidBody163" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody163"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody163"]
+shape = SubResource( 7 )
+
+[node name="RigidBody164" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody164"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody164"]
+shape = SubResource( 8 )
+
+[node name="RigidBody165" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody165"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody165"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody166" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody166"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody166"]
+shape = SubResource( 10 )
+
+[node name="RigidBody167" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody167"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody167"]
+shape = SubResource( 4 )
+
+[node name="RigidBody168" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody168"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody168"]
+shape = SubResource( 4 )
+
+[node name="RigidBody169" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody169"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody169"]
+shape = SubResource( 5 )
+
+[node name="RigidBody170" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody170"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody170"]
+shape = SubResource( 6 )
+
+[node name="RigidBody171" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody171"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody171"]
+shape = SubResource( 7 )
+
+[node name="RigidBody172" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody172"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody172"]
+shape = SubResource( 8 )
+
+[node name="RigidBody173" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody173"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody173"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody174" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody174"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody174"]
+shape = SubResource( 10 )
+
+[node name="RigidBody175" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody175"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody175"]
+shape = SubResource( 4 )
+
+[node name="RigidBody176" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody176"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody176"]
+shape = SubResource( 4 )
+
+[node name="RigidBody177" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody177"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody177"]
+shape = SubResource( 5 )
+
+[node name="RigidBody178" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody178"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody178"]
+shape = SubResource( 6 )
+
+[node name="RigidBody179" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody179"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody179"]
+shape = SubResource( 7 )
+
+[node name="RigidBody180" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody180"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody180"]
+shape = SubResource( 8 )
+
+[node name="RigidBody181" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody181"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody181"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody182" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody182"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody182"]
+shape = SubResource( 10 )
+
+[node name="RigidBody183" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody183"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody183"]
+shape = SubResource( 4 )
+
+[node name="RigidBody184" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody184"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody184"]
+shape = SubResource( 4 )
+
+[node name="RigidBody185" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody185"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody185"]
+shape = SubResource( 5 )
+
+[node name="RigidBody186" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody186"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody186"]
+shape = SubResource( 6 )
+
+[node name="RigidBody187" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody187"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody187"]
+shape = SubResource( 7 )
+
+[node name="RigidBody188" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody188"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody188"]
+shape = SubResource( 8 )
+
+[node name="RigidBody189" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody189"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody189"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody190" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody190"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody190"]
+shape = SubResource( 10 )
+
+[node name="RigidBody191" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody191"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody191"]
+shape = SubResource( 4 )
+
+[node name="RigidBody192" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody192"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody192"]
+shape = SubResource( 4 )
+
+[node name="RigidBody193" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody193"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody193"]
+shape = SubResource( 5 )
+
+[node name="RigidBody194" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody194"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody194"]
+shape = SubResource( 6 )
+
+[node name="RigidBody195" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody195"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody195"]
+shape = SubResource( 7 )
+
+[node name="RigidBody196" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody196"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody196"]
+shape = SubResource( 8 )
+
+[node name="RigidBody197" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody197"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody197"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody198" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody198"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody198"]
+shape = SubResource( 10 )
+
+[node name="RigidBody199" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody199"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody199"]
+shape = SubResource( 4 )
+
+[node name="RigidBody200" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody200"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody200"]
+shape = SubResource( 4 )
+
+[node name="RigidBody201" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody201"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody201"]
+shape = SubResource( 5 )
+
+[node name="RigidBody202" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody202"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody202"]
+shape = SubResource( 6 )
+
+[node name="RigidBody203" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody203"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody203"]
+shape = SubResource( 7 )
+
+[node name="RigidBody204" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody204"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody204"]
+shape = SubResource( 8 )
+
+[node name="RigidBody205" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody205"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody205"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody206" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody206"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody206"]
+shape = SubResource( 10 )
+
+[node name="RigidBody207" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody207"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody207"]
+shape = SubResource( 4 )
+
+[node name="RigidBody208" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody208"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody208"]
+shape = SubResource( 4 )
+
+[node name="RigidBody209" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody209"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody209"]
+shape = SubResource( 5 )
+
+[node name="RigidBody210" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody210"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody210"]
+shape = SubResource( 6 )
+
+[node name="RigidBody211" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody211"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody211"]
+shape = SubResource( 7 )
+
+[node name="RigidBody212" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody212"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody212"]
+shape = SubResource( 8 )
+
+[node name="RigidBody213" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody213"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody213"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody214" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody214"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody214"]
+shape = SubResource( 10 )
+
+[node name="RigidBody215" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody215"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody215"]
+shape = SubResource( 4 )
+
+[node name="RigidBody216" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody216"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody216"]
+shape = SubResource( 4 )
+
+[node name="RigidBody217" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody217"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody217"]
+shape = SubResource( 5 )
+
+[node name="RigidBody218" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody218"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody218"]
+shape = SubResource( 6 )
+
+[node name="RigidBody219" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody219"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody219"]
+shape = SubResource( 7 )
+
+[node name="RigidBody220" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody220"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody220"]
+shape = SubResource( 8 )
+
+[node name="RigidBody221" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody221"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody221"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody222" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody222"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody222"]
+shape = SubResource( 10 )
+
+[node name="RigidBody223" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody223"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody223"]
+shape = SubResource( 4 )
+
+[node name="RigidBody224" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody224"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody224"]
+shape = SubResource( 4 )
+
+[node name="RigidBody225" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody225"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody225"]
+shape = SubResource( 5 )
+
+[node name="RigidBody226" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody226"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody226"]
+shape = SubResource( 6 )
+
+[node name="RigidBody227" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody227"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody227"]
+shape = SubResource( 7 )
+
+[node name="RigidBody228" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody228"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody228"]
+shape = SubResource( 8 )
+
+[node name="RigidBody229" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody229"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody229"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody230" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody230"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody230"]
+shape = SubResource( 10 )
+
+[node name="RigidBody231" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody231"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody231"]
+shape = SubResource( 4 )
+
+[node name="RigidBody232" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody232"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody232"]
+shape = SubResource( 4 )
+
+[node name="RigidBody233" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody233"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody233"]
+shape = SubResource( 5 )
+
+[node name="RigidBody234" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody234"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody234"]
+shape = SubResource( 6 )
+
+[node name="RigidBody235" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody235"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody235"]
+shape = SubResource( 7 )
+
+[node name="RigidBody236" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody236"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody236"]
+shape = SubResource( 8 )
+
+[node name="RigidBody237" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody237"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody237"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody238" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody238"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody238"]
+shape = SubResource( 10 )
+
+[node name="RigidBody239" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody239"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody239"]
+shape = SubResource( 4 )
+
+[node name="RigidBody240" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody240"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody240"]
+shape = SubResource( 4 )
+
+[node name="RigidBody241" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody241"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody241"]
+shape = SubResource( 5 )
+
+[node name="RigidBody242" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody242"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody242"]
+shape = SubResource( 6 )
+
+[node name="RigidBody243" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody243"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody243"]
+shape = SubResource( 7 )
+
+[node name="RigidBody244" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody244"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody244"]
+shape = SubResource( 8 )
+
+[node name="RigidBody245" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody245"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody245"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody246" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody246"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody246"]
+shape = SubResource( 10 )
+
+[node name="RigidBody247" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody247"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody247"]
+shape = SubResource( 4 )
+
+[node name="RigidBody248" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody248"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody248"]
+shape = SubResource( 4 )
+
+[node name="RigidBody249" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody249"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody249"]
+shape = SubResource( 5 )
+
+[node name="RigidBody250" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody250"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody250"]
+shape = SubResource( 6 )
+
+[node name="RigidBody251" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody251"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody251"]
+shape = SubResource( 7 )
+
+[node name="RigidBody252" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody252"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody252"]
+shape = SubResource( 8 )
+
+[node name="RigidBody253" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody253"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody253"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody254" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody254"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody254"]
+shape = SubResource( 10 )
+
+[node name="RigidBody255" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody255"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody255"]
+shape = SubResource( 4 )
+
+[node name="RigidBody256" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody256"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody256"]
+shape = SubResource( 4 )
+
+[node name="RigidBody257" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody257"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody257"]
+shape = SubResource( 5 )
+
+[node name="RigidBody258" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody258"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody258"]
+shape = SubResource( 6 )
+
+[node name="RigidBody259" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody259"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody259"]
+shape = SubResource( 7 )
+
+[node name="RigidBody260" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody260"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody260"]
+shape = SubResource( 8 )
+
+[node name="RigidBody261" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody261"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody261"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody262" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody262"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody262"]
+shape = SubResource( 10 )
+
+[node name="RigidBody263" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody263"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody263"]
+shape = SubResource( 4 )
+
+[node name="RigidBody264" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody264"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody264"]
+shape = SubResource( 4 )
+
+[node name="RigidBody265" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody265"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody265"]
+shape = SubResource( 5 )
+
+[node name="RigidBody266" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody266"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody266"]
+shape = SubResource( 6 )
+
+[node name="RigidBody267" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody267"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody267"]
+shape = SubResource( 7 )
+
+[node name="RigidBody268" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody268"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody268"]
+shape = SubResource( 8 )
+
+[node name="RigidBody269" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody269"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody269"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody270" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody270"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody270"]
+shape = SubResource( 10 )
+
+[node name="RigidBody271" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody271"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody271"]
+shape = SubResource( 4 )
+
+[node name="RigidBody272" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody272"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody272"]
+shape = SubResource( 4 )
+
+[node name="RigidBody273" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody273"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody273"]
+shape = SubResource( 5 )
+
+[node name="RigidBody274" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody274"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody274"]
+shape = SubResource( 6 )
+
+[node name="RigidBody275" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody275"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody275"]
+shape = SubResource( 7 )
+
+[node name="RigidBody276" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody276"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody276"]
+shape = SubResource( 8 )
+
+[node name="RigidBody277" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody277"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody277"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody278" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody278"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody278"]
+shape = SubResource( 10 )
+
+[node name="RigidBody279" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody279"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody279"]
+shape = SubResource( 4 )
+
+[node name="RigidBody280" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody280"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody280"]
+shape = SubResource( 4 )
+
+[node name="RigidBody281" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody281"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody281"]
+shape = SubResource( 5 )
+
+[node name="RigidBody282" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody282"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody282"]
+shape = SubResource( 6 )
+
+[node name="RigidBody283" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody283"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody283"]
+shape = SubResource( 7 )
+
+[node name="RigidBody284" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody284"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody284"]
+shape = SubResource( 8 )
+
+[node name="RigidBody285" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody285"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody285"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody286" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody286"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody286"]
+shape = SubResource( 10 )
+
+[node name="RigidBody287" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody287"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody287"]
+shape = SubResource( 4 )
+
+[node name="RigidBody288" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody288"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody288"]
+shape = SubResource( 4 )
+
+[node name="RigidBody289" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody289"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody289"]
+shape = SubResource( 5 )
+
+[node name="RigidBody290" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody290"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody290"]
+shape = SubResource( 6 )
+
+[node name="RigidBody291" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody291"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody291"]
+shape = SubResource( 7 )
+
+[node name="RigidBody292" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody292"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody292"]
+shape = SubResource( 8 )
+
+[node name="RigidBody293" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody293"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody293"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody294" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody294"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody294"]
+shape = SubResource( 10 )
+
+[node name="RigidBody295" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody295"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody295"]
+shape = SubResource( 4 )
+
+[node name="RigidBody296" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody296"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody296"]
+shape = SubResource( 4 )
+
+[node name="RigidBody297" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody297"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody297"]
+shape = SubResource( 5 )
+
+[node name="RigidBody298" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody298"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody298"]
+shape = SubResource( 6 )
+
+[node name="RigidBody299" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody299"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody299"]
+shape = SubResource( 7 )
+
+[node name="RigidBody300" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody300"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody300"]
+shape = SubResource( 8 )
+
+[node name="RigidBody301" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody301"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody301"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody302" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody302"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody302"]
+shape = SubResource( 10 )
+
+[node name="RigidBody303" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody303"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody303"]
+shape = SubResource( 4 )
+
+[node name="RigidBody304" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody304"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody304"]
+shape = SubResource( 4 )
+
+[node name="RigidBody305" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody305"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody305"]
+shape = SubResource( 5 )
+
+[node name="RigidBody306" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody306"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody306"]
+shape = SubResource( 6 )
+
+[node name="RigidBody307" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody307"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody307"]
+shape = SubResource( 7 )
+
+[node name="RigidBody308" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody308"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody308"]
+shape = SubResource( 8 )
+
+[node name="RigidBody309" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody309"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody309"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody310" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody310"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody310"]
+shape = SubResource( 10 )
+
+[node name="RigidBody311" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody311"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody311"]
+shape = SubResource( 4 )
+
+[node name="RigidBody312" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody312"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody312"]
+shape = SubResource( 4 )
+
+[node name="RigidBody313" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody313"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody313"]
+shape = SubResource( 5 )
+
+[node name="RigidBody314" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody314"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody314"]
+shape = SubResource( 6 )
+
+[node name="RigidBody315" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody315"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody315"]
+shape = SubResource( 7 )
+
+[node name="RigidBody316" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody316"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody316"]
+shape = SubResource( 8 )
+
+[node name="RigidBody317" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody317"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody317"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody318" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody318"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody318"]
+shape = SubResource( 10 )
+
+[node name="RigidBody319" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody319"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody319"]
+shape = SubResource( 4 )
+
+[node name="RigidBody320" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody320"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody320"]
+shape = SubResource( 4 )
+
+[node name="RigidBody321" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody321"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody321"]
+shape = SubResource( 5 )
+
+[node name="RigidBody322" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody322"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody322"]
+shape = SubResource( 6 )
+
+[node name="RigidBody323" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody323"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody323"]
+shape = SubResource( 7 )
+
+[node name="RigidBody324" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody324"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody324"]
+shape = SubResource( 8 )
+
+[node name="RigidBody325" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody325"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody325"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody326" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody326"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody326"]
+shape = SubResource( 10 )
+
+[node name="RigidBody327" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody327"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody327"]
+shape = SubResource( 4 )
+
+[node name="RigidBody328" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody328"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody328"]
+shape = SubResource( 4 )
+
+[node name="RigidBody329" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody329"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody329"]
+shape = SubResource( 5 )
+
+[node name="RigidBody330" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody330"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody330"]
+shape = SubResource( 6 )
+
+[node name="RigidBody331" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody331"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody331"]
+shape = SubResource( 7 )
+
+[node name="RigidBody332" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody332"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody332"]
+shape = SubResource( 8 )
+
+[node name="RigidBody333" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody333"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody333"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody334" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody334"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody334"]
+shape = SubResource( 10 )
+
+[node name="RigidBody335" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody335"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody335"]
+shape = SubResource( 4 )
+
+[node name="RigidBody336" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody336"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody336"]
+shape = SubResource( 4 )
+
+[node name="RigidBody337" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody337"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody337"]
+shape = SubResource( 5 )
+
+[node name="RigidBody338" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody338"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody338"]
+shape = SubResource( 6 )
+
+[node name="RigidBody339" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody339"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody339"]
+shape = SubResource( 7 )
+
+[node name="RigidBody340" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody340"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody340"]
+shape = SubResource( 8 )
+
+[node name="RigidBody341" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody341"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody341"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody342" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody342"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody342"]
+shape = SubResource( 10 )
+
+[node name="RigidBody343" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody343"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody343"]
+shape = SubResource( 4 )
+
+[node name="RigidBody344" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody344"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody344"]
+shape = SubResource( 4 )
+
+[node name="RigidBody345" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody345"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody345"]
+shape = SubResource( 5 )
+
+[node name="RigidBody346" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody346"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody346"]
+shape = SubResource( 6 )
+
+[node name="RigidBody347" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody347"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody347"]
+shape = SubResource( 7 )
+
+[node name="RigidBody348" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody348"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody348"]
+shape = SubResource( 8 )
+
+[node name="RigidBody349" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody349"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody349"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody350" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody350"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody350"]
+shape = SubResource( 10 )
+
+[node name="RigidBody351" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody351"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody351"]
+shape = SubResource( 4 )
+
+[node name="RigidBody352" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody352"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody352"]
+shape = SubResource( 4 )
+
+[node name="RigidBody353" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody353"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody353"]
+shape = SubResource( 5 )
+
+[node name="RigidBody354" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody354"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody354"]
+shape = SubResource( 6 )
+
+[node name="RigidBody355" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody355"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody355"]
+shape = SubResource( 7 )
+
+[node name="RigidBody356" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody356"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody356"]
+shape = SubResource( 8 )
+
+[node name="RigidBody357" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody357"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody357"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody358" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody358"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody358"]
+shape = SubResource( 10 )
+
+[node name="RigidBody359" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody359"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody359"]
+shape = SubResource( 4 )
+
+[node name="RigidBody360" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody360"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody360"]
+shape = SubResource( 4 )
+
+[node name="RigidBody361" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody361"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody361"]
+shape = SubResource( 5 )
+
+[node name="RigidBody362" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody362"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody362"]
+shape = SubResource( 6 )
+
+[node name="RigidBody363" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody363"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody363"]
+shape = SubResource( 7 )
+
+[node name="RigidBody364" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody364"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody364"]
+shape = SubResource( 8 )
+
+[node name="RigidBody365" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody365"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody365"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody366" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody366"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody366"]
+shape = SubResource( 10 )
+
+[node name="RigidBody367" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody367"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody367"]
+shape = SubResource( 4 )
+
+[node name="RigidBody368" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody368"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody368"]
+shape = SubResource( 4 )
+
+[node name="RigidBody369" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody369"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody369"]
+shape = SubResource( 5 )
+
+[node name="RigidBody370" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody370"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody370"]
+shape = SubResource( 6 )
+
+[node name="RigidBody371" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody371"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody371"]
+shape = SubResource( 7 )
+
+[node name="RigidBody372" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody372"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody372"]
+shape = SubResource( 8 )
+
+[node name="RigidBody373" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody373"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody373"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody374" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody374"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody374"]
+shape = SubResource( 10 )
+
+[node name="RigidBody375" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody375"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody375"]
+shape = SubResource( 4 )
+
+[node name="RigidBody376" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody376"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody376"]
+shape = SubResource( 4 )
+
+[node name="RigidBody377" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody377"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody377"]
+shape = SubResource( 5 )
+
+[node name="RigidBody378" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody378"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody378"]
+shape = SubResource( 6 )
+
+[node name="RigidBody379" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody379"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody379"]
+shape = SubResource( 7 )
+
+[node name="RigidBody380" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody380"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody380"]
+shape = SubResource( 8 )
+
+[node name="RigidBody381" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody381"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody381"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody382" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody382"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody382"]
+shape = SubResource( 10 )
+
+[node name="RigidBody383" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody383"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody383"]
+shape = SubResource( 4 )
+
+[node name="RigidBody384" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody384"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody384"]
+shape = SubResource( 4 )
+
+[node name="RigidBody385" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody385"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody385"]
+shape = SubResource( 5 )
+
+[node name="RigidBody386" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody386"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody386"]
+shape = SubResource( 6 )
+
+[node name="RigidBody387" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody387"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody387"]
+shape = SubResource( 7 )
+
+[node name="RigidBody388" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody388"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody388"]
+shape = SubResource( 8 )
+
+[node name="RigidBody389" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody389"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody389"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody390" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody390"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody390"]
+shape = SubResource( 10 )
+
+[node name="RigidBody391" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody391"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody391"]
+shape = SubResource( 4 )
+
+[node name="RigidBody392" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody392"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody392"]
+shape = SubResource( 4 )
+
+[node name="RigidBody393" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody393"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody393"]
+shape = SubResource( 5 )
+
+[node name="RigidBody394" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody394"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody394"]
+shape = SubResource( 6 )
+
+[node name="RigidBody395" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody395"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody395"]
+shape = SubResource( 7 )
+
+[node name="RigidBody396" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody396"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody396"]
+shape = SubResource( 8 )
+
+[node name="RigidBody397" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody397"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody397"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody398" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody398"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody398"]
+shape = SubResource( 10 )
+
+[node name="RigidBody399" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody399"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody399"]
+shape = SubResource( 4 )
+
+[node name="RigidBody400" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody400"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody400"]
+shape = SubResource( 4 )
+
+[node name="RigidBody401" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody401"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody401"]
+shape = SubResource( 5 )
+
+[node name="RigidBody402" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody402"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody402"]
+shape = SubResource( 6 )
+
+[node name="RigidBody403" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody403"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody403"]
+shape = SubResource( 7 )
+
+[node name="RigidBody404" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody404"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody404"]
+shape = SubResource( 8 )
+
+[node name="RigidBody405" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody405"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody405"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody406" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody406"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody406"]
+shape = SubResource( 10 )
+
+[node name="RigidBody407" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody407"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody407"]
+shape = SubResource( 4 )
+
+[node name="RigidBody408" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody408"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody408"]
+shape = SubResource( 4 )
+
+[node name="RigidBody409" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody409"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody409"]
+shape = SubResource( 5 )
+
+[node name="RigidBody410" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody410"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody410"]
+shape = SubResource( 6 )
+
+[node name="RigidBody411" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody411"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody411"]
+shape = SubResource( 7 )
+
+[node name="RigidBody412" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody412"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody412"]
+shape = SubResource( 8 )
+
+[node name="RigidBody413" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody413"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody413"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody414" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody414"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody414"]
+shape = SubResource( 10 )
+
+[node name="RigidBody415" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody415"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody415"]
+shape = SubResource( 4 )
+
+[node name="RigidBody9" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody9"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody9"]
+shape = SubResource( 5 )
+
+[node name="RigidBody10" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody10"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody10"]
+shape = SubResource( 6 )
+
+[node name="RigidBody11" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody11"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody11"]
+shape = SubResource( 7 )
+
+[node name="RigidBody12" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody12"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody12"]
+shape = SubResource( 8 )
+
+[node name="RigidBody13" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody13"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody14" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody14"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody14"]
+shape = SubResource( 10 )
+
+[node name="RigidBody15" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody15"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody15"]
+shape = SubResource( 4 )
+
+[node name="RigidBody16" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody16"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody16"]
+shape = SubResource( 5 )
+
+[node name="RigidBody17" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody17"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody17"]
+shape = SubResource( 6 )
+
+[node name="RigidBody18" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody18"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody18"]
+shape = SubResource( 7 )
+
+[node name="RigidBody19" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody19"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody19"]
+shape = SubResource( 8 )
+
+[node name="RigidBody20" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody20"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody20"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody21" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 2.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody21"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody21"]
+shape = SubResource( 10 )
+
+[node name="RigidBody22" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody22"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody22"]
+shape = SubResource( 4 )
+
+[node name="RigidBody23" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody23"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody23"]
+shape = SubResource( 5 )
+
+[node name="RigidBody24" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody24"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody24"]
+shape = SubResource( 6 )
+
+[node name="RigidBody25" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody25"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody25"]
+shape = SubResource( 7 )
+
+[node name="RigidBody26" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody26"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody26"]
+shape = SubResource( 8 )
+
+[node name="RigidBody27" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody27"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody27"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody28" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody28"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody28"]
+shape = SubResource( 10 )
+
+[node name="RigidBody29" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody29"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody29"]
+shape = SubResource( 4 )
+
+[node name="RigidBody30" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody30"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody30"]
+shape = SubResource( 5 )
+
+[node name="RigidBody31" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody31"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody31"]
+shape = SubResource( 6 )
+
+[node name="RigidBody32" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody32"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody32"]
+shape = SubResource( 7 )
+
+[node name="RigidBody33" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody33"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody33"]
+shape = SubResource( 8 )
+
+[node name="RigidBody34" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody34"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody34"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody35" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody35"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody35"]
+shape = SubResource( 10 )
+
+[node name="RigidBody36" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody36"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody36"]
+shape = SubResource( 4 )
+
+[node name="RigidBody37" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody37"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody37"]
+shape = SubResource( 5 )
+
+[node name="RigidBody38" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody38"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody38"]
+shape = SubResource( 6 )
+
+[node name="RigidBody39" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody39"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody39"]
+shape = SubResource( 7 )
+
+[node name="RigidBody40" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody40"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody40"]
+shape = SubResource( 8 )
+
+[node name="RigidBody41" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody41"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody41"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody42" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 5.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody42"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody42"]
+shape = SubResource( 10 )
+
+[node name="RigidBody43" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody43"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody43"]
+shape = SubResource( 4 )
+
+[node name="RigidBody44" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody44"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody44"]
+shape = SubResource( 5 )
+
+[node name="RigidBody45" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody45"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody45"]
+shape = SubResource( 6 )
+
+[node name="RigidBody46" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody46"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody46"]
+shape = SubResource( 7 )
+
+[node name="RigidBody47" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody47"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody47"]
+shape = SubResource( 8 )
+
+[node name="RigidBody48" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody48"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody48"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody49" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody49"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody49"]
+shape = SubResource( 10 )
+
+[node name="RigidBody50" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody50"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody50"]
+shape = SubResource( 4 )
+
+[node name="RigidBody51" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody51"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody51"]
+shape = SubResource( 5 )
+
+[node name="RigidBody52" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody52"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody52"]
+shape = SubResource( 6 )
+
+[node name="RigidBody53" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody53"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody53"]
+shape = SubResource( 7 )
+
+[node name="RigidBody54" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody54"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody54"]
+shape = SubResource( 8 )
+
+[node name="RigidBody55" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody55"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody55"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody56" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody56"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody56"]
+shape = SubResource( 10 )
+
+[node name="RigidBody57" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody57"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody57"]
+shape = SubResource( 4 )
+
+[node name="RigidBody58" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody58"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody58"]
+shape = SubResource( 5 )
+
+[node name="RigidBody59" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody59"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody59"]
+shape = SubResource( 6 )
+
+[node name="RigidBody60" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody60"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody60"]
+shape = SubResource( 7 )
+
+[node name="RigidBody61" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody61"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody61"]
+shape = SubResource( 8 )
+
+[node name="RigidBody62" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody62"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody62"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody63" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody63"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody63"]
+shape = SubResource( 10 )
+
+[node name="RigidBody64" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody64"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody64"]
+shape = SubResource( 4 )
+
+[node name="RigidBody65" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody65"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody65"]
+shape = SubResource( 5 )
+
+[node name="RigidBody66" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody66"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody66"]
+shape = SubResource( 6 )
+
+[node name="RigidBody67" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody67"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody67"]
+shape = SubResource( 7 )
+
+[node name="RigidBody68" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody68"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody68"]
+shape = SubResource( 8 )
+
+[node name="RigidBody69" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody69"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody69"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody70" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 20 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody70"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody70"]
+shape = SubResource( 10 )
+
+[node name="RigidBody71" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody71"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody71"]
+shape = SubResource( 4 )
+
+[node name="RigidBody72" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody72"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody72"]
+shape = SubResource( 5 )
+
+[node name="RigidBody73" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody73"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody73"]
+shape = SubResource( 6 )
+
+[node name="RigidBody74" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody74"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody74"]
+shape = SubResource( 7 )
+
+[node name="RigidBody75" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody75"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody75"]
+shape = SubResource( 8 )
+
+[node name="RigidBody76" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody76"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody76"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody77" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 19 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody77"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody77"]
+shape = SubResource( 10 )
+
+[node name="RigidBody78" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody78"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody78"]
+shape = SubResource( 4 )
+
+[node name="RigidBody79" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody79"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody79"]
+shape = SubResource( 5 )
+
+[node name="RigidBody80" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody80"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody80"]
+shape = SubResource( 6 )
+
+[node name="RigidBody81" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody81"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody81"]
+shape = SubResource( 7 )
+
+[node name="RigidBody82" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody82"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody82"]
+shape = SubResource( 8 )
+
+[node name="RigidBody83" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody83"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody83"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody84" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 18 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody84"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody84"]
+shape = SubResource( 10 )
+
+[node name="RigidBody85" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody85"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody85"]
+shape = SubResource( 4 )
+
+[node name="RigidBody86" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody86"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody86"]
+shape = SubResource( 5 )
+
+[node name="RigidBody87" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody87"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody87"]
+shape = SubResource( 6 )
+
+[node name="RigidBody88" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody88"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody88"]
+shape = SubResource( 7 )
+
+[node name="RigidBody89" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody89"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody89"]
+shape = SubResource( 8 )
+
+[node name="RigidBody90" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody90"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody90"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody91" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 17 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody91"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody91"]
+shape = SubResource( 10 )
+
+[node name="RigidBody92" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody92"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody92"]
+shape = SubResource( 4 )
+
+[node name="RigidBody93" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody93"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody93"]
+shape = SubResource( 5 )
+
+[node name="RigidBody94" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody94"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody94"]
+shape = SubResource( 6 )
+
+[node name="RigidBody95" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody95"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody95"]
+shape = SubResource( 7 )
+
+[node name="RigidBody96" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody96"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody96"]
+shape = SubResource( 8 )
+
+[node name="RigidBody97" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody97"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody97"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody98" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 16 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody98"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody98"]
+shape = SubResource( 10 )
+
+[node name="RigidBody99" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody99"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody99"]
+shape = SubResource( 4 )
+
+[node name="RigidBody100" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody100"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody100"]
+shape = SubResource( 5 )
+
+[node name="RigidBody101" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody101"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody101"]
+shape = SubResource( 6 )
+
+[node name="RigidBody102" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody102"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody102"]
+shape = SubResource( 7 )
+
+[node name="RigidBody103" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody103"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody103"]
+shape = SubResource( 8 )
+
+[node name="RigidBody104" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody104"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody104"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody105" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 15 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody105"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody105"]
+shape = SubResource( 10 )
+
+[node name="RigidBody106" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody106"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody106"]
+shape = SubResource( 4 )
+
+[node name="RigidBody107" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody107"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody107"]
+shape = SubResource( 5 )
+
+[node name="RigidBody108" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody108"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody108"]
+shape = SubResource( 6 )
+
+[node name="RigidBody109" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody109"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody109"]
+shape = SubResource( 7 )
+
+[node name="RigidBody110" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody110"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody110"]
+shape = SubResource( 8 )
+
+[node name="RigidBody111" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody111"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody111"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody112" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody112"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody112"]
+shape = SubResource( 10 )
+
+[node name="RigidBody113" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody113"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody113"]
+shape = SubResource( 4 )
+
+[node name="RigidBody114" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody114"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody114"]
+shape = SubResource( 5 )
+
+[node name="RigidBody115" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody115"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody115"]
+shape = SubResource( 6 )
+
+[node name="RigidBody116" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody116"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody116"]
+shape = SubResource( 7 )
+
+[node name="RigidBody117" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody117"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody117"]
+shape = SubResource( 8 )
+
+[node name="RigidBody118" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody118"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody118"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0114121, 0, 0 )
+shape = SubResource( 9 )
+
+[node name="RigidBody119" type="RigidBody" parent="pile of boxes"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 6.5, 14 )
+
+[node name="MeshInstance" type="MeshInstance" parent="pile of boxes/RigidBody119"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="pile of boxes/RigidBody119"]
+shape = SubResource( 10 )
+
+[node name="RigidBody" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.106367, 24.0263 )
+mass = 8.16327
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody"]
+mesh = SubResource( 11 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody"]
+shape = SubResource( 12 )
+
+[node name="RigidBody2" type="RigidBody" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 2.07667, 33.3062 )
+mass = 6687.24
+linear_velocity = Vector3( 0, 50, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="RigidBody2"]
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="RigidBody2"]
+shape = SubResource( 4 )

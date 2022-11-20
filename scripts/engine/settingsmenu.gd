@@ -10,7 +10,7 @@ func _ready():
 	#hi, japan here, i'm gonna do this later but now i'm gonna fix your other code lmfao
 
 	fxaa.pressed = settings.all_settings.get("fxaa")
-	mouse_sens.value = settings.all_settings.get("mouse_sens")
+	mouse_sens.value = settings.all_settings.get("mouse_sens") * 46.666
 	#ok wtf is this, why tHIS ISN'T A FUNCTION
 
 	#rewriting this by tomorrow.

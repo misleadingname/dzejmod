@@ -14,12 +14,16 @@ const valid = [
 	["version", [ARG_NULL]],
 
 	["sv_map", [ARG_STRING]],
+	["sv_phys_fps", [ARG_FLOAT]],
 
 	["cl_getvar" [ARG_STRING]],
 	["cl_hello", [ARG_NULL]]
 ]
 
 # SV
+
+func sv_phys_fps(fps):
+	pass
 
 func sv_map(map):
 	dzej.msg("attemting to load map: " + map)
