@@ -1,7 +1,7 @@
 extends WindowDialog
 
-onready var inputBox = $LineEdit
-onready var outputBox = $TextEdit
+onready var inputBox = $VBoxContainer/LineEdit
+onready var outputBox = $VBoxContainer/TextEdit
 
 func _on_LineEdit_text_entered(new_text):
 	outText(new_text)
