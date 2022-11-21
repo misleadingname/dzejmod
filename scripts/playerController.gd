@@ -44,7 +44,7 @@ func screenResized():
 	viewmodelViewport.size = dzej.root.size
 
 func _process(delta):
-	var mouseSens = settings.all_settings.get("mouse_sens")
+	var mouseSens = dzej_settings.all_settings.get("mouse_sens")
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rothelper.rotation_degrees.x -= mouseDelta.y * mouseSens
 		rothelper.rotation_degrees.x = clamp(rothelper.rotation_degrees.x, -90, 90)

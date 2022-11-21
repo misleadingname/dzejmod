@@ -7,12 +7,20 @@ anchor_left = 0.25
 anchor_top = 0.25
 anchor_right = 0.75
 anchor_bottom = 0.75
+margin_left = 1.0
+margin_right = 1.0
 
 [node name="ConsoleWindow" type="WindowDialog" parent="."]
 pause_mode = 2
 visible = true
-margin_right = 435.2
-margin_bottom = 105.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -256.0
+margin_top = -150.0
+margin_right = 256.0
+margin_bottom = 150.0
 popup_exclusive = true
 window_title = "dzejmod console"
 resizable = true
@@ -24,8 +32,8 @@ anchor_bottom = 1.0
 
 [node name="TextEdit" type="TextEdit" parent="ConsoleWindow/VBoxContainer"]
 pause_mode = 2
-margin_right = 435.0
-margin_bottom = 78.0
+margin_right = 512.0
+margin_bottom = 273.0
 focus_mode = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -40,9 +48,9 @@ caret_blink = true
 
 [node name="LineEdit" type="LineEdit" parent="ConsoleWindow/VBoxContainer"]
 pause_mode = 2
-margin_top = 82.0
-margin_right = 435.0
-margin_bottom = 105.0
+margin_top = 277.0
+margin_right = 512.0
+margin_bottom = 300.0
 size_flags_horizontal = 3
 
 [connection signal="about_to_show" from="ConsoleWindow" to="ConsoleWindow" method="consoleOpen"]

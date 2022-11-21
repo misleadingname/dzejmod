@@ -62,8 +62,4 @@ func echo(text):
 
 func help():
 	return "FIXME: help"
-
-func quit():
-	dzej.msg("Goodbye!")
-	get_tree().quit()
-	return true
+			
