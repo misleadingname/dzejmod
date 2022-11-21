@@ -38,8 +38,8 @@ stream = ExtResource( 4 )
 
 [node name="newgameButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_right = 65.0
-margin_bottom = 14.0
+margin_right = 74.0
+margin_bottom = 21.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "new game"
@@ -47,9 +47,9 @@ underline = 2
 
 [node name="optionsButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 18.0
-margin_right = 65.0
-margin_bottom = 32.0
+margin_top = 25.0
+margin_right = 74.0
+margin_bottom = 46.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "options"
@@ -57,9 +57,9 @@ underline = 2
 
 [node name="exitButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 36.0
-margin_right = 65.0
-margin_bottom = 50.0
+margin_top = 50.0
+margin_right = 74.0
+margin_bottom = 71.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "quit"
