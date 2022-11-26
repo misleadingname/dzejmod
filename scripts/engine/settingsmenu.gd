@@ -1,9 +1,9 @@
 extends MarginContainer
 
-onready var window : Node = $WindowDialog
+onready var window : Node = $SettingsDialog
 
-onready var fxaa : Node = $WindowDialog/EntireContents/SettingsContainer/Fxaa
-onready var mouse_sens : Node = $WindowDialog/EntireContents/SettingsContainer/MouseSens
+onready var fxaa : Node = $SettingsDialog/EntireContents/SettingsContainer/Fxaa
+onready var mouse_sens : Node = $SettingsDialog/EntireContents/SettingsContainer/MouseSens
 
 func _ready():
 	#applies all stored settings found in the global settings, prob needs a better implementation by japan

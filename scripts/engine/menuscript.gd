@@ -3,6 +3,7 @@ extends VBoxContainer
 onready var hoverPlayer = $buttonHover
 onready var clickPlayer = $buttonClick
 onready var settings = get_parent().get_node("Settings")
+onready var addons = get_parent().get_node("Addons")
 
 func buttonHover():
 	hoverPlayer.play()
@@ -52,5 +53,9 @@ func _input(event):
 func _on_optionsButton_pressed():
 	buttonClick()
 	
-	settings.get_node("WindowDialog").popup()
+	settings.get_node("SettingsDialog").popup()
 	
+func _on_addonsButton_pressed():
+	buttonClick()
+
+	addons.get_node("AddonDialog").popup()
