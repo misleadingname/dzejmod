@@ -61,5 +61,23 @@ func echo(text):
 	return text
 
 func help():
-	return "FIXME: help"
-			
+	var output : String
+	for each in valid:
+#		print(each)
+		for i in each:
+			#print(current)
+			if i[0] is int:
+				output += "\t"
+				match i[0]:
+					ARG_NULL:
+						output += each[0]
+					ARG_STRING:
+						output += each[0] + " [string]"
+					ARG_INT:
+						output += each[0] + " [int]"
+					ARG_FLOAT:
+						output += each[0] + " [float]"
+					_:
+						output += "Value not implemented..."
+				output += "\n"
+	return output
