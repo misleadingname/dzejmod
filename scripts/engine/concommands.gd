@@ -16,8 +16,9 @@ const valid = [
 
 	["sv_map", [ARG_STRING]],
 	["sv_phys_fps", [ARG_FLOAT]],
+	["sv_get_addons", [ARG_NULL]],
 
-	["cl_getvar" [ARG_STRING]],
+	["cl_getvar", [ARG_STRING]],
 	["cl_hello", [ARG_NULL]]
 ]
 
@@ -44,6 +45,9 @@ func sv_map(map):
 	else:
 		dzej.msg("map loaded: " + map)
 		return true
+
+func sv_get_addons():
+	return dzej.addonRequestList()
 # CL
 
 func cl_hello():

@@ -126,6 +126,40 @@ func switchScene(resname : String, nomenu : bool = false):
 	msg("[INFO] engine windows re-added " + resname)
 	return scene
 
+# ADDON MANAGEMENT
+func addonRequestList():
+	var addons = []
+	var addonsDir = Directory.new()
+	addonsDir.open("res://addons")
+	addonsDir.list_dir_begin()
+	while(true):
+		var addon = addonsDir.get_next()
+		if(addon == ""):
+			break
+		addons.append(addon)
+	addonsDir.list_dir_end()
+	addons.remove(".")
+	addons.remove("..")
+	return addons
+
+func addonGetInfo(addon : String):
+	var addonDir = Directory.new()
+	addonDir.open("res://addons/" + addon)
+	addonDir.list_dir_begin()
+	while(true):
+		var file = addonDir.get_next()
+		if(file == ""):
+			break
+		if(file == "meta.txt"):
+			var meta = File.new()
+			meta.open("res://addons/" + addon + "/meta.txt", File.READ)
+			var metaInfo = meta.get_as_text()
+			meta.close()
+			msg("[DEV-NOTE] Meta file structure: NAME, AUTHOR, ADDON-TAG\n[DEV-NOTE] And the valid tags are: \"sandbox\", \"engine\", \"map\", \"gamemode\"")
+			return metaInfo.split("\n")
+	addonDir.list_dir_end()
+	return null
+
 # CONSOLE
 
 func msg(msg):
