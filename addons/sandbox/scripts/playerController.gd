@@ -94,7 +94,7 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider is RigidBody:
-			pass
+			collision.collider.apply_central_impulse(-collision.normal * 0.1)
 			
 	var viewmodelPos = ogViewmodelPos
 

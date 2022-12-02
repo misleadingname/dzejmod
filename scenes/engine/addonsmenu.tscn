@@ -16,6 +16,7 @@ margin_bottom = -50.0
 visible = true
 margin_right = 624.0
 margin_bottom = 500.0
+rect_min_size = Vector2( 624, 500 )
 window_title = "Addons"
 resizable = true
 
@@ -28,20 +29,19 @@ script = ExtResource( 1 )
 
 [node name="AddonList" type="VBoxContainer" parent="AddonDialog/EntireContents"]
 margin_right = 599.0
-margin_bottom = 441.0
+margin_bottom = 433.0
 size_flags_vertical = 3
 
 [node name="AddonEntry" type="PanelContainer" parent="AddonDialog/EntireContents/AddonList"]
-visible = false
 margin_right = 599.0
-margin_bottom = 85.0
+margin_bottom = 73.0
 script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="AddonDialog/EntireContents/AddonList/AddonEntry"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 592.0
-margin_bottom = 78.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 598.0
+margin_bottom = 72.0
 
 [node name="ImageCenter" type="VBoxContainer" parent="AddonDialog/EntireContents/AddonList/AddonEntry/HBoxContainer"]
 margin_right = 64.0
@@ -78,22 +78,23 @@ margin_bottom = 71.0
 text = "addon-tag"
 
 [node name="EnableButton" type="VBoxContainer" parent="AddonDialog/EntireContents/AddonList/AddonEntry/HBoxContainer"]
-margin_left = 510.0
-margin_right = 585.0
+margin_left = 526.0
+margin_right = 597.0
 margin_bottom = 71.0
 size_flags_horizontal = 10
 alignment = 1
 
 [node name="CheckBox" type="CheckBox" parent="AddonDialog/EntireContents/AddonList/AddonEntry/HBoxContainer/EnableButton"]
-margin_top = 23.0
-margin_right = 75.0
-margin_bottom = 48.0
+margin_top = 21.0
+margin_right = 71.0
+margin_bottom = 50.0
 text = "Enable"
-flat = true
+align = 1
+icon_align = 1
 
 [node name="ConfirmationContainer" type="HBoxContainer" parent="AddonDialog/EntireContents"]
 margin_left = 553.0
-margin_top = 445.0
+margin_top = 437.0
 margin_right = 599.0
 margin_bottom = 470.0
 size_flags_horizontal = 8
@@ -101,6 +102,8 @@ alignment = 1
 
 [node name="closeButton" type="Button" parent="AddonDialog/EntireContents/ConfirmationContainer"]
 margin_right = 46.0
-margin_bottom = 25.0
+margin_bottom = 33.0
 size_flags_horizontal = 3
 text = "Close"
+
+[connection signal="pressed" from="AddonDialog/EntireContents/ConfirmationContainer/closeButton" to="AddonDialog/EntireContents" method="_on_closeButton_pressed"]

@@ -130,16 +130,17 @@ func switchScene(resname : String, nomenu : bool = false):
 func addonRequestList():
 	var addons = []
 	var addonsDir = Directory.new()
-	addonsDir.open("res://addons")
-	addonsDir.list_dir_begin()
+	addonsDir.open("res://addons/")
+	addonsDir.list_dir_begin(true)
 	while(true):
 		var addon = addonsDir.get_next()
-		if(addon == ""):
-			break
-		addons.append(addon)
+		match addon:
+			"":
+				break
+			_:
+				addons.append(addon)
+				print(addon)
 	addonsDir.list_dir_end()
-	addons.remove(".")
-	addons.remove("..")
 	return addons
 
 func addonGetInfo(addon : String):

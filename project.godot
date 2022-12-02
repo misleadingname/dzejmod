@@ -32,8 +32,8 @@ dzej_settings="*res://scripts/engine/globalsettings.gd"
 
 [display]
 
-window/size/test_width=800
-window/size/test_height=600
+window/size/test_width=960
+window/size/test_height=640
 
 [gui]
 

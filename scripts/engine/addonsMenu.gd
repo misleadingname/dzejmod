@@ -10,3 +10,7 @@ func _ready():
 		addonList.add_child(entry)
 		entry.setAddon(addon)
 		entry.visible = true
+
+
+func _on_closeButton_pressed():
+	get_parent().hide()
