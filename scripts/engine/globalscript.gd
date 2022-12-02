@@ -1,17 +1,18 @@
 extends Node
 
-onready var pauseScene : Node = preload("res://scenes/engine/pausemenu.tscn").instance()
-var consoleScene : Node = preload("res://scenes/engine/console.tscn").instance()
+onready var pauseScene : Node = load("res://scenes/engine/pausemenu.tscn").instance()
+var consoleScene : Node = load("res://scenes/engine/console.tscn").instance()
 
 onready var root : Node = get_tree().get_root()
-var currentScene : Node = null
+var sceneCurrent : Node = null
 
 var targetScene : String = "res://scenes/defaultmap.tscn"
+var targetGamemode : String = "Sandbox"
 
 var paused : bool = false
 
 func _ready():
-	currentScene = root.get_child(root.get_child_count() - 1)
+	sceneCurrent = root.get_child(root.get_child_count() - 1)
 
 	consoleScene = load("res://scenes/engine/console.tscn").instance()
 	root.add_child(consoleScene)
@@ -27,7 +28,7 @@ func hello():
 
 # SCENE MANAGEMENT
 
-func addSceneToCustomParent(resname : String, parent : Node):
+func sceneAddToParent(resname : String, parent : Node):
 	if(parent == null):
 		msg("[ERROR] parent is null")
 		return false
@@ -48,7 +49,7 @@ func addSceneToCustomParent(resname : String, parent : Node):
 
 	return [scene, parent]
 
-func addNodeToParent(node : Node, parent : Node):
+func nodeAddToParent(node : Node, parent : Node):
 	if(parent == null):
 		msg("[ERROR] parent is null")
 		return false
@@ -62,7 +63,7 @@ func addNodeToParent(node : Node, parent : Node):
 
 	return [node, parent]
 
-func overlayNewScene(resname : String):
+func sceneOverlayNew(resname : String):
 	if(resname == null || resname == ""):
 		msg("[ERROR] invalid scene name")
 		return false
@@ -77,11 +78,11 @@ func overlayNewScene(resname : String):
 
 	return scene
 
-func overlayScene(scene : Node):
+func sceneOverlay(scene : Node):
 	msg("[INFO] overlaying " + str(scene))
 	return root.add_child(scene)
 
-func removeScene(sceneRef : Node, soft : bool = false):
+func sceneRemove(sceneRef : Node, soft : bool = false):
 	if(sceneRef != null):
 		msg("[INFO] removing scene: " + sceneRef.get_name())
 		root.remove_child(sceneRef)
@@ -94,7 +95,7 @@ func removeScene(sceneRef : Node, soft : bool = false):
 		msg("[INFO] invalid scene")
 		return false
 
-func switchScene(resname : String, nomenu : bool = false):
+func sceneSwtich(resname : String, nomenu : bool = false):
 	if(resname == null || resname == ""):
 		msg("[ERROR] invalid scene name")
 		return false
@@ -108,23 +109,37 @@ func switchScene(resname : String, nomenu : bool = false):
 	msg("[INFO] instantiated scene")
 	root.add_child(scene)
 	msg("[INFO] added scene to root")
-	removeScene(currentScene)
+	sceneRemove(sceneCurrent)
 	msg("[INFO] removed current scene")
-	currentScene = scene
+	sceneCurrent = scene
 
 	if(nomenu):
-		removeScene(pauseScene)
+		sceneRemove(pauseScene)
 
 		pauseScene = load("res://scenes/engine/pausemenu.tscn").instance()
 	else:
-		removeScene(pauseScene, true)
-		overlayScene(pauseScene)
+		sceneRemove(pauseScene, true)
+		sceneOverlay(pauseScene)
 
-	removeScene(consoleScene, true)
-	overlayScene(consoleScene)
+	sceneRemove(consoleScene, true)
+	sceneOverlay(consoleScene)
 
 	msg("[INFO] engine windows re-added " + resname)
 	return scene
+
+func sceneGetList():
+	var scenes = []
+	var sceneDir = Directory.new()
+	sceneDir.open("res://scenes")
+	sceneDir.list_dir_begin(true, true)
+	while(true):
+		var file = sceneDir.get_next()
+		if(file == ""):
+			break
+		if(file.ends_with(".tscn")):
+			scenes.append(file)
+	sceneDir.list_dir_end()
+	return scenes
 
 # ADDON MANAGEMENT
 func addonRequestList():

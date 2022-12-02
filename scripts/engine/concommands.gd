@@ -38,7 +38,7 @@ func sv_map(map):
 		dzej.msg("[ERROR] scene " + dzej.targetScene + " does not exist")
 		return false
 
-	var out = dzej.switchScene("res://scenes/engine/GameplayWorld.tscn")
+	var out = dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
 	if(typeof(out) == TYPE_STRING && out == false):
 		dzej.msg("error loading map: " + map)
 		return false

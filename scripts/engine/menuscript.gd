@@ -23,7 +23,7 @@ func _on_exitButton_pressed():
 func _on_newgameButton_pressed():
 	buttonClick()
 	
-	dzej.switchScene("res://scenes/engine/GameplayWorld.tscn")
+	dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
 
 # IN GAME
 
@@ -36,7 +36,7 @@ func _on_resumeButton_pressed():
 func _on_disconnectButton_pressed():
 	buttonClick()
 	
-	dzej.switchScene("res://scenes/engine/backgroundmainmenu.tscn", true)
+	dzej.sceneSwtich("res://scenes/engine/backgroundmainmenu.tscn", true)
 
 # MENU TOGGLE
 
