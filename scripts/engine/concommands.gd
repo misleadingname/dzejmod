@@ -67,9 +67,7 @@ func echo(text):
 func help():
 	var output : String
 	for each in valid:
-#		print(each)
 		for i in each:
-			#print(current)
 			if i[0] is int:
 				output += "\t"
 				match i[0]:

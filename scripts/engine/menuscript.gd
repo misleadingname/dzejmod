@@ -31,7 +31,7 @@ func _on_resumeButton_pressed():
 	buttonClick()
 	
 	self.get_parent().visible = false
-	dzej.lockMouse(true)
+	dzej.mouseLock(true)
 
 func _on_disconnectButton_pressed():
 	buttonClick()
@@ -44,10 +44,10 @@ func _input(event):
 	if(event.is_action_pressed("ui_cancel")):
 		if(self.get_parent().visible and get_parent().name != "mainmenu"):
 			self.get_parent().visible = false
-			dzej.lockMouse(true)
+			dzej.mouseLock(true)
 		else:
 			self.get_parent().visible = true
-			dzej.lockMouse(false)
+			dzej.mouseLock(false)
 
 
 func _on_optionsButton_pressed():

@@ -68,7 +68,7 @@ func _input(event):
 
 
 func consoleClose():
-	dzej.lockMouse(true)
+	dzej.mouseLock(true)
 
 func consoleOpen():
-	dzej.lockMouse(false)
+	dzej.mouseLock(false)

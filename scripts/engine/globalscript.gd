@@ -154,7 +154,6 @@ func addonRequestList():
 				break
 			_:
 				addons.append(addon)
-				print(addon)
 	addonsDir.list_dir_end()
 	return addons
 
@@ -184,11 +183,11 @@ func msg(msg):
 
 # LOCAL PLAYER MANAGEMENT
 
-func lockMouse(type : bool = 0):
+func mouseLock(type : bool = 0):
 	if(type):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func isMouseLocked():
+func mouseIsLocked():
 	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED	

@@ -1,7 +1,7 @@
 extends VBoxContainer
 
-onready var templateAddon = $AddonList/AddonEntry
-onready var addonList = $AddonList
+onready var templateAddon = $ScrollContainer/AddonList/AddonEntry
+onready var addonList = $ScrollContainer/AddonList
 
 func _ready():
 	var addons = dzej.addonRequestList()
