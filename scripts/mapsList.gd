@@ -38,5 +38,4 @@ func button_press():
 		dzej.targetScene = temp.replace(" ", "_")
 		var temp1 = dzej.addonRequestList()
 		for i in temp1.size():
-			
-		dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
+			dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
