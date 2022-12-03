@@ -10,3 +10,4 @@ func setAddon(name):
 	nameString.set_text(meta.name)
 	authorString.set_text(meta.author)
 	addontagString.set_text(meta.tag)
+	# $HBoxContainer/ImageCenter/MarginContainer/TextureRect.texture = load(dzej.getAddonPath(dzej.addonMapFrom) + "icon.png")
