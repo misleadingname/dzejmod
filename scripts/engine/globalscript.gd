@@ -21,7 +21,7 @@ func _ready():
 	root.add_child(consoleScene)
 		
 	msg("[INFO] Dzejmod 0.1\nBy japannt.")
-	msg("[INFO] enigne initalizing...")
+	msg("[INFO] engine initalizing...")
 	msg("[INFO] console loaded")
 
 	msg("[INFO] dzejscript loaded.\nreference using dzej.method()")

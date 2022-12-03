@@ -36,5 +36,7 @@ func button_press():
 	if(!clone == null):
 		var temp = clone.text + ".tscn"
 		dzej.targetScene = temp.replace(" ", "_")
-		dzej.addonMapFrom = "sandbox" # hardcoded because idk how to do this lmao
+		var temp1 = dzej.addonRequestList()
+		for i in temp1.size():
+			
 		dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
