@@ -58,3 +58,7 @@ func _on_MouseSens_value_changed(value):
 
 func _on_LineEdit_text_entered(new_text):
 	mouse_sens.value = float(mouse_sens_value.get_text())
+
+
+func _on_VBoxContainer_newGame():
+	pass # Replace with function body.

@@ -32,9 +32,8 @@ func sv_phys_fps(fps):
 func sv_map(map):
 	dzej.msg("attemting to load map: " + map)
 
-	dzej.targetScene = "scenes/" + map
-
-	if(!ResourceLoader.exists(dzej.targetScene)):
+	dzej.targetScene = map + ".tscn"
+	if(!ResourceLoader.exists(dzej.getAddonPath(dzej.addonMapFrom) + "maps/" + map + ".tscn")):
 		dzej.msg("[ERROR] scene " + dzej.targetScene + " does not exist")
 		return false
 

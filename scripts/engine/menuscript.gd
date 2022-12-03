@@ -5,6 +5,8 @@ onready var clickPlayer = $buttonClick
 onready var settings = get_parent().get_node("Settings")
 onready var addons = get_parent().get_node("Addons")
 
+signal newGame
+
 func buttonHover():
 	hoverPlayer.play()
 
@@ -22,8 +24,8 @@ func _on_exitButton_pressed():
 
 func _on_newgameButton_pressed():
 	buttonClick()
-	
-	dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
+	emit_signal("newGame")
+	# dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn") # no
 
 # IN GAME
 

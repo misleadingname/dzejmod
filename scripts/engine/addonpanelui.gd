@@ -7,6 +7,6 @@ onready var addontagString = $HBoxContainer/Info/Tag
 func setAddon(name):
 	var meta = dzej.addonGetInfo(name)
 
-	nameString.set_text(meta[0])
-	authorString.set_text(meta[1])
-	addontagString.set_text(meta[2])
+	nameString.set_text(meta.name)
+	authorString.set_text(meta.author)
+	addontagString.set_text(meta.tag)

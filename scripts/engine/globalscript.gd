@@ -5,11 +5,14 @@ var consoleScene : Node = load("res://scenes/engine/console.tscn").instance()
 
 onready var root : Node = get_tree().get_root()
 var sceneCurrent : Node = null
+var addonMapFrom = "sandbox"
 
 var targetScene : String = "res://scenes/defaultmap.tscn"
 var targetGamemode : String = "Sandbox"
 
 var paused : bool = false
+var path = OS.get_executable_path().get_base_dir()
+var addonpath = path+"/addons/"
 
 func _ready():
 	sceneCurrent = root.get_child(root.get_child_count() - 1)
@@ -141,11 +144,26 @@ func sceneGetList():
 	sceneDir.list_dir_end()
 	return scenes
 
+func addonSceneGetList(addons):
+	var scenes = []
+	var sceneDir = Directory.new()
+	for i in addons.size():
+		sceneDir.open(addonpath + addons[i] + "/maps")
+		sceneDir.list_dir_begin(true, true)
+		while(true):
+			var file = sceneDir.get_next()
+			if(file == ""):
+				break
+			if(file.ends_with(".tscn")):
+				scenes.append(file)
+		sceneDir.list_dir_end()
+	return scenes
+
 # ADDON MANAGEMENT
 func addonRequestList():
 	var addons = []
 	var addonsDir = Directory.new()
-	addonsDir.open("res://addons/")
+	addonsDir.open(addonpath)
 	addonsDir.list_dir_begin(true)
 	while(true):
 		var addon = addonsDir.get_next()
@@ -159,22 +177,23 @@ func addonRequestList():
 
 func addonGetInfo(addon : String):
 	var addonDir = Directory.new()
-	addonDir.open("res://addons/" + addon)
+	addonDir.open(addonpath + addon)
 	addonDir.list_dir_begin()
 	while(true):
 		var file = addonDir.get_next()
 		if(file == ""):
 			break
-		if(file == "meta.txt"):
+		if(file == "meta.json"):
 			var meta = File.new()
-			meta.open("res://addons/" + addon + "/meta.txt", File.READ)
+			meta.open(addonpath + addon + "/meta.json", File.READ)
 			var metaInfo = meta.get_as_text()
 			meta.close()
-			msg("[DEV-NOTE] Meta file structure: NAME, AUTHOR, ADDON-TAG\n[DEV-NOTE] And the valid tags are: \"sandbox\", \"engine\", \"map\", \"gamemode\"")
-			return metaInfo.split("\n")
+			return JSON.parse(metaInfo).result
 	addonDir.list_dir_end()
 	return null
 
+func getAddonPath(addon : String):
+	return addonpath+addon + "/"
 # CONSOLE
 
 func msg(msg):

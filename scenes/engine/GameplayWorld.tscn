@@ -148,10 +148,10 @@ margin_bottom = 14.0
 grow_horizontal = 2
 
 [node name="Label" type="Label" parent="UI/bannerPanel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 107.0
-margin_bottom = 21.0
+margin_left = 1.0
+margin_top = 3.0
+margin_right = 113.0
+margin_bottom = 24.0
 text = "Uhhh..."
 align = 1
 valign = 1
