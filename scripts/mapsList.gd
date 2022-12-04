@@ -22,6 +22,7 @@ func _ready():
 		add_child(clone)
 	
 
+var nameasd = "null"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -35,7 +36,23 @@ func button_press():
 			clone = child
 	if(!clone == null):
 		var temp = clone.text + ".tscn"
+		nameasd = temp
 		dzej.targetScene = temp.replace(" ", "_")
-		var temp1 = dzej.addonRequestList()
-		for i in temp1.size():
-			dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
+		funny()
+		dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
+		
+		
+func funny():
+	var temp1 = dzej.addonRequestList()
+	for i in temp1.size():
+		var addonDir = Directory.new()
+		addonDir.open(dzej.addonpath + temp1[i] + "maps/")
+		addonDir.list_dir_begin()
+		while(true):
+			var file = addonDir.get_next()
+			if(file == ""):
+				break
+			if(file == nameasd):
+				dzej.addonMapFrom = temp1[i]
+				break
+		addonDir.list_dir_end()
