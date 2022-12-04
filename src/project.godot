@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "PhysicsEntity",
 "class": "PhysicsBall",
 "language": "GDScript",
-"path": "res://addons/qodot/game_definitions/fgd/point_classes/physics_ball.gd"
+"path": "res://addons/qodot/game_definitions/fgd/point_classes/player_spawn.gd"
 }, {
 "base": "RigidBody",
 "class": "PhysicsEntity",
@@ -230,6 +230,10 @@ dzej_settings="*res://scripts/engine/globalsettings.gd"
 
 window/size/test_width=960
 window/size/test_height=640
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/qodot/plugin.cfg" )
 
 [gui]
 
