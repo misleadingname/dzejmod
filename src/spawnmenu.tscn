@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Control
+
+var open = false
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+func _input(event):
+	open = false
+	if Input.is_key_pressed(KEY_Q):
+		open = true
+	
+	if open:
+		$WindowDialog.visible = true
+	else:
+		$WindowDialog.visible = false
+		
+"
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 74.0
+margin_top = 104.0
+margin_right = -441.0
+margin_bottom = -63.0
+script = SubResource( 1 )
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+margin_left = 18.0
+margin_top = 21.0
+margin_right = 494.0
+margin_bottom = 417.0
+window_title = "spawnmenu"
+
+[node name="GridContainer" type="GridContainer" parent="WindowDialog"]
+margin_left = -2.0
+margin_top = 8.0
+margin_right = 477.0
+margin_bottom = 406.0
+
+[node name="cube" type="Button" parent="WindowDialog/GridContainer"]
+margin_right = 52.0
+margin_bottom = 33.0
+text = "cube"
+
+[node name="monke" type="Button" parent="WindowDialog/GridContainer"]
+margin_top = 37.0
+margin_right = 52.0
+margin_bottom = 70.0
+text = "monke"

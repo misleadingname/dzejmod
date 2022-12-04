@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "dzejPlayer",
 "language": "GDScript",
-"path": "res://game/builds/addons/base/scripts/playerController.gd"
+"path": "res://base/scripts/playerController.gd"
 } ]
 _global_script_class_icons={
 "dzejPlayer": ""

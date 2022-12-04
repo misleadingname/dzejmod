@@ -38,7 +38,7 @@ func _ready():
 		dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
 		bannerText.text = "Done! :D"
 
-		var temp:String = dzej.getAddonPath("base") + "prefabs/player.tscn"
+		var temp:String = "res://base/prefabs/player.tscn"
 		print(temp)
 		var playera = load(temp)
 		print(playera)

@@ -44,8 +44,8 @@ stream = ExtResource( 4 )
 
 [node name="resumeButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_right = 70.0
-margin_bottom = 14.0
+margin_right = 77.0
+margin_bottom = 21.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "resume"
@@ -53,9 +53,9 @@ underline = 2
 
 [node name="optionsButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 18.0
-margin_right = 70.0
-margin_bottom = 32.0
+margin_top = 25.0
+margin_right = 77.0
+margin_bottom = 46.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "options"
@@ -63,9 +63,9 @@ underline = 2
 
 [node name="disconnectButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 36.0
-margin_right = 70.0
-margin_bottom = 50.0
+margin_top = 50.0
+margin_right = 77.0
+margin_bottom = 71.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "disconnect"
@@ -73,9 +73,9 @@ underline = 2
 
 [node name="exitButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 54.0
-margin_right = 70.0
-margin_bottom = 68.0
+margin_top = 75.0
+margin_right = 77.0
+margin_bottom = 96.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "quit"
