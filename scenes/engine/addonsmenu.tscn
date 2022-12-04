@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/engine/addonsMenu.gd" type="Script" id=1]
-[ext_resource path="res://mat/ui/border-logo.png" type="Texture" id=2]
+[ext_resource path="res://mat/ui/logo.png" type="Texture" id=2]
 [ext_resource path="res://scripts/engine/addonpanelui.gd" type="Script" id=3]
 
 [node name="Addons" type="MarginContainer"]
@@ -53,12 +53,12 @@ margin_right = 598.0
 margin_bottom = 72.0
 
 [node name="MarginContainer" type="MarginContainer" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer"]
-margin_right = 74.0
+margin_right = 72.0
 margin_bottom = 71.0
 rect_min_size = Vector2( 72, 0 )
 
 [node name="TextureRect" type="TextureRect" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/MarginContainer"]
-margin_right = 74.0
+margin_right = 72.0
 margin_bottom = 71.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -91,6 +91,62 @@ margin_right = 133.0
 margin_bottom = 71.0
 text = "addon-tag"
 
+[node name="desc" type="VBoxContainer" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer"]
+margin_left = 213.0
+margin_right = 213.0
+margin_bottom = 71.0
+alignment = 1
+
+[node name="container" type="Sprite" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/desc"]
+
+[node name="Desc" type="Label" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/desc/container"]
+margin_left = 14.0
+margin_top = 23.0
+margin_right = 214.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 158.52, 47 )
+text = "dodo"
+autowrap = true
+
+[node name="descAbouve" type="Label" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/desc/container"]
+margin_left = 14.0
+margin_top = 8.0
+margin_right = 331.0
+margin_bottom = 65.0
+rect_pivot_offset = Vector2( 158.52, 47 )
+text = "Description:"
+autowrap = true
+
+[node name="container2" type="Sprite" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/desc"]
+
+[node name="path" type="Label" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/desc/container2"]
+margin_left = 206.0
+margin_top = 23.0
+margin_right = 306.0
+margin_bottom = 71.0
+rect_pivot_offset = Vector2( 158.52, 47 )
+text = "dodo"
+autowrap = true
+
+[node name="descAbouve" type="Label" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/desc/container2"]
+margin_left = 206.0
+margin_top = 8.0
+margin_right = 246.0
+margin_bottom = 29.0
+rect_pivot_offset = Vector2( 158.52, 47 )
+text = "Path:"
+autowrap = true
+
+[node name="container" type="Sprite" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer"]
+position = Vector2( 217, 0 )
+
+[node name="delete" type="Button" parent="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/container"]
+margin_left = 330.52
+margin_top = 1.0
+margin_right = 378.52
+margin_bottom = 72.0
+text = "delete"
+
 [node name="ConfirmationContainer" type="HBoxContainer" parent="AddonDialog/EntireContents"]
 margin_left = 553.0
 margin_top = 437.0
@@ -105,4 +161,5 @@ margin_bottom = 33.0
 size_flags_horizontal = 3
 text = "Close"
 
+[connection signal="button_down" from="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry/HBoxContainer/container/delete" to="AddonDialog/EntireContents/ScrollContainer/AddonList/AddonEntry" method="_on_delete_button_down"]
 [connection signal="pressed" from="AddonDialog/EntireContents/ConfirmationContainer/closeButton" to="AddonDialog/EntireContents" method="_on_closeButton_pressed"]

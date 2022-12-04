@@ -210,3 +210,13 @@ func mouseLock(type : bool = 0):
 
 func mouseIsLocked():
 	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED	
+	
+func parseJson(lin:String):
+	return JSON.parse(lin).result
+	
+func getFileAsText(lin:String):
+	var file = File.new()
+	file.open(lin, File.READ)
+	return file.get_as_text()
+	file.close()
+	

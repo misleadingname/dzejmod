@@ -38,10 +38,11 @@ func _ready():
 		dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
 		bannerText.text = "Done! :D"
 
-		var temp:String = "res://addons/sandbox/prefabs/player.tscn"
+		var temp:String = dzej.getAddonPath("base") + "prefabs/player.tscn"
 		print(temp)
-		var player = load(temp)
-		player = player.instance()
+		var playera = load(temp)
+		print(playera)
+		var player = playera.instance()
 		loadedScene.add_child(player)
 		for i in loadedScene.get_children():
 			if(i.name == "PlayerSpawn"):

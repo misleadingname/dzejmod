@@ -5,6 +5,7 @@ onready var addonList = $ScrollContainer/AddonList
 
 func _ready():
 	var addons = dzej.addonRequestList()
+	templateAddon.visible=false
 	for addon in addons:
 		var entry = templateAddon.duplicate()
 		addonList.add_child(entry)
