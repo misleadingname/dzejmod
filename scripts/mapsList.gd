@@ -15,7 +15,7 @@ func _ready():
 		var id = i
 		var clone = b.instance()
 		var the = a[id]
-		clone.text = the.rstrip(".tscn").replace("_"," ")
+		clone.text = the
 		clone.visible =true
 		clone.disabled =false
 		clone.connect("button_down", self, "button_press")
@@ -35,9 +35,9 @@ func button_press():
 		if(child.pressed):
 			clone = child
 	if(!clone == null):
-		var temp = clone.text + ".tscn"
+		var temp = clone.text
 		nameasd = temp
-		dzej.targetScene = temp.replace(" ", "_")
+		dzej.targetScene = temp
 		funny()
 		dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
 		
@@ -46,13 +46,15 @@ func funny():
 	var temp1 = dzej.addonRequestList()
 	for i in temp1.size():
 		var addonDir = Directory.new()
-		addonDir.open(dzej.addonpath + temp1[i] + "maps/")
+		print(dzej.addonpath + temp1[i] + "/maps/")
+		addonDir.open(dzej.addonpath + temp1[i] + "/maps/")
 		addonDir.list_dir_begin()
 		while(true):
+			
 			var file = addonDir.get_next()
 			if(file == ""):
 				break
-			if(file == nameasd):
+			if(nameasd in file):
 				dzej.addonMapFrom = temp1[i]
 				break
 		addonDir.list_dir_end()
