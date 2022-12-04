@@ -22,6 +22,9 @@ var movement : Vector3 = Vector3()
 
 var mouseDelta : Vector2 = Vector2()
 var snap : Vector3 = Vector3.ZERO
+var viewmodelx = 0.0
+var viewmodely = 0.0
+var viewmodelr = 0.0
 
 const PI4 = PI/4
 
@@ -101,9 +104,12 @@ func _physics_process(delta):
 	if(dzej.mouseIsLocked()):
 		viewmodelPos.x += -mouseDelta.x * 0.002
 		viewmodelPos.y += mouseDelta.y * 0.002
-		
-	viewmodel.translation.y = cos(OS.get_ticks_msec() * 0.01) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).y
-	viewmodel.translation.x = sin(OS.get_ticks_msec() * 0.005) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).x
+	
+	viewmodelx = sin(OS.get_ticks_msec() * 0.005) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).x
+	viewmodely = cos(OS.get_ticks_msec() * 0.01) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).y
+	viewmodel.translation.y = lerp(viewmodel.translation.y, viewmodely,.8)
+	viewmodel.translation.x = lerp(viewmodel.translation.x, viewmodelx,.8)
+	viewmodel.translation.z = lerp(viewmodel.translation.z, -1.48, .45)
 
 	move_and_slide_with_snap(movement, snap, Vector3.UP, false, 4, PI4, false)
 
