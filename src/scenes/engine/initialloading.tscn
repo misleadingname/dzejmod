@@ -71,3 +71,11 @@ margin_top = -10.5
 margin_bottom = 10.5
 text = "%insert funny random text here%"
 align = 1
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 9.0
+margin_top = 573.0
+margin_right = 372.0
+margin_bottom = 594.0
+rect_pivot_offset = Vector2( 101, 40 )
+text = "this will be changed and will be made nicer later......"

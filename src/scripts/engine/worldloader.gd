@@ -37,6 +37,7 @@ func _ready():
 		finishSound.play()
 		dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
 		bannerText.text = "Done! :D"
+		$UI/Image.visible=false
 
 		var temp:String = "res://base/prefabs/player.tscn"
 		print(temp)
