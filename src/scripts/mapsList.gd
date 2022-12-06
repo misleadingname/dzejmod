@@ -8,16 +8,16 @@ extends GridContainer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var b = preload("res://scenes/engine/mapButton.tscn")
-	var a = dzej.addonSceneGetList(dzej.addonRequestList())
+	var button = preload("res://scenes/engine/mapButton.tscn")
+	var maps = dzej.addonSceneGetList(dzej.addonRequestList())
 	
-	for i in a.size():
-		var id = i
-		var clone = b.instance()
-		var the = a[id]
-		clone.text = the
-		clone.visible =true
-		clone.disabled =false
+	print(maps)
+	
+	for i in len(maps):
+		var clone = button.instance()
+		clone.text = maps[i]
+		#clone.visible =true
+		#clone.disabled =false
 		clone.connect("button_down", self, "button_press")
 		add_child(clone)
 	
