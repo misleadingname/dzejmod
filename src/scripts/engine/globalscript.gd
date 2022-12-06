@@ -218,6 +218,6 @@ func getFileAsText(lin:String):
 	msg("[INFO] file " + lin + " was read")
 	var file = File.new()
 	file.open(lin, File.READ)
-	return file.get_as_text()
+	var actualFile = file.get_as_text()
 	file.close()
-	
+	return actualFile
