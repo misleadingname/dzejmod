@@ -58,7 +58,7 @@ func cl_getvar(varname):
 # GENERAL
 
 func version():
-	return "dzejmod 0.0.0 development version Work in progress.\n(DC) japannt#7318\n(TG) @japannt"
+	return "dzejmod 0.1 development version Work in progress.\nTEAM DZEJMOD\nhttps://dzejmod.tk"
 
 func echo(text):
 	return text

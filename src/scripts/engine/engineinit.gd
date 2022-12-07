@@ -34,4 +34,4 @@ func _ready():
 		statusLabel.text += " (OK)"
 
 	dzej.sceneSwtich("res://scenes/engine/backgroundmainmenu.tscn", true)
-	dzej.mouseLock(false)
+	dzej.lpMouseLock(false)

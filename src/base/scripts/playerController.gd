@@ -39,7 +39,7 @@ onready var ogViewmodelPos = viewmodel.translation
 onready var viewmodelPos = ogViewmodelPos
 
 func _ready():
-	dzej.mouseLock(true)
+	dzej.lpMouseLock(true)
 	dzej.root.connect("size_changed", self, "screenResized")
 	screenResized()
 
@@ -64,7 +64,7 @@ func _physics_process(delta):
 	var h_input : float = 0.0
 	var h_rot = global_transform.basis.get_euler().y
 
-	if(dzej.mouseIsLocked()):
+	if(dzej.lpMouseIsLocked()):
 		f_input = Input.get_action_strength("movement_backward") - Input.get_action_strength("movement_forward")
 		h_input = Input.get_action_strength("movement_right") - Input.get_action_strength("movement_left")
 		direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
@@ -81,7 +81,7 @@ func _physics_process(delta):
 		accel = accelAir
 		gravity_vec += Vector3.DOWN * gravity * delta
 		
-	if(dzej.mouseIsLocked()):
+	if(dzej.lpMouseIsLocked()):
 		if(Input.is_action_pressed("movement_sprint") and is_on_floor()):
 			movementSpeed = sprintSpeed
 		else:
@@ -101,7 +101,7 @@ func _physics_process(delta):
 			
 	var viewmodelPos = ogViewmodelPos
 
-	if(dzej.mouseIsLocked()):
+	if(dzej.lpMouseIsLocked()):
 		viewmodelPos.x += -mouseDelta.x * 0.002
 		viewmodelPos.y += mouseDelta.y * 0.002
 	

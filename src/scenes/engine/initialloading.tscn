@@ -73,9 +73,11 @@ text = "%insert funny random text here%"
 align = 1
 
 [node name="Label2" type="Label" parent="."]
-margin_left = 9.0
-margin_top = 573.0
-margin_right = 372.0
-margin_bottom = 594.0
+margin_left = 99.0
+margin_top = 42.0
+margin_right = 462.0
+margin_bottom = 111.0
 rect_pivot_offset = Vector2( 101, 40 )
-text = "this will be changed and will be made nicer later......"
+text = "this will be changed and will be made nicer later......
+
+fuck you vix it wont, i like it that way :D - japannt"

@@ -5,6 +5,7 @@ var consoleScene : Node = load("res://scenes/engine/console.tscn").instance()
 
 onready var root : Node = get_tree().get_root()
 var sceneCurrent : Node = null
+var gameplayMap : Node = null
 var addonMapFrom = "sandbox"
 
 var targetScene : String = "res://scenes/defaultmap.tscn"
@@ -16,15 +17,6 @@ var addonpath = path+"/addons/"
 
 func _ready():
 	sceneCurrent = root.get_child(root.get_child_count() - 1)
-
-	consoleScene = load("res://scenes/engine/console.tscn").instance()
-	root.add_child(consoleScene)
-		
-	msg("[INFO] Dzejmod 0.1\nBy japannt.")
-	msg("[INFO] engine initalizing...")
-	msg("[INFO] console loaded")
-
-	msg("[INFO] dzejscript loaded.\nreference using dzej.method()")
 
 func hello():
 	return "hello dzejmod"
@@ -202,22 +194,36 @@ func msg(msg):
 
 # LOCAL PLAYER MANAGEMENT
 
-func mouseLock(type : bool = 0):
+func lpMouseLock(type : bool = 0):
 	if(type):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func mouseIsLocked():
+func lpMouseIsLocked():
 	return Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED	
 	
-func parseJson(lin:String):
+func lpParseJson(lin:String):
 	return JSON.parse(lin).result
 	
-func getFileAsText(lin:String):
+func lpGetFileAsText(lin:String):
 	msg("[INFO] file " + lin + " was read")
 	var file = File.new()
 	file.open(lin, File.READ)
 	var actualFile = file.get_as_text()
 	file.close()
 	return actualFile
+
+func lpShowNotification(text : String, time : float = 5):
+	msg("[INFO] displaying notification: " + text + " for " + str(time) + " seconds")
+	if(gameplayMap != null):
+		# PLS VIX FIND A BETTER WAY TO DO THIS
+		# IT FEELS SO WRONG TO DO THIS
+		# I BEG OF YOU
+		# AND IF YOU CAN'T FIND A BETTER WAY
+		# JUST SEND ME THAT "I fucked it up beyond repair" VIDEO.
+		var ontop = gameplayMap.get_node("UI_ontop")
+		var notif = ontop.get_node("hacky?/notifDisplay/notifTemplate").duplicate()
+		ontop.get_node("hacky?/notifDisplay").add_child(notif)
+		notif.visible = true
+		notif.call("displaynotif", text, time)

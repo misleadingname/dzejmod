@@ -1,9 +1,108 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scripts/engine/worldloader.gd" type="Script" id=1]
 [ext_resource path="res://mat/ui/spinner.png" type="Texture" id=2]
 [ext_resource path="res://sound/engine/finish.wav" type="AudioStream" id=3]
 [ext_resource path="res://mat/ui/logo.png" type="Texture" id=4]
+[ext_resource path="res://sound/engine/notification.wav" type="AudioStream" id=5]
+[ext_resource path="res://scripts/engine/notificationPanel.gd" type="Script" id=6]
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 2.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "notifAnimation"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ 2.0, 0.0 ]
+}
+tracks/2/type = "audio"
+tracks/2/path = NodePath("AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "notifAnimationHide"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ 0.0, 2.0 ]
+}
 
 [sub_resource type="Animation" id=2]
 length = 0.001
@@ -126,6 +225,47 @@ tracks/0/keys = {
 
 [node name="GameplayWorld" type="Spatial"]
 script = ExtResource( 1 )
+
+[node name="UI_ontop" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="hacky\?" type="CanvasLayer" parent="UI_ontop"]
+layer = 128
+
+[node name="notifDisplay" type="VBoxContainer" parent="UI_ontop/hacky\?"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 0.85
+margin_left = -127.0
+margin_right = -16.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="notifTemplate" type="PanelContainer" parent="UI_ontop/hacky\?/notifDisplay"]
+visible = false
+anchor_left = 2.0
+anchor_right = 2.0
+margin_top = 487.0
+margin_right = 111.0
+margin_bottom = 510.0
+script = ExtResource( 6 )
+
+[node name="notifText" type="Label" parent="UI_ontop/hacky\?/notifDisplay/notifTemplate"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 110.0
+margin_bottom = 22.0
+text = "Notification text"
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI_ontop/hacky\?/notifDisplay/notifTemplate"]
+anims/RESET = SubResource( 6 )
+anims/notifAnimation = SubResource( 4 )
+anims/notifAnimationHide = SubResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI_ontop/hacky\?/notifDisplay/notifTemplate"]
+stream = ExtResource( 5 )
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0

@@ -3,6 +3,11 @@ extends WindowDialog
 onready var inputBox = $VBoxContainer/LineEdit
 onready var outputBox = $VBoxContainer/TextEdit
 
+func _ready():
+	outText("Dzejmod 0.1\nBy TEAM DZEJMOD. https://dzejmod.tk")
+	outText("[INFO] engine initalizing...")
+	outText("[INFO] console loaded")
+
 func _on_LineEdit_text_entered(new_text):
 	outText(new_text)
 	inputBox.clear()
@@ -68,7 +73,7 @@ func _input(event):
 
 
 func consoleClose():
-	dzej.mouseLock(true)
+	dzej.lpMouseLock(true)
 
 func consoleOpen():
-	dzej.mouseLock(false)
+	dzej.lpMouseLock(false)

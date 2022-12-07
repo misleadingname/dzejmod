@@ -7,9 +7,10 @@ onready var finishSound = $UI/finishSound
 var scene : Node = null
 var loadedScene : Node = null
 
-
-
 func _ready():
+	dzej.gameplayMap = self
+	yield(get_tree(), "idle_frame") # Just to be safe :P
+
 	scene = null
 	loadedScene = null
 
@@ -38,6 +39,8 @@ func _ready():
 		dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
 		bannerText.text = "Done! :D"
 		$UI/Image.visible=false
+
+		dzej.lpShowNotification("Welcome to Dzejmod!\nThis is an early alpha build so beware of bugs!\nAlso make sure to check out the website and the wiki!\n\nhttps://dzejmod.tk/", 10)
 
 		var temp:String = "res://base/prefabs/player.tscn"
 		print(temp)
