@@ -1,0 +1,239 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://models/weapons/gravgun.tscn" type="PackedScene" id=2]
+
+[sub_resource type="GDScript" id=3]
+resource_name = "load"
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var hell = load(dzej.getAddonPath(\"base\") + \"ui/spawnmenu.tscn\")
+	var a = hell.instance()
+	add_child(a)
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=4]
+resource_name = "player-Builtin"
+script/source = "extends KinematicBody
+
+
+export var walkSpeed : float = 5
+export var sprintSpeed : float = 7
+export var jumpForce : float = 5
+export var pushStrength : float = 2
+
+export var gravityDefault : float = 9.8
+export var accelDefault : float = 8
+export var accelAir : float = 1
+
+onready var accel : float = accelDefault
+onready var gravity : float = gravityDefault
+onready var movementSpeed = walkSpeed
+
+var direction : Vector3 = Vector3()
+var velocity : Vector3 = Vector3()
+var gravity_vec : Vector3 = Vector3()
+var movement : Vector3 = Vector3()
+
+var mouseDelta : Vector2 = Vector2()
+var snap : Vector3 = Vector3.ZERO
+var viewmodelx = 0.0
+var viewmodely = 0.0
+var viewmodelr = 0.0
+
+const PI4 = PI/4
+
+onready var rothelper = $RotationHelper
+onready var viewmodel = $RotationHelper/view
+
+onready var cam = $RotationHelper/Camera
+onready var viewmodelcam = $RotationHelper/ViewportContainer/Viewport/viewmodelCam
+onready var viewmodelViewport = $RotationHelper/ViewportContainer/Viewport
+
+onready var ogViewmodelPos = viewmodel.translation
+onready var viewmodelPos = ogViewmodelPos
+
+func _ready():
+	dzej.lpMouseLock(true)
+	dzej.root.connect(\"size_changed\", self, \"screenResized\")
+	screenResized()
+
+func screenResized():
+	viewmodelViewport.size = dzej.root.size
+
+func _process(delta):
+	var mouseSens = dzej_settings.all_settings.get(\"mouse_sens\")
+	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		rothelper.rotation_degrees.x -= mouseDelta.y * mouseSens
+		rothelper.rotation_degrees.x = clamp(rothelper.rotation_degrees.x, -90, 90)
+
+		rotation_degrees.y -= mouseDelta.x * mouseSens
+
+	mouseDelta = Vector2()
+
+	viewmodelcam.global_transform = cam.global_transform
+
+func _physics_process(delta):
+	direction = Vector3.ZERO
+	var f_input : float = 0.0
+	var h_input : float = 0.0
+	var h_rot = global_transform.basis.get_euler().y
+
+	if(dzej.lpMouseIsLocked()):
+		f_input = Input.get_action_strength(\"movement_backward\") - Input.get_action_strength(\"movement_forward\")
+		h_input = Input.get_action_strength(\"movement_right\") - Input.get_action_strength(\"movement_left\")
+		direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
+	
+	if is_on_floor():
+		gravity = 0
+
+		snap = -get_floor_normal()
+		accel = accelDefault
+		gravity_vec = Vector3.ZERO
+	else:
+		snap = Vector3.DOWN
+		gravity = gravityDefault
+		accel = accelAir
+		gravity_vec += Vector3.DOWN * gravity * delta
+		
+	if(dzej.lpMouseIsLocked()):
+		if(Input.is_action_pressed(\"movement_sprint\") and is_on_floor()):
+			movementSpeed = sprintSpeed
+		else:
+			movementSpeed = walkSpeed
+
+		if(Input.is_action_just_pressed(\"movement_jump\") and is_on_floor()):
+			snap = Vector3.ZERO
+			gravity_vec = Vector3.UP * jumpForce
+	
+	velocity = velocity.linear_interpolate(direction * movementSpeed, accel * delta)
+	movement = velocity + gravity_vec
+	
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider is RigidBody:
+			collision.collider.apply_central_impulse(-collision.normal * 0.1)
+			
+	var viewmodelPos = ogViewmodelPos
+
+	if(dzej.lpMouseIsLocked()):
+		viewmodelPos.x += -mouseDelta.x * 0.002
+		viewmodelPos.y += mouseDelta.y * 0.002
+	
+	viewmodelx = sin(OS.get_ticks_msec() * 0.005) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).x
+	viewmodely = cos(OS.get_ticks_msec() * 0.01) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).y
+	viewmodel.translation.y = lerp(viewmodel.translation.y, viewmodely,.8)
+	viewmodel.translation.x = lerp(viewmodel.translation.x, viewmodelx,.8)
+	viewmodel.translation.z = lerp(viewmodel.translation.z, -1.48, .45)
+
+	move_and_slide_with_snap(movement, snap, Vector3.UP, false, 4, PI4, false)
+
+func _input(event):
+	if(event is InputEventMouseMotion):
+		mouseDelta = event.relative
+"
+
+[sub_resource type="CylinderShape" id=2]
+radius = 0.35
+
+[node name="Player" type="Spatial"]
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 3 )
+
+[node name="Panel" type="Panel" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -129.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 33.0
+size_flags_horizontal = 2
+
+[node name="Label" type="Label" parent="UI/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "dzejmod 0.0"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="UI/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 9.0
+margin_top = 8.0
+margin_right = 67.0
+margin_bottom = 22.0
+rect_rotation = -13.2
+text = "dev"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="ColorRect" type="ColorRect" parent="UI"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -2.0
+margin_top = -2.0
+margin_right = 2.0
+margin_bottom = 2.0
+color = Color( 0.392157, 0.392157, 0.392157, 1 )
+
+[node name="KinematicBody" type="KinematicBody" parent="."]
+script = SubResource( 4 )
+
+[node name="BodyCollisions" type="CollisionShape" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
+shape = SubResource( 2 )
+
+[node name="RotationHelper" type="Spatial" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
+
+[node name="ViewportContainer" type="ViewportContainer" parent="KinematicBody/RotationHelper"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Viewport" type="Viewport" parent="KinematicBody/RotationHelper/ViewportContainer"]
+size = Vector2( 100, 100 )
+size_override_stretch = true
+transparent_bg = true
+handle_input_locally = false
+render_target_clear_mode = 1
+render_target_update_mode = 3
+
+[node name="viewmodelCam" type="Camera" parent="KinematicBody/RotationHelper/ViewportContainer/Viewport"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.64572, 0 )
+cull_mask = 2
+far = 5.0
+
+[node name="Camera" type="Camera" parent="KinematicBody/RotationHelper"]
+cull_mask = 1048573
+doppler_tracking = 2
+current = true
+fov = 90.0
+size = 5.0
+far = 1000.0
+
+[node name="view" type="Spatial" parent="KinematicBody/RotationHelper"]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.35, -0.55, -1.5 )
+
+[node name="wep" parent="KinematicBody/RotationHelper/view" instance=ExtResource( 2 )]
+transform = Transform( 4.48, 0, 0, 0, 4.48, 0, 0, 0, 4.48, 0, 0, 0 )

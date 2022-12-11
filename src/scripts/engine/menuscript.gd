@@ -51,7 +51,6 @@ func _input(event):
 			self.get_parent().visible = true
 			dzej.lpMouseLock(false)
 
-
 func _on_optionsButton_pressed():
 	buttonClick()
 	

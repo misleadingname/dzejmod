@@ -40,9 +40,14 @@ func _ready():
 		bannerText.text = "Done! :D"
 		$UI/Image.visible=false
 
-		dzej.lpShowNotification("Welcome to Dzejmod!\nThis is an early alpha build so beware of bugs!\nAlso make sure to check out the website and the wiki!\n\nhttps://dzejmod.tk/", 10)
+		dzej.lpShowNotification("Welcome to Dzejmod!\nThis is an early alpha build so beware of bugs!\nAlso make sure to check out the website and the wiki!\n\nhttps://dzejmod.tk/", 2)
 
-		var temp:String = "res://base/prefabs/player.tscn"
+		
+		
+		#var initScript = load(dzej.getAddonPath(dzej.addonMapFrom) + "/scripts/init.gd")
+		#initScript.call("onLoad", loadedScene)
+		#no more
+		var temp:String = "res://sandbox/player.tscn"
 		print(temp)
 		var playera = load(temp)
 		print(playera)

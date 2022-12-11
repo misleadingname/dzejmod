@@ -90,10 +90,10 @@ margin_bottom = 355.0
 visible = false
 
 [node name="NewGameMenu" parent="." instance=ExtResource( 7 )]
-margin_left = 51.2
-margin_top = 400.0
-margin_right = 125.2
-margin_bottom = 401.0
+margin_left = 840.0
+margin_top = 424.0
+margin_right = 914.0
+margin_bottom = 425.0
 
 [connection signal="newGame" from="VBoxContainer" to="NewGameMenu" method="onNewgame"]
 [connection signal="mouse_entered" from="VBoxContainer/newgameButton" to="VBoxContainer" method="buttonHover"]
