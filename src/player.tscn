@@ -14,7 +14,7 @@ script/source = "extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var hell = load(dzej.getAddonPath(\"base\") + \"ui/spawnmenu.tscn\")
+	var hell = load(dzej.getAddonPath(\"\base\") + \"ui/spawnmenu.tscn\")
 	var a = hell.instance()
 	add_child(a)
 

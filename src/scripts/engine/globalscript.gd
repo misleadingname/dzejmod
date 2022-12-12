@@ -6,7 +6,7 @@ var consoleScene : Node = load("res://scenes/engine/console.tscn").instance()
 onready var root : Node = get_tree().get_root()
 var sceneCurrent : Node = null
 var gameplayMap : Node = null
-var addonMapFrom = "sandbox"
+var addonMapFrom = "base"
 
 var targetScene : String = "res://scenes/defaultmap.tscn"
 var targetGamemode : String = "Sandbox"
@@ -24,8 +24,9 @@ func hello():
 # SCENE MANAGEMENT
 
 func sceneAddToParent(resname : String, parent : Node):
+	print("[INFO] adding " + resname + " to " + str(parent))
 	if(parent == null):
-		msg("[ERROR] parent is null")
+		msg("[ERROR] invalid parent node")
 		return false
 
 	if(resname == null || resname == ""):
@@ -35,14 +36,19 @@ func sceneAddToParent(resname : String, parent : Node):
 	if(!ResourceLoader.exists(resname)):
 		msg("[ERROR] scene " + resname + " does not exist")
 		return false
-	
-	msg("[INFO] adding " + resname + " to " + str(parent))
-	var scene = load(resname)
-	scene = scene.instance()
+
+	if(!resname.ends_with(".tscn")):
+		msg("[ERROR] invalid scene file: " + resname)
+		return false
+
+	msg("[INFO] adding '" + resname + "' to " + str(parent))
+	var scene = ResourceLoader.load(resname).instance()
+	print(scene)
 
 	parent.add_child(scene)
 
 	return [scene, parent]
+
 
 func nodeAddToParent(node : Node, parent : Node):
 	if(parent == null):
@@ -185,7 +191,8 @@ func addonGetInfo(addon : String):
 	return null
 
 func getAddonPath(addon : String):
-	return addonpath+addon + "/"
+	return addonpath+addon
+
 # CONSOLE
 
 func msg(msg):
@@ -230,6 +237,6 @@ func lpShowNotification(text : String, time : float = 5):
 	notif.call("displaynotif", text, time)
 
 func lpTestNotifSpam():
-	for i in range(0, 1000):
+	for i in range(0, 500):
 		lpShowNotification("test " + str(i), 5)
-		yield(get_tree().create_timer(0.001), "timeout")
+		yield(get_tree(), "idle_frame")

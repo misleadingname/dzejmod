@@ -58,7 +58,7 @@ func sv_map(map):
 	dzej.msg("attemting to load map: " + map)
 
 	dzej.targetScene = map + ".tscn"
-	if(!ResourceLoader.exists(dzej.getAddonPath(dzej.addonMapFrom) + "maps/" + map + ".tscn")):
+	if(!ResourceLoader.exists(dzej.getAddonPath(dzej.addonMapFrom) + "/maps/" + map + ".tscn")):
 		dzej.msg("[ERROR] scene " + dzej.targetScene + " does not exist")
 		return false
 
