@@ -20,7 +20,7 @@ func outText(text):
 			outputBox.text += text + "\n"
 		else:
 			outputBox.text += str("command returned: ", text) + "\n"
-		outputBox.set_v_scroll(outputBox.get_v_scroll() + 1000)
+		outputBox.set_v_scroll(outputBox.get_v_scroll() + 100000)
 	else:
 		return false
 

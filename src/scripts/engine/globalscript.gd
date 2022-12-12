@@ -216,14 +216,20 @@ func lpGetFileAsText(lin:String):
 
 func lpShowNotification(text : String, time : float = 5):
 	msg("[INFO] displaying notification: " + text + " for " + str(time) + " seconds")
-	if(gameplayMap != null):
-		# PLS VIX FIND A BETTER WAY TO DO THIS
-		# IT FEELS SO WRONG TO DO THIS
-		# I BEG OF YOU
-		# AND IF YOU CAN'T FIND A BETTER WAY
-		# JUST SEND ME THAT "I fucked it up beyond repair" VIDEO.
-		var ontop = gameplayMap.get_node("UI_ontop")
-		var notif = ontop.get_node("hacky?/notifDisplay/notifTemplate").duplicate()
-		ontop.get_node("hacky?/notifDisplay").add_child(notif)
-		notif.visible = true
-		notif.call("displaynotif", text, time)
+	if(gameplayMap == null):
+		msg("[ERROR] gameplayMap is null")
+		return false
+	var ontop = gameplayMap.get_node("UI_ontop")
+
+	var notifTemplate = ontop.get_node("hacky?/notifDisplay/notifTemplate")
+	var notif = notifTemplate.duplicate()
+
+	ontop.get_node("hacky?/notifDisplay").add_child(notif)
+
+	notif.visible = true
+	notif.call("displaynotif", text, time)
+
+func lpTestNotifSpam():
+	for i in range(0, 1000):
+		lpShowNotification("test " + str(i), 5)
+		yield(get_tree().create_timer(0.001), "timeout")

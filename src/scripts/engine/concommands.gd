@@ -13,16 +13,41 @@ const valid = [
 	["help", [ARG_NULL]],
 	["echo", [ARG_STRING]],
 	["version", [ARG_NULL]],
+	["reload", [ARG_NULL]],
 
 	["sv_map", [ARG_STRING]],
+
+	["sv_remove_ent", [ARG_STRING]],
+	["sv_tree_ent", [ARG_NULL]],
+
 	["sv_phys_fps", [ARG_FLOAT]],
 	["sv_get_addons", [ARG_NULL]],
 
 	["cl_getvar", [ARG_STRING]],
-	["cl_hello", [ARG_NULL]]
+	["cl_hello", [ARG_NULL]],
+	["cl_test_notif", [ARG_NULL]],
+	["cl_notif", [ARG_STRING]],
 ]
 
 # SV
+
+func sv_remove_ent(ent : String):
+	dzej.msg("Removing entity: " + ent)
+	var node = dzej.gameplayMap.get_node(ent)
+	if(node == null):
+		dzej.msg("[ERROR] Entity " + ent + " does not exist")
+		return false
+	else:
+		node.queue_free()
+		dzej.msg("Entity " + ent + " removed")
+		return true
+
+func sv_tree_ent():
+	dzej.msg("Printing entity tree")
+	dzej.msg(dzej.gameplayMap.print_tree_pretty())
+	dzej.msg("Entity tree printed, check debug.")
+	return true
+
 
 func sv_phys_fps(fps):
 	Engine.iterations_per_second = int(fps)
@@ -47,15 +72,32 @@ func sv_map(map):
 
 func sv_get_addons():
 	return dzej.addonRequestList()
+
 # CL
+
+func cl_notif(text):
+	return dzej.lpShowNotification(text, 3)
+
+func cl_test_notif():
+	dzej.lpTestNotifSpam()
+	return true
 
 func cl_hello():
 	return "hello dzejmod console"
 
 func cl_getvar(varname):
-	return str(get(varname))
+	return str(get_node("/root/dzej").get(varname))
 
 # GENERAL
+
+func reload():
+	# WARN: This WILL break once we add multiplayer, but for now GG EZ NOOBS!!!
+	dzej.msg("Reloading...")
+	return dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
+
+func quit():
+	dzej.msg("BYE BYE")
+	return get_tree().quit()
 
 func version():
 	return "dzejmod 0.1 development version Work in progress.\nTEAM DZEJMOD\nhttps://dzejmod.tk"
