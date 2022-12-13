@@ -15,13 +15,17 @@ var paused : bool = false
 var path = OS.get_executable_path().get_base_dir()
 var addonpath = path+"/addons/"
 
+func _notification(what):
+	if what == MainLoop.NOTIFICATION_CRASH:
+		fatal(null, null, null)
+
 func _ready():
 	sceneCurrent = root.get_child(root.get_child_count() - 1)
 
 func hello():
 	return "hello dzejmod"
 
-func fatal(returnee, status, path):
+func fatal(returnee, status, err_path):
 	msg("")
 	msg("")
 	msg("[FATAL ERROR]")
@@ -30,7 +34,7 @@ func fatal(returnee, status, path):
 	msg("[FATAL ERROR] Good luck with that noob :D")
 	msg("[FATAL ERROR]")
 
-	if(returnee == null && status == null && path == null):
+	if(returnee == null && status == null && err_path == null):
 		msg("[FATAL ERROR] Like, I have no idea how you ended up in a situation where NOTHING was returned, but it may be your memory dying or something. But either way, you're fucked.")
 	else:
 		var msg = "A fatal error occured and the info IS:"
@@ -38,8 +42,8 @@ func fatal(returnee, status, path):
 			msg += "\n	Error code returned by: (" + str(returnee) + ")"
 		if(status != null):
 				msg += "\n	And the code was: (" + str(status) + ") "
-		if(path != null):
-			msg += "\n	By doing something related to: (" + path + ") "
+		if(err_path != null):
+			msg += "\n	By doing something related to: (" + err_path + ") "
 		msg("[FATAL ERROR] " + msg)
 
 	msg("[FATAL ERROR]")
@@ -69,26 +73,13 @@ func sceneAddToParent(resname : String, parent : Node):
 		return false
 
 	msg("[INFO] adding '" + resname + "' to " + str(parent))
-	yield(get_tree(), "idle_frame")
-	lpShowNotification("[dzej] Loading object: " + resname, 2)
-	var scene = ResourceLoader.load_interactive(resname)
-	var loadingStatus = scene.poll()
-	while true:
-		loadingStatus = scene.poll()
-		if(loadingStatus == OK):
-			pass
-		elif(loadingStatus == ERR_FILE_EOF):
-			msg("[INFO] Scene loaded: " + resname)
-			lpShowNotification("[dzej] Object loaded: " + resname, 2)
-			break
-		else:
-			fatal(scene, loadingStatus, resname)
-			return false
+	var scene = ResourceLoader.load(resname)
+	if(scene == null):
+		fatal(scene, null, resname)
+		return false
 	
-	scene = scene.get_resource().instance()
-
+	scene = scene.instance()
 	parent.add_child(scene)
-	print("dzej." + str(scene))
 	return [scene, parent]
 
 

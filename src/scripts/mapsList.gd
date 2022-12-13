@@ -39,7 +39,6 @@ func funny():
 		addonDir.open(dzej.addonpath + temp1[i] + "/maps/")
 		addonDir.list_dir_begin()
 		while(true):
-			
 			var file = addonDir.get_next()
 			if(file == ""):
 				break
