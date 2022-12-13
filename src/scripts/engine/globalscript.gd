@@ -42,11 +42,27 @@ func sceneAddToParent(resname : String, parent : Node):
 		return false
 
 	msg("[INFO] adding '" + resname + "' to " + str(parent))
-	var scene = ResourceLoader.load(resname).instance()
-	print(scene)
-
+	yield(get_tree(), "idle_frame")
+	lpShowNotification("[dzej] Loading object: " + resname, 2)
+	var scene = ResourceLoader.load_interactive(resname)
+	var loadingStatus = scene.poll()
+	while true:
+		yield(get_tree(), "idle_frame")
+		loadingStatus = scene.poll()
+		if(loadingStatus == OK):
+			yield(get_tree(), "idle_frame")
+		if(loadingStatus == ERR_FILE_EOF):
+			dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
+			lpShowNotification("[dzej] Scene loaded: " + dzej.targetScene)
+			break
+		if(loadingStatus == ERR_FILE_CANT_OPEN):
+			dzej.msg("[ERROR] Scene failed to load: " + dzej.targetScene)
+			lpShowNotification("[dzej] An error occured, please check the console.", 10)
+			break
+	
 	parent.add_child(scene)
 
+	emit_signal("scene_added", scene, parent)
 	return [scene, parent]
 
 

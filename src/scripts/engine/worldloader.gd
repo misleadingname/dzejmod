@@ -27,7 +27,7 @@ func _ready():
 	var loadingStatus = loader.poll()
 	while true:
 		loadingStatus = loader.poll()
-		if loadingStatus == OK:
+		if(loadingStatus == OK):
 			yield(get_tree(), "idle_frame")
 		if(loadingStatus == ERR_FILE_EOF):
 			dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
@@ -56,5 +56,3 @@ func _ready():
 	dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
 	bannerText.text = "Done! :D"
 	$UI/Image.visible=false
-
-	dzej.lpShowNotification("Welcome to Dzejmod!\nThis is an early alpha build so beware of bugs!\nAlso make sure to check out the website and the wiki!\n\nhttps://dzejmod.tk/", 2)
