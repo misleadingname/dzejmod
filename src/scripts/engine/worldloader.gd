@@ -34,6 +34,8 @@ func _ready():
 			loadedScene = dzej.nodeAddToParent(loader.get_resource().instance(), self)[0]
 			loadedScene.name = "map"
 			break
+		yield(get_tree(), "idle_frame")
+		
 
 	bannerText.text = "Loading addons..."
 

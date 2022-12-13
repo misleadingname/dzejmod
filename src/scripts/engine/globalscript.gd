@@ -21,6 +21,33 @@ func _ready():
 func hello():
 	return "hello dzejmod"
 
+func fatal(returnee, status, path):
+	msg("")
+	msg("")
+	msg("[FATAL ERROR]")
+	msg("[FATAL ERROR]")
+	msg("[FATAL ERROR] A fatal error only occurs when there's a SERIOUS problem that dzejmod couldn't give a fuck about, so instead of crashing the game, it will just show this message and continue.")
+	msg("[FATAL ERROR] Good luck with that noob :D")
+	msg("[FATAL ERROR]")
+
+	if(returnee == null && status == null && path == null):
+		msg("[FATAL ERROR] Like, I have no idea how you ended up in a situation where NOTHING was returned, but it may be your memory dying or something. But either way, you're fucked.")
+	else:
+		var msg = "A fatal error occured and the info IS:"
+		if(returnee != null):
+			msg += "\n	Error code returned by: (" + str(returnee) + ")"
+		if(status != null):
+				msg += "\n	And the code was: (" + str(status) + ") "
+		if(path != null):
+			msg += "\n	By doing something related to: (" + path + ") "
+		msg("[FATAL ERROR] " + msg)
+
+	msg("[FATAL ERROR]")
+	msg("[FATAL ERROR]")
+	msg("")
+	msg("")
+	lpShowNotification("[dzej] An error occured, please check the console.", 10)
+
 # SCENE MANAGEMENT
 
 func sceneAddToParent(resname : String, parent : Node):
@@ -47,22 +74,21 @@ func sceneAddToParent(resname : String, parent : Node):
 	var scene = ResourceLoader.load_interactive(resname)
 	var loadingStatus = scene.poll()
 	while true:
-		yield(get_tree(), "idle_frame")
 		loadingStatus = scene.poll()
 		if(loadingStatus == OK):
-			yield(get_tree(), "idle_frame")
-		if(loadingStatus == ERR_FILE_EOF):
-			dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
-			lpShowNotification("[dzej] Scene loaded: " + dzej.targetScene)
+			pass
+		elif(loadingStatus == ERR_FILE_EOF):
+			msg("[INFO] Scene loaded: " + resname)
+			lpShowNotification("[dzej] Object loaded: " + resname, 2)
 			break
-		if(loadingStatus == ERR_FILE_CANT_OPEN):
-			dzej.msg("[ERROR] Scene failed to load: " + dzej.targetScene)
-			lpShowNotification("[dzej] An error occured, please check the console.", 10)
-			break
+		else:
+			fatal(scene, loadingStatus, resname)
+			return false
 	
-	parent.add_child(scene)
+	scene = scene.get_resource().instance()
 
-	emit_signal("scene_added", scene, parent)
+	parent.add_child(scene)
+	print("dzej." + str(scene))
 	return [scene, parent]
 
 
