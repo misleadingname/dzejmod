@@ -57,19 +57,19 @@ func fatal(returnee, status, err_path):
 func sceneAddToParent(resname : String, parent : Node):
 	print("[INFO] adding " + resname + " to " + str(parent))
 	if(parent == null):
-		msg("[ERROR] invalid parent node")
+		fatal(null, "Parent is null", resname)
 		return false
 
 	if(resname == null || resname == ""):
-		msg("[ERROR] invalid scene name")
+		fatal(null, "Invalid scene name", resname)
 		return false
 
 	if(!ResourceLoader.exists(resname)):
-		msg("[ERROR] scene " + resname + " does not exist")
+		fatal(null, "Scene does not exist", resname)
 		return false
 
 	if(!resname.ends_with(".tscn")):
-		msg("[ERROR] invalid scene file: " + resname)
+		fatal(null, "Scene is not a .tscn file", resname)
 		return false
 
 	msg("[INFO] adding '" + resname + "' to " + str(parent))
@@ -190,7 +190,28 @@ func addonSceneGetList(addons):
 		sceneDir.list_dir_end()
 	return scenes
 
+# RESOURCE MANAGEMENT
+
+func resLoadToMem(path : String):
+	if(path == null || path == ""):
+		fatal(path, "Invalid resource path", path)
+		return false
+
+	if(!ResourceLoader.exists(path)):
+		fatal(path, "Resource doesn't exist", path)
+		return false
+
+	msg("[INFO] loading resource " + path + " to memory")
+	var res = ResourceLoader.load(path)
+	if(res == null):
+		fatal(res, res.poll(), path)
+		return false
+
+	msg("[INFO] resource loaded")
+	return res
+
 # ADDON MANAGEMENT
+
 func addonRequestList():
 	var addons = []
 	var addonsDir = Directory.new()
@@ -257,7 +278,7 @@ func lpGetFileAsText(lin:String):
 func lpShowNotification(text : String, time : float = 5):
 	msg("[INFO] displaying notification: " + text + " for " + str(time) + " seconds")
 	if(gameplayMap == null):
-		msg("[ERROR] gameplayMap is null")
+		msg("[WARN] gameplayMap is null")
 		return false
 	var ontop = gameplayMap.get_node("UI_ontop")
 
