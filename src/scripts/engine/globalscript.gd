@@ -82,28 +82,13 @@ func sceneAddToParent(resname : String, parent : Node):
 	parent.add_child(scene)
 	return [scene, parent]
 
-
-func nodeAddToParent(node : Node, parent : Node):
-	if(parent == null):
-		msg("[ERROR] parent is null")
-		return false
-
-	if(node == null):
-		msg("[ERROR] node is null")
-		return false
-
-	msg("[INFO] adding " + str(node) + " to " + str(parent))
-	parent.add_child(node)
-
-	return [node, parent]
-
 func sceneOverlayNew(resname : String):
 	if(resname == null || resname == ""):
-		msg("[ERROR] invalid scene name")
+		fatal(null, "Invalid scene name", resname)
 		return false
 
 	if(!ResourceLoader.exists(resname)):
-		msg("[ERROR] scene " + resname + " does not exist")
+		fatal(null, "Scene does not exist", resname)
 		return false
 
 	msg("[INFO] overlaying new scene at root: " + resname)
@@ -131,11 +116,11 @@ func sceneRemove(sceneRef : Node, soft : bool = false):
 
 func sceneSwtich(resname : String, nomenu : bool = false):
 	if(resname == null || resname == ""):
-		msg("[ERROR] invalid scene name")
+		fatal(null, "Invalid scene name", resname)
 		return false
 
 	if(!ResourceLoader.exists(resname)):
-		msg("[ERROR] scene " + resname + " does not exist")
+		fatal(null, "Scene does not exist", resname)
 		return false
 	
 	msg("[INFO] switching to scene " + resname)
@@ -209,6 +194,57 @@ func resLoadToMem(path : String):
 
 	msg("[INFO] resource loaded")
 	return res
+
+func resExists(path : String):
+	if(path == null || path == ""):
+		fatal(path, "Invalid resource path", path)
+		return false
+
+	if(!ResourceLoader.exists(path)):
+		fatal(path, "Resource doesn't exist", path)
+		return false
+
+	return true
+
+# NODE MANAGEMENT
+
+func nodeSetScript(node : Node, script : Script, update : bool = false):
+	if(node == null):
+		fatal(node, "Node is null", script)
+		return false
+
+	if(script == null):
+		fatal(script, "Script is null", node)
+		return false
+
+	msg("[INFO] setting script " + str(script) + " to node " + str(node))
+	node.set_script(script)
+
+	if(update):
+		node._ready()
+		node.set_process(true)
+		node.set_process_input(true)
+		node.set_process_unhandled_input(true)
+		node.set_physics_process(true)
+
+	msg("[INFO] script set, remember to set the reference to the node again, since setting a script will override the refernce.")
+	return node
+
+func nodeAddToParent(node : Node, parent : Node):
+	msg("[INFO] adding " + str(node) + " to " + str(parent))
+	if(parent == null):
+		fatal(null, "Parent is null", str(node))
+		return false
+
+	if(node == null):
+		fatal(null, "Node is null", str(node))
+		return false
+
+	parent.add_child(node)
+
+	msg("[INFO] added " + str(node) + " to " + str(parent))
+
+	return [node, parent]
 
 # ADDON MANAGEMENT
 
@@ -289,8 +325,3 @@ func lpShowNotification(text : String, time : float = 5):
 
 	notif.visible = true
 	notif.call("displaynotif", text, time)
-
-func lpTestNotifSpam():
-	for i in range(0, 500):
-		lpShowNotification("test " + str(i), 5)
-		yield(get_tree(), "idle_frame")

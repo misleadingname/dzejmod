@@ -25,7 +25,6 @@ const valid = [
 
 	["cl_getvar", [ARG_STRING]],
 	["cl_hello", [ARG_NULL]],
-	["cl_test_notif", [ARG_NULL]],
 	["cl_notif", [ARG_STRING]],
 ]
 
@@ -77,11 +76,7 @@ func sv_get_addons():
 
 func cl_notif(text):
 	return dzej.lpShowNotification(text, 3)
-
-func cl_test_notif():
-	dzej.lpTestNotifSpam()
-	return true
-
+	
 func cl_hello():
 	return "hello dzejmod console"
 

@@ -42,16 +42,16 @@ func _ready():
 	dzej.msg("[INFO] Loading init.gd script from " + dzej.getAddonPath(dzej.addonMapFrom) + "/scripts/init.gd")
 
 	var initScriptPath = dzej.getAddonPath(dzej.addonMapFrom) + "/scripts/init.gd"
-	if (ResourceLoader.exists(initScriptPath)):
+	if (dzej.resExists(initScriptPath)):
 		var initNode = Spatial.new()
 		initNode.name = "initScript (DO NOT DELETE)"
-		initNode.set_script(ResourceLoader.load(initScriptPath))
-		loadedScene.add_child(initNode)
+		
+		var initScript = dzej.resLoadToMem(initScriptPath)
+
+		dzej.nodeSetScript(initNode, initScript)
+
+		dzej.nodeAddToParent(initNode, loadedScene)
 		initNode.call("onLoad", loadedScene)
-	else:
-		bannerText.text = "Error, check console for details."
-		dzej.msg("[ERROR] init.gd script not found")
-		return false	
 
 	finishSound.play()
 	spinnerAnimation.play("slideDown")
