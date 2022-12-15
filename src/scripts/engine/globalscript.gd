@@ -21,7 +21,6 @@ func _notification(what):
 	if what == MainLoop.NOTIFICATION_CRASH:
 		fatal(null, null, null)
 
-
 func _ready():
 	sceneCurrent = root.get_child(root.get_child_count() - 1)
 
@@ -42,6 +41,8 @@ func reloadShit():
 	paused = false
 	path = OS.get_executable_path().get_base_dir()
 	addonpath = path + "/addons/"
+
+	dzej.sceneSwtich("res://scenes/engine/initialloading.tscn")
 
 
 func hello():

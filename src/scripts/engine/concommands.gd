@@ -124,7 +124,6 @@ func engine_reload():
 	dzej.set_process_unhandled_key_input(true)
 
 	yield(get_tree().create_timer(1), "timeout")
-	dzej.sceneSwtich("res://scenes/engine/initialloading.tscn")
 
 
 func quit():

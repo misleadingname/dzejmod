@@ -29,7 +29,7 @@ script = ExtResource( 1 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="AddonDialog/EntireContents"]
 margin_right = 599.0
-margin_bottom = 433.0
+margin_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
@@ -37,7 +37,7 @@ scroll_horizontal_enabled = false
 
 [node name="AddonList" type="VBoxContainer" parent="AddonDialog/EntireContents/ScrollContainer"]
 margin_right = 599.0
-margin_bottom = 433.0
+margin_bottom = 408.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -146,6 +146,13 @@ margin_top = 1.0
 margin_right = 378.52
 margin_bottom = 72.0
 text = "delete"
+
+[node name="Label" type="Label" parent="AddonDialog/EntireContents"]
+margin_top = 412.0
+margin_right = 599.0
+margin_bottom = 433.0
+text = "By using addons, you fully TRUST the addon and the addon author."
+align = 1
 
 [node name="ConfirmationContainer" type="HBoxContainer" parent="AddonDialog/EntireContents"]
 margin_left = 553.0
