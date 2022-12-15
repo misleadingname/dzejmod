@@ -8,11 +8,14 @@ const valid = [
 	["echo", [ARG_STRING]],
 	["version", [ARG_NULL]],
 	["reload", [ARG_NULL]],
+	["engine_reload", [ARG_NULL]],
+
 	["sv_map", [ARG_STRING]],
 	["sv_remove_ent", [ARG_STRING]],
 	["sv_tree_ent", [ARG_NULL]],
 	["sv_phys_fps", [ARG_FLOAT]],
 	["sv_get_addons", [ARG_NULL]],
+
 	["cl_getvar", [ARG_STRING]],
 	["cl_hello", [ARG_NULL]],
 	["cl_notif", [ARG_STRING]],
@@ -35,7 +38,7 @@ func sv_remove_ent(ent: String):
 
 func sv_tree_ent():
 	dzej.msg("Printing entity tree")
-	dzej.msg(dzej.gameplayMap.print_tree_pretty())
+	dzej.msg(dzej.root.print_tree_pretty())
 	dzej.msg("Entity tree printed, check debug.")
 	return true
 
@@ -89,6 +92,39 @@ func reload():
 	# WARN: This WILL break once we add multiplayer, but for now GG EZ NOOBS!!!
 	dzej.msg("Reloading...")
 	return dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
+
+func engine_reload():
+	if dzej.gameplayMap != null:
+		dzej.gameplayMap.queue_free()
+		dzej.gameplayMap = null
+
+	if get_tree().get_root().get_node("bgmap") != null:
+		get_tree().get_root().get_node("bgmap").queue_free()
+
+	get_tree().change_scene("res://scenes/engine/enginereloading.tscn")
+
+	yield(get_tree().create_timer(20), "timeout")
+
+	for child in get_tree().get_root().get_children():
+		print(child.get_name() + " " + child.get_class())
+		if !child.get_name() == "dzej" || !child.get_name() == "con" || !child.get_name() == "dzej_settings":
+			print("freeing " + child.get_name())
+			child.queue_free()
+		else:
+			print("not freeing " + child.get_name())
+
+	var dzejscript = dzej.resLoadToMem("res://scripts/engine/globalscript.gd")
+
+	dzej.set_script(dzejscript)
+	dzej.reloadShit()
+	dzej.set_process(true)
+	dzej.set_process_input(true)
+	dzej.set_physics_process(true)
+	dzej.set_process_unhandled_input(true)
+	dzej.set_process_unhandled_key_input(true)
+
+	yield(get_tree().create_timer(1), "timeout")
+	dzej.sceneSwtich("res://scenes/engine/initialloading.tscn")
 
 
 func quit():

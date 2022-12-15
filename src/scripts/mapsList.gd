@@ -1,7 +1,7 @@
 extends GridContainer
 
 func _ready():
-	var button = preload("res://scenes/engine/mapButton.tscn")
+	var button = dzej.resLoadToMem("res://scenes/engine/mapButton.tscn")
 	var maps = dzej.addonSceneGetList(dzej.addonRequestList())
 	
 	print(maps)

@@ -3,8 +3,10 @@ extends WindowDialog
 onready var inputBox = $VBoxContainer/LineEdit
 onready var outputBox = $VBoxContainer/TextEdit
 
+onready var dzejref = weakref(dzej)
+
 func _ready():
-	outText("Dzejmod 0.1\nBy TEAM DZEJMOD. https://dzejmod.tk")
+	outText("Dzejmod " + dzej.VERSION + "\nBy TEAM DZEJMOD. https://dzejmod.tk")
 	outText("[INFO] engine initalizing...")
 	outText("[INFO] console loaded")
 
@@ -74,7 +76,8 @@ func _input(event):
 
 
 func consoleClose():
-	dzej.lpMouseLock(true)
+	if dzejref.get_ref():
+		dzej.lpMouseLock(true)
 
 func consoleOpen():
 	dzej.lpMouseLock(false)

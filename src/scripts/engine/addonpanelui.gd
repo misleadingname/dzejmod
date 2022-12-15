@@ -18,8 +18,8 @@ func setAddon(name):
 	path.set_text("addons/" + meta.filename)
 	dzej.msg("[fatal] restart required!")
 	var icon = dzej.resLoadToMem(dzej.addonGetPath(meta.filename) + "/icon.png")
-	if !icon == null && icon is Texture:
-		$HBoxContainer/ImageCenter/MarginContainer/TextureRect.texture = icon
+	# if icon != null:
+	# 	$HBoxContainer/Info/Icon.set_texture(icon)
 
 
 func _on_delete_button_down():

@@ -1,5 +1,7 @@
 extends Node
 
+const VERSION = "0.1"
+
 onready var pauseScene: Node = load("res://scenes/engine/pausemenu.tscn").instance()
 var consoleScene: Node = load("res://scenes/engine/console.tscn").instance()
 
@@ -15,7 +17,6 @@ var paused: bool = false
 var path: String = OS.get_executable_path().get_base_dir()
 var addonpath = path + "/addons/"
 
-
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_CRASH:
 		fatal(null, null, null)
@@ -23,6 +24,24 @@ func _notification(what):
 
 func _ready():
 	sceneCurrent = root.get_child(root.get_child_count() - 1)
+
+func reloadShit():
+	print("[DEBUG] Reloading everything...")
+
+	pauseScene = load("res://scenes/engine/pausemenu.tscn").instance()
+	consoleScene = load("res://scenes/engine/console.tscn").instance()
+	root = get_tree().get_root()
+
+	root.add_child(consoleScene)
+
+	sceneCurrent = root.get_child(root.get_child_count() - 1)
+	gameplayMap = sceneCurrent.get_node("Map")
+	addonMapFrom = "base"
+	targetScene = "res://scenes/defaultmap.tscn"
+	targetGamemode = "Sandbox"
+	paused = false
+	path = OS.get_executable_path().get_base_dir()
+	addonpath = path + "/addons/"
 
 
 func hello():
@@ -248,9 +267,6 @@ func nodeSetScript(node: Node, script: Script, update: bool = false):
 		node.set_process_unhandled_input(true)
 		node.set_physics_process(true)
 
-	msg(
-		"[INFO] script set, remember to set the reference to the node again, since setting a script will override the refernce."
-	)
 	return node
 
 
