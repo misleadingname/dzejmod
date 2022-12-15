@@ -22,8 +22,8 @@ func _ready():
 	yield(get_tree(), "idle_frame")
 	spinnerAnimation.play("spinner")
 	bannerText.text = "Now loading\n" + dzej.targetScene
-	print(dzej.getAddonPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
-	var loader = ResourceLoader.load_interactive(dzej.getAddonPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
+	print(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
+	var loader = ResourceLoader.load_interactive(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
 	var loadingStatus = loader.poll()
 	while true:
 		loadingStatus = loader.poll()
@@ -39,9 +39,9 @@ func _ready():
 
 	bannerText.text = "Loading addons..."
 
-	dzej.msg("[INFO] Loading init.gd script from " + dzej.getAddonPath(dzej.addonMapFrom) + "/scripts/init.gd")
+	dzej.msg("[INFO] Loading init.gd script from " + dzej.addonGetPath(dzej.addonMapFrom) + "/scripts/init.gd")
 
-	var initScriptPath = dzej.getAddonPath(dzej.addonMapFrom) + "/scripts/init.gd"
+	var initScriptPath = dzej.addonGetPath(dzej.addonMapFrom) + "/scripts/init.gd"
 	if (dzej.resExists(initScriptPath)):
 		var initNode = Spatial.new()
 		initNode.name = "initScript (DO NOT DELETE)"

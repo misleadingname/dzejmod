@@ -1,10 +1,10 @@
 extends Node
 
 func onLoad(loadedScene):
-	var sceneData = dzej.sceneAddToParent(dzej.getAddonPath("base") + "/prefabs/player.tscn", loadedScene)
+	var sceneData = dzej.sceneAddToParent(dzej.addonGetPath("base") + "/prefabs/player.tscn", loadedScene)
 	var player = sceneData[0]
 	
-	var scriptObject = dzej.resLoadToMem(dzej.getAddonPath("base") + "/scripts/playerController.gd")
+	var scriptObject = dzej.resLoadToMem(dzej.addonGetPath("base") + "/scripts/playerController.gd")
 
 	dzej.nodeSetScript(player.get_node("KinematicBody"), scriptObject, true)
 
