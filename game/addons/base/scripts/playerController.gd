@@ -66,7 +66,11 @@ func _physics_process(delta):
 		h_input = Input.get_action_strength("movement_right") - Input.get_action_strength("movement_left")
 		direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
 	
-	if is_on_floor():
+	if(is_on_ceiling()):
+		gravity_vec = -gravity_vec / 4
+		# dzej.lpShowNotification("You are on the ceiling!", 1)
+
+	if(is_on_floor()):
 		gravity = 0
 
 		snap = -get_floor_normal()
