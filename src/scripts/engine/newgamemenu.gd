@@ -25,7 +25,6 @@ func findfromaddon_map():
 	var temp1 = dzej.addonRequestList()
 	for i in temp1.size():
 		var addonDir = Directory.new()
-		print(dzej.addonpath + temp1[i] + "/maps/")
 		addonDir.open(dzej.addonpath + temp1[i] + "/maps/")
 		addonDir.list_dir_begin()
 		while(true):

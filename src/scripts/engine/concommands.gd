@@ -9,6 +9,7 @@ const valid = [
 	["version", [ARG_NULL]],
 	["reload", [ARG_NULL]],
 	["engine_reload", [ARG_NULL]],
+	["developer", [ARG_BOOL]],
 
 	["sv_map", [ARG_STRING]],
 	["sv_remove_ent", [ARG_STRING]],
@@ -28,7 +29,7 @@ func sv_remove_ent(ent: String):
 	var node = dzej.gameplayMap.get_node(ent)
 	if node == null:
 		dzej.msg("[ERROR] Entity " + ent + " does not exist")
-		return null
+		return false
 	else:
 		node.queue_free()
 		dzej.msg("Entity " + ent + " removed")
@@ -54,12 +55,12 @@ func sv_map(map):
 	dzej.targetScene = map + ".tscn"
 	if dzej.resExists(dzej.addonGetPath(dzej.targetGamemode) + "/maps/" + map + ".tscn"):
 		dzej.msg("[ERROR] scene " + dzej.targetScene + " does not exist")
-		return null
+		return false
 
 	var out = dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
 	if typeof(out) == TYPE_STRING && out == false:
 		dzej.msg("error loading map: " + map)
-		return null
+		return false
 	else:
 		dzej.msg("map loaded: " + map)
 		return true
@@ -137,6 +138,10 @@ func version():
 func echo(text):
 	return text
 
+func developer(toggle):
+	dzej.developer = toggle == "true"
+	dzej.msg("Developer mode " + str(toggle))
+	return true
 
 func help():
 	var output: String

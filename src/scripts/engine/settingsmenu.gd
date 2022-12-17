@@ -39,5 +39,5 @@ func _on_MouseSens_value_changed(value):
 	mouse_sens_value.set_text(str(value))
 
 
-func _on_LineEdit_text_entered(new_text):
+func _on_LineEdit_text_entered():
 	mouse_sens.value = float(mouse_sens_value.get_text())

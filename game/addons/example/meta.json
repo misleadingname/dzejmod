@@ -1,9 +1,7 @@
-
 {
 	"name": "example",
 	"filename":"example",
 	"desc":"an example gamemode.",
 	"author": "TEAM DZEJMOD",
 	"tag": "gamemode"
-
 }

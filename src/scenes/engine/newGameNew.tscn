@@ -51,7 +51,7 @@ text = "gamemode.name"
 
 [node name="maps" type="PanelContainer" parent="MapsDialog"]
 anchor_left = 0.25
-anchor_right = 0.75
+anchor_right = 0.675
 anchor_bottom = 1.0
 margin_left = -63.5
 margin_right = 63.5
@@ -59,7 +59,7 @@ margin_right = 63.5
 [node name="ScrollContainer" type="ScrollContainer" parent="MapsDialog/maps"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 638.0
+margin_right = 561.2
 margin_bottom = 599.0
 
 [node name="GridContainer" type="GridContainer" parent="MapsDialog/maps/ScrollContainer"]
@@ -68,12 +68,14 @@ margin_bottom = 125.0
 grow_horizontal = 0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-columns = 3
+columns = 4
 
 [node name="Map" type="MarginContainer" parent="MapsDialog/maps/ScrollContainer/GridContainer"]
 margin_right = 125.0
 margin_bottom = 125.0
 rect_min_size = Vector2( 125, 125 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="button" type="Button" parent="MapsDialog/maps/ScrollContainer/GridContainer/Map"]
 margin_right = 125.0
@@ -81,7 +83,7 @@ margin_bottom = 125.0
 text = "Map.Name"
 
 [node name="options" type="PanelContainer" parent="MapsDialog"]
-anchor_left = 0.865
+anchor_left = 0.79
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -38.0
@@ -89,11 +91,11 @@ margin_left = -38.0
 [node name="VBoxContainer" type="VBoxContainer" parent="MapsDialog/options"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 175.24
+margin_right = 252.04
 margin_bottom = 599.0
 
 [node name="name" type="Label" parent="MapsDialog/options/VBoxContainer"]
-margin_right = 174.0
+margin_right = 251.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 1 )
 text = "map.name"
@@ -103,7 +105,7 @@ autowrap = true
 
 [node name="gamemode" type="Label" parent="MapsDialog/options/VBoxContainer"]
 margin_top = 40.0
-margin_right = 174.0
+margin_right = 251.0
 margin_bottom = 61.0
 text = "on gamemode"
 align = 1
@@ -111,6 +113,6 @@ autowrap = true
 
 [node name="Button" type="Button" parent="MapsDialog/options/VBoxContainer"]
 margin_top = 65.0
-margin_right = 174.0
+margin_right = 251.0
 margin_bottom = 98.0
 text = "Play"

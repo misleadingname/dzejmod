@@ -43,7 +43,7 @@ func _ready():
 func screenResized():
 	viewmodelViewport.size = dzej.root.size
 
-func _process(delta):
+func _process(_delta):
 	var mouseSens = dzej_settings.all_settings.get("mouse_sens")
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rothelper.rotation_degrees.x -= mouseDelta.y * mouseSens
@@ -100,7 +100,7 @@ func _physics_process(delta):
 		if collision.collider is RigidBody:
 			collision.collider.apply_central_impulse(-collision.normal * 0.1)
 			
-	var viewmodelPos = ogViewmodelPos
+	viewmodelPos = ogViewmodelPos
 
 	if(dzej.lpMouseIsLocked()):
 		viewmodelPos.x += -mouseDelta.x * 0.002

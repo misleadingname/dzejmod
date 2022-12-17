@@ -10,10 +10,14 @@ var sceneCurrent: Node = null
 var gameplayMap: Node = null
 var addonMapFrom = "base"
 
+var foreignNodes = []
+
 var targetScene: String = "res://scenes/defaultmap.tscn"
 var targetGamemode: String = "Sandbox"
 
 var paused: bool = false
+var developer = false
+
 var path: String = OS.get_executable_path().get_base_dir()
 var addonpath = path + "/addons/"
 
@@ -86,42 +90,42 @@ func fatal(returnee, status, err_path):
 
 
 func sceneAddToParent(resname: String, parent: Node):
-	print("[INFO] adding " + resname + " to " + str(parent))
+	dzej.msg("[INFO] adding " + resname + " to " + str(parent))
 	if parent == null:
 		fatal(null, "Parent is null", resname)
-		return null
+		return false
 
 	if resname == null || resname == "":
 		fatal(null, "Invalid scene name", resname)
-		return null
+		return false
 
 	if !ResourceLoader.exists(resname):
 		fatal(null, "Scene does not exist", resname)
-		return null
+		return false
 
 	if !resname.ends_with(".tscn"):
 		fatal(null, "Scene is not a .tscn file", resname)
-		return null
+		return false
 
 	msg("[INFO] adding '" + resname + "' to " + str(parent))
 	var scene = ResourceLoader.load(resname)
 	if scene == null:
 		fatal(scene, null, resname)
-		return null
+		return false
 
 	scene = scene.instance()
 	parent.add_child(scene)
-	return [scene, parent]
+	return scene
 
 
 func sceneOverlayNew(resname: String):
 	if resname == null || resname == "":
 		fatal(null, "Invalid scene name", resname)
-		return null
+		return false
 
 	if !ResourceLoader.exists(resname):
 		fatal(null, "Scene does not exist", resname)
-		return null
+		return false
 
 	msg("[INFO] overlaying new scene at root: " + resname)
 	var scene = load(resname).instance()
@@ -138,7 +142,7 @@ func sceneOverlay(scene: Node):
 func sceneRemove(sceneRef: Node, soft: bool = false):
 	if sceneRef == null:
 		msg("[INFO] invalid scene")
-		return null
+		return false
 	
 	msg("[INFO] removing scene: " + sceneRef.get_name())
 	root.remove_child(sceneRef)
@@ -154,16 +158,21 @@ func sceneRemove(sceneRef: Node, soft: bool = false):
 func sceneSwtich(resname: String, nomenu: bool = false):
 	if resname == null || resname == "":
 		fatal(null, "Invalid scene name", resname)
-		return null
+		return false
 
 	if !resExists(resname):
 		fatal(null, "Scene does not exist", resname)
-		return null
+		return false
 
 	msg("[INFO] switching to scene " + resname)
+
+	for node in foreignNodes:
+		node.queue_free()
+	foreignNodes = []
+
 	var scene = resLoadToMem(resname)
 	if scene == null:
-		return null
+		return false
 	scene = scene.instance()
 	msg("[INFO] instantiated scene")
 	root.add_child(scene)
@@ -210,11 +219,11 @@ func sceneGetList():
 func resLoadToMem(path: String):
 	if path == null || path == "":
 		fatal(path, "Invalid resource path", path)
-		return null
+		return false
 
 	if !resExists(path):
 		fatal(path, "Resource doesn't exist", path)
-		return null
+		return false
 
 	msg("[INFO] loading resource " + path + " to memory")
 	var res = ResourceLoader.load(path)
@@ -229,10 +238,10 @@ func resLoadToMem(path: String):
 func resExists(path: String):
 	if path == null || path == "":
 		fatal(path, "Invalid resource path", path)
-		return null
+		return false
 
 	if !ResourceLoader.exists(path):
-		return null
+		return false
 
 	return true
 
@@ -243,11 +252,11 @@ func resExists(path: String):
 func nodeSetScript(node: Node, script: Script, update: bool = false):
 	if node == null:
 		fatal(node, "Node is null", script)
-		return null
+		return false
 
 	if script == null:
 		fatal(script, "Script is null", node)
-		return null
+		return false
 
 	msg("[INFO] Checking script for naughty code...")
 
@@ -262,8 +271,9 @@ func nodeSetScript(node: Node, script: Script, update: bool = false):
 		regex.compile("(func dzej.*)|(dzej.*=)")
 		if regex.search(line):
 			fatal(script, "Script contains unsafe code", line)
-			return null
-	
+			return false
+
+	foreignNodes.append(node)
 
 	msg("[INFO] setting script " + str(script) + " to node " + str(node))
 	node.set_script(script)
@@ -282,11 +292,11 @@ func nodeAddToParent(node: Node, parent: Node):
 	msg("[INFO] adding " + str(node) + " to " + str(parent))
 	if parent == null:
 		fatal(null, "Parent is null", str(node))
-		return null
+		return false
 
 	if node == null:
 		fatal(null, "Node is null", str(node))
-		return null
+		return false
 
 	parent.add_child(node)
 
@@ -343,7 +353,7 @@ func addonGetInfo(addon: String):
 			meta.close()
 			return JSON.parse(metaInfo).result
 	addonDir.list_dir_end()
-	return null
+	return false
 
 
 func addonGetPath(addon: String):
@@ -387,13 +397,13 @@ func lpShowNotification(text: String, time: float = 5):
 	msg("[INFO] displaying notification: " + text + " for " + str(time) + " seconds")
 	if gameplayMap == null:
 		msg("[WARN] gameplayMap is null")
-		return null
+		return false
 	var ontop = gameplayMap.get_node("UI_ontop")
 
-	var notifTemplate = ontop.get_node("hacky?/notifDisplay/notifTemplate")
+	var notifTemplate = ontop.get_node("hacky/notifDisplay/notifTemplate")
 	var notif = notifTemplate.duplicate()
 
-	ontop.get_node("hacky?/notifDisplay").add_child(notif)
+	ontop.get_node("hacky/notifDisplay").add_child(notif)
 
 	notif.visible = true
 	notif.call("displaynotif", text, time)

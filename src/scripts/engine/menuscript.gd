@@ -6,8 +6,6 @@ onready var newgame = get_parent().get_node("Maps")
 onready var settings = get_parent().get_node("Settings")
 onready var addons = get_parent().get_node("Addons")
 
-signal newGame
-
 func buttonHover():
 	hoverPlayer.play()
 

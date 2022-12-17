@@ -25,7 +25,7 @@ func outText(text):
 		outputBox.set_v_scroll(outputBox.get_v_scroll() + 100000)
 		return true
 	else:
-		return null
+		return false
 
 func checkType(string, type):
 	if type == con.ARG_INT:
@@ -38,7 +38,7 @@ func checkType(string, type):
 		return (string == "true" or string == "false")
 	if type == con.NULL:
 		return true
-	return null
+	return false
 
 func parseCommand(text):
 	var words = text.split(" ")

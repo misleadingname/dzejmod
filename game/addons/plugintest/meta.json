@@ -1,0 +1,8 @@
+{
+	"name": "test-plugin",
+	"filename": "plugintest",
+	"desc": "woah",
+	"author": "TEAM DZEJMOD",
+	"tag": "plugin",
+	"gamemode": "base"
+}
