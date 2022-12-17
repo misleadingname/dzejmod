@@ -17,7 +17,7 @@ func _ready():
 	if(dzej.targetScene == "scenes/engine/GameplayWorld.tscn" || dzej.targetScene == "res://scenes/engine/GameplayWorld.tscn"):
 		bannerText.text = "Error, check console for details."
 		dzej.msg("[FATAL] Don't use GameplayWorld as the target scene!")
-		return false
+		return null
 		
 	yield(get_tree(), "idle_frame")
 	spinnerAnimation.play("spinner")
@@ -40,6 +40,7 @@ func _ready():
 	bannerText.text = "Loading addons..."
 
 	dzej.msg("[INFO] Loading init.gd script from " + dzej.addonGetPath(dzej.addonMapFrom) + "/scripts/init.gd")
+	yield(get_tree(), "idle_frame")
 
 	var initScriptPath = dzej.addonGetPath(dzej.addonMapFrom) + "/scripts/init.gd"
 	if (dzej.resExists(initScriptPath)):
@@ -48,7 +49,11 @@ func _ready():
 		
 		var initScript = dzej.resLoadToMem(initScriptPath)
 
-		dzej.nodeSetScript(initNode, initScript)
+		var setnode = dzej.nodeSetScript(initNode, initScript)
+
+		if !setnode:
+			bannerText.text = "Error, check console for details."
+			return null
 
 		dzej.nodeAddToParent(initNode, loadedScene)
 		initNode.call("onLoad", loadedScene)

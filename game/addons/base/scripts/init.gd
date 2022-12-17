@@ -8,7 +8,7 @@ func onLoad(loadedScene):
 
 	dzej.nodeSetScript(player.get_node("KinematicBody"), scriptObject, true)
 
-	dzej.lpShowNotification("Hello Dzejmod, this is a notification.\nThis is.. dzejmod 0.1", 10)
+	dzej.gameplayMap = null
 
 	dzej.lpShowNotification("Welcome to Dzejmod!\nThis is an early alpha build so beware of bugs!\nAlso make sure to check out the website and the wiki!\n\nhttps://dzejmod.tk/", 8)
 	return true

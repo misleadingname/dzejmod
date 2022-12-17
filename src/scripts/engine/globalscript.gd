@@ -69,10 +69,11 @@ func fatal(returnee, status, err_path):
 		if returnee != null:
 			msg += "\n	Error code returned by: (" + str(returnee) + ")"
 		if status != null:
-			msg += "\n	And the code was: (" + str(status) + ") "
+			msg += "\n	And the status was: (" + str(status) + ") "
 		if err_path != null:
 			msg += "\n	By doing something related to: (" + err_path + ") "
 		msg("[FATAL ERROR] " + msg)
+		OS.alert("A fatal error has occured, whilst this is not a crash. It may be a good idea to check what happened.\n\n" + msg, "THIS IS NOT A CRASH.")
 
 	msg("[FATAL ERROR]")
 	msg("[FATAL ERROR]")
@@ -88,25 +89,25 @@ func sceneAddToParent(resname: String, parent: Node):
 	print("[INFO] adding " + resname + " to " + str(parent))
 	if parent == null:
 		fatal(null, "Parent is null", resname)
-		return false
+		return null
 
 	if resname == null || resname == "":
 		fatal(null, "Invalid scene name", resname)
-		return false
+		return null
 
 	if !ResourceLoader.exists(resname):
 		fatal(null, "Scene does not exist", resname)
-		return false
+		return null
 
 	if !resname.ends_with(".tscn"):
 		fatal(null, "Scene is not a .tscn file", resname)
-		return false
+		return null
 
 	msg("[INFO] adding '" + resname + "' to " + str(parent))
 	var scene = ResourceLoader.load(resname)
 	if scene == null:
 		fatal(scene, null, resname)
-		return false
+		return null
 
 	scene = scene.instance()
 	parent.add_child(scene)
@@ -116,11 +117,11 @@ func sceneAddToParent(resname: String, parent: Node):
 func sceneOverlayNew(resname: String):
 	if resname == null || resname == "":
 		fatal(null, "Invalid scene name", resname)
-		return false
+		return null
 
 	if !ResourceLoader.exists(resname):
 		fatal(null, "Scene does not exist", resname)
-		return false
+		return null
 
 	msg("[INFO] overlaying new scene at root: " + resname)
 	var scene = load(resname).instance()
@@ -137,7 +138,7 @@ func sceneOverlay(scene: Node):
 func sceneRemove(sceneRef: Node, soft: bool = false):
 	if sceneRef == null:
 		msg("[INFO] invalid scene")
-		return false
+		return null
 	
 	msg("[INFO] removing scene: " + sceneRef.get_name())
 	root.remove_child(sceneRef)
@@ -153,14 +154,17 @@ func sceneRemove(sceneRef: Node, soft: bool = false):
 func sceneSwtich(resname: String, nomenu: bool = false):
 	if resname == null || resname == "":
 		fatal(null, "Invalid scene name", resname)
-		return false
+		return null
 
-	if !ResourceLoader.exists(resname):
+	if !resExists(resname):
 		fatal(null, "Scene does not exist", resname)
-		return false
+		return null
 
 	msg("[INFO] switching to scene " + resname)
-	var scene = load(resname).instance()
+	var scene = resLoadToMem(resname)
+	if scene == null:
+		return null
+	scene = scene.instance()
 	msg("[INFO] instantiated scene")
 	root.add_child(scene)
 	msg("[INFO] added scene to root")
@@ -203,11 +207,11 @@ func sceneGetList():
 func resLoadToMem(path: String):
 	if path == null || path == "":
 		fatal(path, "Invalid resource path", path)
-		return false
+		return null
 
-	if !ResourceLoader.exists(path):
+	if !resExists(path):
 		fatal(path, "Resource doesn't exist", path)
-		return false
+		return null
 
 	msg("[INFO] loading resource " + path + " to memory")
 	var res = ResourceLoader.load(path)
@@ -222,11 +226,10 @@ func resLoadToMem(path: String):
 func resExists(path: String):
 	if path == null || path == "":
 		fatal(path, "Invalid resource path", path)
-		return false
+		return null
 
 	if !ResourceLoader.exists(path):
-		fatal(path, "Resource doesn't exist", path)
-		return false
+		return null
 
 	return true
 
@@ -237,11 +240,27 @@ func resExists(path: String):
 func nodeSetScript(node: Node, script: Script, update: bool = false):
 	if node == null:
 		fatal(node, "Node is null", script)
-		return false
+		return null
 
 	if script == null:
 		fatal(script, "Script is null", node)
-		return false
+		return null
+
+	msg("[INFO] Checking script for naughty code...")
+
+	var scriptFile = File.new()
+	scriptFile.open(script.get_path(), File.READ)
+	var scriptText = scriptFile.get_as_text()
+	scriptFile.close()
+
+	var scriptLines = scriptText.split("\n")
+	for line in scriptLines:
+		var regex = RegEx.new()
+		regex.compile("(func dzej.*)|(dzej.*=)")
+		if regex.search(line):
+			fatal(script, "Script contains unsafe code", line)
+			return null
+	
 
 	msg("[INFO] setting script " + str(script) + " to node " + str(node))
 	node.set_script(script)
@@ -260,11 +279,11 @@ func nodeAddToParent(node: Node, parent: Node):
 	msg("[INFO] adding " + str(node) + " to " + str(parent))
 	if parent == null:
 		fatal(null, "Parent is null", str(node))
-		return false
+		return null
 
 	if node == null:
 		fatal(null, "Node is null", str(node))
-		return false
+		return null
 
 	parent.add_child(node)
 
@@ -365,7 +384,7 @@ func lpShowNotification(text: String, time: float = 5):
 	msg("[INFO] displaying notification: " + text + " for " + str(time) + " seconds")
 	if gameplayMap == null:
 		msg("[WARN] gameplayMap is null")
-		return false
+		return null
 	var ontop = gameplayMap.get_node("UI_ontop")
 
 	var notifTemplate = ontop.get_node("hacky?/notifDisplay/notifTemplate")

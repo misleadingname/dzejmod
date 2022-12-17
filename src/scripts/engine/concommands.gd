@@ -29,7 +29,7 @@ func sv_remove_ent(ent: String):
 	var node = dzej.gameplayMap.get_node(ent)
 	if node == null:
 		dzej.msg("[ERROR] Entity " + ent + " does not exist")
-		return false
+		return null
 	else:
 		node.queue_free()
 		dzej.msg("Entity " + ent + " removed")
@@ -55,12 +55,12 @@ func sv_map(map):
 	dzej.targetScene = map + ".tscn"
 	if !ResourceLoader.exists(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + map + ".tscn"):
 		dzej.msg("[ERROR] scene " + dzej.targetScene + " does not exist")
-		return false
+		return null
 
 	var out = dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
 	if typeof(out) == TYPE_STRING && out == false:
 		dzej.msg("error loading map: " + map)
-		return false
+		return null
 	else:
 		dzej.msg("map loaded: " + map)
 		return true

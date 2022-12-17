@@ -12,7 +12,7 @@ func _ready():
 	
 	if(dzej.hello() != "hello dzejmod"):
 		statusLabel.text += " (FAIL)"
-		return false
+		return null
 	statusLabel.text += " (OK)"
 
 	yield(get_tree().create_timer(0.25), "timeout")
@@ -21,7 +21,7 @@ func _ready():
 	yield(get_tree().create_timer(0.25), "timeout")
 	if(dzej.addonRequestList() == null || dzej.addonRequestList().size() <= 0):
 		statusLabel.text += " (FAIL)"
-		return false
+		return null
 	statusLabel.text += " (OK)"
 
 	yield(get_tree().create_timer(0.25), "timeout")
@@ -30,8 +30,9 @@ func _ready():
 		yield(get_tree(), "idle_frame")
 		if(dzej.addonGetInfo(dzej.addonRequestList()[i]) == null):
 			statusLabel.text += " (FAIL)"
-			return false
+			return null
 		statusLabel.text += " (OK)"
+		yield(get_tree(), "idle_frame")
 
 	dzej.sceneSwtich("res://scenes/engine/backgroundmainmenu.tscn", true)
 	dzej.lpMouseLock(false)
