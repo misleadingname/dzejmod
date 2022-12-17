@@ -135,17 +135,19 @@ func sceneOverlay(scene: Node):
 
 
 func sceneRemove(sceneRef: Node, soft: bool = false):
-	if sceneRef != null:
-		msg("[INFO] removing scene: " + sceneRef.get_name())
-		root.remove_child(sceneRef)
-		if !soft:
-			msg("[INFO] freeing scene: " + sceneRef.get_name())
-			sceneRef.queue_free()
-		msg("[INFO] scene removed.")
-		return true
-	else:
+	if sceneRef == null:
 		msg("[INFO] invalid scene")
 		return false
+	
+	msg("[INFO] removing scene: " + sceneRef.get_name())
+	root.remove_child(sceneRef)
+	msg("[INFO] scene removed.")
+	if !soft:
+		msg("[INFO] freeing scene: " + sceneRef.get_name())
+		sceneRef.queue_free()
+		return true
+	else:
+		return sceneRef
 
 
 func sceneSwtich(resname: String, nomenu: bool = false):
@@ -194,23 +196,6 @@ func sceneGetList():
 			scenes.append(file)
 	sceneDir.list_dir_end()
 	return scenes
-
-
-func addonSceneGetList(addons):
-	var scenes = []
-	var sceneDir = Directory.new()
-	for i in addons.size():
-		sceneDir.open(addonpath + addons[i] + "/maps")
-		sceneDir.list_dir_begin(true, true)
-		while true:
-			var file = sceneDir.get_next()
-			if file == "":
-				break
-			if file.ends_with(".tscn"):
-				scenes.append(file)
-		sceneDir.list_dir_end()
-	return scenes
-
 
 # RESOURCE MANAGEMENT
 
@@ -290,6 +275,20 @@ func nodeAddToParent(node: Node, parent: Node):
 
 # ADDON MANAGEMENT
 
+func addonSceneGetList(addons):
+	var scenes = []
+	var sceneDir = Directory.new()
+	for i in addons.size():
+		sceneDir.open(addonpath + addons[i] + "/maps")
+		sceneDir.list_dir_begin(true, true)
+		while true:
+			var file = sceneDir.get_next()
+			if file == "":
+				break
+			if file.ends_with(".tscn"):
+				scenes.append(file)
+		sceneDir.list_dir_end()
+	return scenes
 
 func addonRequestList():
 	var addons = []
@@ -329,8 +328,7 @@ func addonGetPath(addon: String):
 	return addonpath + addon
 
 
-# CONSOLE
-
+# CONSOLE MANAGEMENT
 
 func msg(msg):
 	msg = str(msg)
@@ -338,7 +336,6 @@ func msg(msg):
 
 
 # LOCAL PLAYER MANAGEMENT
-
 
 func lpMouseLock(type: bool = 0):
 	if type:
