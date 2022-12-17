@@ -2,6 +2,7 @@ extends VBoxContainer
 
 onready var hoverPlayer = $buttonHover
 onready var clickPlayer = $buttonClick
+onready var newgame = get_parent().get_node("Maps")
 onready var settings = get_parent().get_node("Settings")
 onready var addons = get_parent().get_node("Addons")
 
@@ -24,8 +25,8 @@ func _on_exitButton_pressed():
 
 func _on_newgameButton_pressed():
 	buttonClick()
-	emit_signal("newGame")
-	# dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn") # no
+	
+	newgame.get_node("MapsDialog").popup()
 
 # IN GAME
 

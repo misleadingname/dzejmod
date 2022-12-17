@@ -1,9 +1,8 @@
 
 {
-	"name": "base",
-	"desc":"do not delete may have wierd effects when deleted",
-	"filename":"base",
+	"name": "Sandbox",
+	"filename": "base",
+	"desc":"Dzejmod's Sandbox Gamemode",
 	"author": "TEAM DZEJMOD",
 	"tag": "gamemode"
-
 }

@@ -17,18 +17,19 @@ func _ready():
 
 	yield(get_tree().create_timer(0.25), "timeout")
 	statusLabel.text = "Requesting addon list."
-	
+	var addonList = dzej.addonRequestList()
+
 	yield(get_tree().create_timer(0.25), "timeout")
-	if(dzej.addonRequestList() == null || dzej.addonRequestList().size() <= 0):
+	if(addonList == null || addonList.size() <= 0):
 		statusLabel.text += " (FAIL)"
 		return null
 	statusLabel.text += " (OK)"
 
 	yield(get_tree().create_timer(0.25), "timeout")
-	for i in range(dzej.addonRequestList().size()):
+	for i in range(addonList.size()):
 		statusLabel.text = "Requesting addon info for " + dzej.addonRequestList()[i] + "."
 		yield(get_tree(), "idle_frame")
-		if(dzej.addonGetInfo(dzej.addonRequestList()[i]) == null):
+		if(dzej.addonGetInfo(addonList[i]) == null):
 			statusLabel.text += " (FAIL)"
 			return null
 		statusLabel.text += " (OK)"

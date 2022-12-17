@@ -16,8 +16,8 @@ func setAddon(name):
 	addontagString.set_text(meta.tag)
 	desc.set_text(meta.desc)
 	path.set_text("addons/" + meta.filename)
-	dzej.msg("[fatal] restart required!")
-	var icon = dzej.resLoadToMem(dzej.addonGetPath(meta.filename) + "/icon.png")
+	dzej.msg("[fatal] restart required!") # wtf
+	# var icon = dzej.resLoadToMem(dzej.addonGetPath(meta.filename) + "/icon.png")
 	# if icon != null:
 	# 	$HBoxContainer/Info/Icon.set_texture(icon)
 

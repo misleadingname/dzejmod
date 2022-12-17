@@ -39,10 +39,10 @@ func _ready():
 
 	bannerText.text = "Loading addons..."
 
-	dzej.msg("[INFO] Loading init.gd script from " + dzej.addonGetPath(dzej.addonMapFrom) + "/scripts/init.gd")
+	dzej.msg("[INFO] Loading init.gd script from " + dzej.addonGetPath(dzej.targetGamemode) + "/scripts/init.gd")
 	yield(get_tree(), "idle_frame")
 
-	var initScriptPath = dzej.addonGetPath(dzej.addonMapFrom) + "/scripts/init.gd"
+	var initScriptPath = dzej.addonGetPath(dzej.targetGamemode) + "/scripts/init.gd"
 	if (dzej.resExists(initScriptPath)):
 		var initNode = Spatial.new()
 		initNode.name = "initScript (DO NOT DELETE)"

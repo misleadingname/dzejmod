@@ -199,6 +199,9 @@ func sceneGetList():
 		if file.ends_with(".tscn"):
 			scenes.append(file)
 	sceneDir.list_dir_end()
+
+	
+
 	return scenes
 
 # RESOURCE MANAGEMENT

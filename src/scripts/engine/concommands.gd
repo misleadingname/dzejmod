@@ -23,7 +23,6 @@ const valid = [
 
 # SV
 
-
 func sv_remove_ent(ent: String):
 	dzej.msg("Removing entity: " + ent)
 	var node = dzej.gameplayMap.get_node(ent)
@@ -53,7 +52,7 @@ func sv_map(map):
 	dzej.msg("attemting to load map: " + map)
 
 	dzej.targetScene = map + ".tscn"
-	if !ResourceLoader.exists(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + map + ".tscn"):
+	if dzej.resExists(dzej.addonGetPath(dzej.targetGamemode) + "/maps/" + map + ".tscn"):
 		dzej.msg("[ERROR] scene " + dzej.targetScene + " does not exist")
 		return null
 

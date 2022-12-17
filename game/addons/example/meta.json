@@ -2,8 +2,8 @@
 {
 	"name": "example",
 	"filename":"example",
-	"desc":"an example addon for all your addon needs",
+	"desc":"an example gamemode.",
 	"author": "TEAM DZEJMOD",
-	"tag": "any"
+	"tag": "gamemode"
 
 }
