@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "PhysicsEntity",
 "class": "PhysicsBall",
 "language": "GDScript",
-"path": "res://addons/qodot/game_definitions/fgd/point_classes/player_spawn.gd"
+"path": "res://addons/qodot/game_definitions/fgd/point_classes/physics_ball.gd"
 }, {
 "base": "RigidBody",
 "class": "PhysicsEntity",
@@ -168,6 +168,11 @@ _global_script_classes=[ {
 "class": "WaterLayer",
 "language": "GDScript",
 "path": "res://addons/qodot/game_definitions/worldspawn_layers/liquid/water.gd"
+}, {
+"base": "KinematicBody",
+"class": "dzejPlayer",
+"language": "GDScript",
+"path": "res://addons/base/scripts/playerController.gd"
 } ]
 _global_script_class_icons={
 "LavaLayer": "",
@@ -201,24 +206,18 @@ _global_script_class_icons={
 "TrenchBroomGameConfigFile": "",
 "TrenchBroomGameConfigFolder": "",
 "TrenchBroomTag": "",
-"WaterLayer": ""
+"WaterLayer": "",
+"dzejPlayer": ""
 }
 
 [application]
 
-config/name="dzejmod"
-run/main_scene="res://scenes/engine/initialloading.tscn"
+config/name="dzejAddons"
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
-
-[autoload]
-
-dzej="*res://scripts/engine/globalscript.gd"
-con="*res://scripts/engine/concommands.gd"
-dzej_settings="*res://scripts/engine/globalsettings.gd"
 
 [display]
 

@@ -2,7 +2,6 @@ extends Control
 
 onready var statusLabel = $Label
 
-
 func _ready():
 	statusLabel.text = "Godot is ready!"
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -27,7 +26,7 @@ func _ready():
 
 	yield(get_tree().create_timer(0.25), "timeout")
 	for i in range(addonList.size()):
-		statusLabel.text = "Requesting addon info for " + dzej.addonRequestList()[i] + "."
+		statusLabel.text = "Requesting addon info for \"" + addonList[i] + "\"..."
 		yield(get_tree(), "idle_frame")
 		var addoninfo = dzej.addonGetInfo(addonList[i])
 		if addoninfo == null:

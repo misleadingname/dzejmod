@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "PhysicsEntity",
 "class": "PhysicsBall",
 "language": "GDScript",
-"path": "res://addons/qodot/game_definitions/fgd/point_classes/player_spawn.gd"
+"path": "res://addons/qodot/game_definitions/fgd/point_classes/physics_ball.gd"
 }, {
 "base": "RigidBody",
 "class": "PhysicsEntity",

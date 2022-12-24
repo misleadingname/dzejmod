@@ -42,11 +42,15 @@ func _ready():
 		loadingStatus = loader.poll()
 		if loadingStatus == OK:
 			yield(get_tree(), "idle_frame")
-		if loadingStatus == ERR_FILE_EOF:
+		elif loadingStatus == ERR_FILE_EOF:
 			dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
 			loadedScene = dzej.nodeAddToParent(loader.get_resource().instance(), self)[0]
 			loadedScene.name = "map"
 			break
+		else:
+			bannerText.text = "Error, check console for details."
+			dzej.fatal(loader, loadingStatus, dzej.targetScene)
+			return false
 		yield(get_tree(), "idle_frame")
 
 	bannerText.text = "Loading addons..."

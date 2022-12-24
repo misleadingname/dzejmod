@@ -4,3 +4,8 @@ game/builds/bin
 game/builds/dzejmod.exe
 game/builds/dzejmod.pck
 game/builds/console.bat
+
+src/.import/
+game/.import/
+
+.import/

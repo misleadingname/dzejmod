@@ -84,13 +84,14 @@ func _ready():
 			button.visible = true
 			gamemodeButtonPreset.get_parent().add_child(button)
 
-	for scene in dzej.sceneGetList() + dzej.addonSceneGetList(dzej.addonRequestList()):
-		var preset = mapButtonPreset.duplicate()
-		var button = preset.get_node("button")
-		button.text = scene.replace(".tscn", "")
-		button.connect("pressed", self, "pickmap", [scene, button])
-		preset.visible = true
-		mapButtonPreset.get_parent().add_child(preset)
+	for addon in dzej.addonRequestList():
+		for scene in dzej.addonSceneGetList(addon):
+			var preset = mapButtonPreset.duplicate()
+			var button = preset.get_node("button")
+			button.text = scene.replace(".tscn", "")
+			button.connect("pressed", self, "pickmap", [scene, button])
+			preset.visible = true
+			mapButtonPreset.get_parent().add_child(preset)
 
 
 	

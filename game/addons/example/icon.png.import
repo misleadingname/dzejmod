@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/icon.png-5ca990812b2ff42f640ab92114ba05a6.stex"
+path="res://.import/icon.png-756704362724a972bb6438655febedb2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game/builds/addons/example/icon.png"
-dest_files=[ "res://.import/icon.png-5ca990812b2ff42f640ab92114ba05a6.stex" ]
+source_file="res://addons/example/icon.png"
+dest_files=[ "res://.import/icon.png-756704362724a972bb6438655febedb2.stex" ]
 
 [params]
 

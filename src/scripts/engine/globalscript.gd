@@ -21,6 +21,8 @@ var developer = false
 var path: String = OS.get_executable_path().get_base_dir()
 var addonpath = path + "/addons/"
 
+var blockedAddons = ["qodot"]
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_CRASH:
 		fatal(null, null, null)
@@ -307,19 +309,25 @@ func nodeAddToParent(node: Node, parent: Node):
 
 # ADDON MANAGEMENT
 
-func addonSceneGetList(addons):
+func addonSceneGetList(addon):
+	print(addonpath + addon + "/maps")
 	var scenes = []
+
+	if !Directory.new().dir_exists(addonpath + addon + "/maps"):
+		dzej.msg("[WARN] addon " + addon + " has no maps folder, returning empty list")
+		return scenes
+
 	var sceneDir = Directory.new()
-	for i in addons.size():
-		sceneDir.open(addonpath + addons[i] + "/maps")
-		sceneDir.list_dir_begin(true, true)
-		while true:
-			var file = sceneDir.get_next()
-			if file == "":
-				break
-			if file.ends_with(".tscn"):
-				scenes.append(file)
-		sceneDir.list_dir_end()
+	sceneDir.open(addonpath + addon + "/maps")
+	sceneDir.list_dir_begin(true, true)
+	while true:
+		var file = sceneDir.get_next()
+		print(file)
+		if file == "":
+			break
+		if file.ends_with(".tscn"):
+			scenes.append(file)
+	sceneDir.list_dir_end()
 	return scenes
 
 func addonRequestList():
@@ -331,6 +339,8 @@ func addonRequestList():
 		var addon = addonsDir.get_next()
 		match addon:
 			"":
+				break
+			"qodot":
 				break
 			_:
 				addons.append(addon)
