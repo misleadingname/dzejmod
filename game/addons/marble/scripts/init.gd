@@ -6,5 +6,8 @@ func onLoad(scene):
 	var playerScript = dzej.resLoadToMem(dzej.addonGetPath("marble") + "/scripts/playerController.gd")
 	dzej.nodeSetScript(playerPrefab, playerScript, true)
 
-	var spawnNode = scene.get_node("marbleSpawn")
-	playerPrefab.transform = spawnNode.transform
+	var spawnNode = scene.get_node("SPAWN")
+	if(spawnNode != null):
+		playerPrefab.transform = spawnNode.transform
+	else:
+		dzej.msg("[marble] Spawn node not found, spawning at 0 to the power of 3 :(")
