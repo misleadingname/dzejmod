@@ -295,6 +295,11 @@ anchor_right = 0.4
 anchor_bottom = 0.9
 script = ExtResource( 8 )
 
+[node name="ColorRect" type="ColorRect" parent="UI_ontop/hacky/chatbox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.313726 )
+
 [node name="VBox" type="VBoxContainer" parent="UI_ontop/hacky/chatbox"]
 anchor_right = 1.0
 anchor_bottom = 1.0
