@@ -3,6 +3,7 @@ extends VBoxContainer
 onready var hoverPlayer = $buttonHover
 onready var clickPlayer = $buttonClick
 onready var newgame = get_parent().get_node("Maps")
+onready var joingame = get_parent().get_node("multiplayerJoin")
 onready var settings = get_parent().get_node("Settings")
 onready var addons = get_parent().get_node("Addons")
 
@@ -37,6 +38,8 @@ func _on_resumeButton_pressed():
 func _on_disconnectButton_pressed():
 	buttonClick()
 	
+	dzej.mpDiscardSession()
+
 	dzej.sceneSwtich("res://scenes/engine/backgroundmainmenu.tscn", true)
 
 # MENU TOGGLE
@@ -60,3 +63,9 @@ func _on_addonsButton_pressed():
 	buttonClick()
 
 	addons.get_node("AddonDialog").popup()
+
+
+func _on_joingameButton_pressed():
+	buttonClick()
+	
+	joingame.get_node("WindowDialog").popup()

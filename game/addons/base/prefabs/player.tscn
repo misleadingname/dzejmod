@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=2]
-
-[ext_resource path="res://models/weapons/gravgun.tscn" type="PackedScene" id=2]
+[gd_scene load_steps=2 format=2]
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.35
@@ -56,6 +54,10 @@ color = Color( 0.392157, 0.392157, 0.392157, 1 )
 
 [node name="KinematicBody" type="KinematicBody" parent="."]
 
+[node name="playerName" type="Label3D" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
+text = "player name"
+
 [node name="BodyCollisions" type="CollisionShape" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 shape = SubResource( 2 )
@@ -88,6 +90,3 @@ far = 1000.0
 
 [node name="view" type="Spatial" parent="KinematicBody/RotationHelper"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.35, -0.55, -1.5 )
-
-[node name="wep" parent="KinematicBody/RotationHelper/view" instance=ExtResource( 2 )]
-transform = Transform( 4.48, 0, 0, 0, 4.48, 0, 0, 0, 4.48, 0, 0, 0 )

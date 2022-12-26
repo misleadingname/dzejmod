@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://mat/ui/logo.png" type="Texture" id=1]
 [ext_resource path="res://scripts/engine/menuscript.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://scenes/engine/settingsmenu.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/engine/addonsmenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/engine/newGameNew.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/engine/joingamepanel.tscn" type="PackedScene" id=8]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -47,11 +48,21 @@ shortcut_in_tooltip = false
 text = "new game"
 underline = 2
 
-[node name="optionsButton" type="LinkButton" parent="VBoxContainer"]
+[node name="joingameButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
 margin_top = 25.0
 margin_right = 74.0
 margin_bottom = 46.0
+focus_mode = 2
+shortcut_in_tooltip = false
+text = "join game"
+underline = 2
+
+[node name="optionsButton" type="LinkButton" parent="VBoxContainer"]
+pause_mode = 2
+margin_top = 50.0
+margin_right = 74.0
+margin_bottom = 71.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "options"
@@ -59,9 +70,9 @@ underline = 2
 
 [node name="addonsButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 50.0
+margin_top = 75.0
 margin_right = 74.0
-margin_bottom = 71.0
+margin_bottom = 96.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "addons"
@@ -69,9 +80,9 @@ underline = 2
 
 [node name="exitButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 75.0
+margin_top = 100.0
 margin_right = 74.0
-margin_bottom = 96.0
+margin_bottom = 121.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "quit"
@@ -96,9 +107,16 @@ margin_top = 424.0
 margin_right = 914.0
 margin_bottom = 425.0
 
-[connection signal="newGame" from="VBoxContainer" to="Maps" method="onNewgame"]
+[node name="multiplayerJoin" parent="." instance=ExtResource( 8 )]
+margin_left = -28.496
+margin_top = 38.2
+margin_right = -28.496
+margin_bottom = 38.2
+
 [connection signal="mouse_entered" from="VBoxContainer/newgameButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="pressed" from="VBoxContainer/newgameButton" to="VBoxContainer" method="_on_newgameButton_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/joingameButton" to="VBoxContainer" method="buttonHover"]
+[connection signal="pressed" from="VBoxContainer/joingameButton" to="VBoxContainer" method="_on_joingameButton_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/optionsButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="pressed" from="VBoxContainer/optionsButton" to="VBoxContainer" method="_on_optionsButton_pressed"]
 [connection signal="mouse_entered" from="VBoxContainer/addonsButton" to="VBoxContainer" method="buttonHover"]

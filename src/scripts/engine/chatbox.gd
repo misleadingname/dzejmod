@@ -14,7 +14,6 @@ func addText(text : String):
 	chatOutput.add_text(text + "\n")
 
 func _input(event):
-	print(chatInput)
 	if(event.is_action_pressed("engine_chat")):
 		if(chatInput.editable):
 			dzej.lpMouseLock(true)

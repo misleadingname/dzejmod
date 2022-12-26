@@ -3,9 +3,12 @@ extends Node
 const VERSION = "0.1"
 
 onready var pauseScene: Node = load("res://scenes/engine/pausemenu.tscn").instance()
-var consoleScene: Node = load("res://scenes/engine/console.tscn").instance()
+onready var consoleScene: Node = load("res://scenes/engine/console.tscn").instance()
 
 onready var root: Node = get_tree().get_root()
+
+var chat = null
+
 var sceneCurrent: Node = null
 var gameplayMap: Node = null
 var addonMapFrom = "base"
@@ -25,12 +28,33 @@ var addonpath = path + "/addons/"
 
 var blockedAddons = ["qodot"]
 
+var mpPort = 3621
+var mpMaxClients = 32
+var mpHost = ""
+var mpRole = null
+
+var mpSession : NetworkedMultiplayerENet = null
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_CRASH:
 		fatal(null, null, null)
 
 func _ready():
 	sceneCurrent = root.get_child(root.get_child_count() - 1)
+
+	if(OS.get_name() == "Windows"):
+		OS.set_window_title("dzejmod " + VERSION + " (Windows)")
+	elif(OS.get_name() == "X11"):
+		OS.set_window_title("dzejmod " + VERSION + " (Linux)")
+	elif(OS.get_name() == "OSX"):
+		OS.set_window_title("dzejmod " + VERSION + " (MacOS)")
+	else:
+		OS.set_window_title("dzejmod " + VERSION + " (Unknown OS)")
+	
+	get_tree().connect("connected_to_server", self, "mpHookConnected")
+	get_tree().connect("server_disconnected", self, "mpHookDisconnected")
+
+	mpHost = lpGetLocalIP()
 
 func reloadShit():
 	print("[DEBUG] Reloading everything...")
@@ -50,7 +74,7 @@ func reloadShit():
 	path = OS.get_executable_path().get_base_dir()
 	addonpath = path + "/addons/"
 
-	dzej.sceneSwtich("res://scenes/engine/initialloading.tscn")
+	sceneSwtich("res://scenes/engine/initialloading.tscn")
 
 
 func hello():
@@ -94,7 +118,7 @@ func fatal(returnee, status, err_path):
 
 
 func sceneAddToParent(resname: String, parent: Node):
-	dzej.msg("[INFO] adding " + resname + " to " + str(parent))
+	msg("[INFO] adding " + resname + " to " + str(parent))
 	if parent == null:
 		fatal(null, "Parent is null", resname)
 		return false
@@ -171,7 +195,8 @@ func sceneSwtich(resname: String, nomenu: bool = false):
 	msg("[INFO] switching to scene " + resname)
 
 	for node in foreignNodes:
-		node.queue_free()
+		if node != null:
+			node.queue_free()
 	foreignNodes = []
 
 	var scene = resLoadToMem(resname)
@@ -212,8 +237,6 @@ func sceneGetList():
 		if file.ends_with(".tscn"):
 			scenes.append(file)
 	sceneDir.list_dir_end()
-
-	
 
 	return scenes
 
@@ -316,7 +339,7 @@ func addonSceneGetList(addon):
 	var scenes = []
 
 	if !Directory.new().dir_exists(addonpath + addon + "/maps"):
-		dzej.msg("[WARN] addon " + addon + " has no maps folder, returning empty list")
+		msg("[WARN] addon " + addon + " has no maps folder, returning empty list")
 		return scenes
 
 	var sceneDir = Directory.new()
@@ -420,13 +443,187 @@ func lpShowNotification(text: String, time: float = 5):
 	notif.visible = true
 	notif.call("displaynotif", text, time)
 
+func lpMessageBox(text : String, title : String = "Alert"):
+	lpMouseLock(false)
+	var msgBox = AcceptDialog.new()
+	msgBox.set_text(text)
+	msgBox.set_title(title)
+
+	root.add_child(msgBox)
+
+	msgBox.popup_centered()
+
+	msgBox.connect("confirmed", self, "lpMouseLock", [true])
+
+func lpChatText(text):
+	if(gameplayMap == null):
+		msg("[WARN] gameplayMap is null")
+		return false
+
+	chat.addText(text)
+	return true
+
+func lpGetLocalIP():
+	for ip in IP.get_local_addresses():
+		if ip.begins_with("192.168."):
+			return ip
+	
 # MULTIPLAYER MANAGEMENT
+
+func mpCreateSession():
+	msg("[INFO] creating server")
+	if(mpSession != null):
+		fatal(mpSession, "session running", null)
+		return false
+		
+	mpSession = NetworkedMultiplayerENet.new()
+
+	var result = mpSession.create_server(mpPort, mpMaxClients)
+	
+	if(result != OK):
+		fatal(mpSession, result, null)
+		return false
+
+	mpRole = "host"
+
+	get_tree().set_network_peer(mpSession)
+	
+	mpSession.connect("peer_connected", self, "mpHookPeerConnected")
+	mpSession.connect("peer_disconnected", self, "mpHookPeerDisconnected")
+
+	msg("[INFO] session created at " + str(mpHost) + ":" + str(mpPort))
+	
+	return true
+
+func mpJoinSession():
+	msg("[INFO] joining server")
+	if(mpSession != null):
+		fatal(mpSession, "session running", null)
+		return false
+	
+	if(mpHost == null):
+		fatal(mpSession, "host is null", null)
+		return false
+		
+	mpSession = NetworkedMultiplayerENet.new()
+
+	var result = mpSession.create_client(mpHost, mpPort)
+	
+	if(result != OK):
+		fatal(mpSession, result, null)
+		return false
+
+	mpRole = "client"
+
+	get_tree().set_network_peer(mpSession)
+	
+	msg("[INFO] session joined!")
+	
+	msg("[INFO] fetching server info")
+
+	return true
+
+func mpDiscardSession():
+	msg("[INFO] discarding session")
+	if(mpSession == null):
+		msg("[WARN] there is no session running, returning false")
+		return false
+		
+	mpSession.close_connection()
+	mpSession = null
+	
+	mpRole = null
+
+	mpHost = lpGetLocalIP()
+
+	msg("[INFO] session discarded!")
+	
+	return true
+
+func mpSceneAddToParentToId(id : int, resname : String, parent : Node):
+	if(mpSession == null):
+		fatal(mpSession, "session is null", null)
+		return false
+	
+	if parent == null:
+		fatal(null, "Parent is null", resname)
+		return false
+
+	if resname == null || resname == "":
+		fatal(null, "Invalid scene name", resname)
+		return false
+
+	if !ResourceLoader.exists(resname):
+		fatal(null, "Scene does not exist", resname)
+		return false
+
+	if !resname.ends_with(".tscn"):
+		fatal(null, "Scene is not a .tscn file", resname)
+		return false
+
+	msg("[INFO] adding '" + resname + "' to " + str(parent))
+	var scene = ResourceLoader.load(resname)
+	if scene == null:
+		fatal(scene, null, resname)
+		return false
+
+	scene = scene.instance()
+	parent.add_child(scene)
+	scene.name += "_" + str(id)
+	scene.set_network_master(id)
+	return scene
+
+func mpSendPacketReliable(id, title, content):
+	if(mpSession == null):
+		fatal(mpSession, "session is null", null)
+		return false
+
+	rpc_id(id, title, content)
+
+func mpSetVariableReliable(id, varname, value):
+	if(mpSession == null):
+		fatal(mpSession, "session is null", null)
+		return false
+
+	rset_id(id, varname, value)
 
 func mpSendChat(text):
 	if(gameplayMap == null):
 		msg("[WARN] gameplayMap is null")
 		return false
-	
-	var chat = gameplayMap.get_node("UI_ontop/hacky/chatbox")
 
 	chat.addText(text)
+
+# HOOKS
+
+func mpHookConnected():
+	dzej.msg("[INFO] connected to server as " + str(get_tree().get_network_unique_id()))
+	lpChatText("Connected to server")
+
+	gameplayMap.peerConnected(get_tree().get_network_unique_id())
+
+func mpHookDisconnected():
+	msg("[INFO] disconnected from server")
+	lpMessageBox("Disconnected from server")
+
+	mpDiscardSession()
+	sceneSwtich("res://scenes/engine/backgroundmainmenu.tscn", true)
+
+func mpHookConnectionFailed():
+	msg("[INFO] connection failed")
+	lpMessageBox("Connection failed")
+
+	mpDiscardSession()
+	sceneSwtich("res://scenes/engine/backgroundmainmenu.tscn", true)
+
+func mpHookPeerConnected(id):
+	msg("[INFO] peer " + str(id) + " connected")
+	lpChatText("Peer " + str(id) + " connected")
+
+	gameplayMap.peerConnected(id)
+
+func mpHookPeerDisconnected(id):
+	msg("[INFO] peer " + str(id) + " disconnected")
+	lpChatText("Peer " + str(id) + " disconnected")
+
+	gameplayMap.peerDisconnected(id)

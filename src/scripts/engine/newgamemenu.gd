@@ -17,6 +17,9 @@ func play():
 	if gamemode != null and map != null:
 		dzej.targetScene = map
 		dzej.targetGamemode = gamemode
+
+		dzej.mpRole = "host"
+
 		dzej.sceneSwtich("res://scenes/engine/GameplayWorld.tscn")
 	else:
 		dzej.msg("Please select a map and gamemode")
