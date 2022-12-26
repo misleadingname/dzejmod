@@ -3,6 +3,7 @@ extends Control
 onready var statusLabel = $Label
 
 func _ready():
+	dzej.crash("skill issue", 0000)
 	statusLabel.text = "Godot is ready!"
 	yield(get_tree().create_timer(0.5), "timeout")
 	statusLabel.text = "Waiting for dzejscript."

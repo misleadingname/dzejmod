@@ -400,6 +400,10 @@ func addonGetPath(addon: String):
 func msg(msg):
 	msg = str(msg)
 	consoleScene.get_node("ConsoleWindow").call("outText", msg)
+	
+
+func getallconsole():
+	return consoleScene.get_node("ConsoleWindow/VBoxContainer/TextEdit").text
 
 
 # LOCAL PLAYER MANAGEMENT
@@ -467,6 +471,8 @@ func lpGetLocalIP():
 	for ip in IP.get_local_addresses():
 		if ip.begins_with("192.168."):
 			return ip
+		else:
+			return "failure"
 	
 # MULTIPLAYER MANAGEMENT
 
@@ -672,3 +678,12 @@ remote func internalChatText(text : String, id : int):
 remote func netUpdate(data : Array):
 	gameplayMap.netUpdate(data)
 	print(data)
+	
+	
+
+# Crashes
+
+func crash(reason:String,errcode:int):
+	ErrDump.dump(getallconsole(), ErrDump.ErrType.CRASH)
+	OS.alert("Your game crashed!\n\n      Here is the error code: " + str(errcode) + "\n      And here is the reason: " + reason + "\n\nThe console has been dumped to crashes/crashlog.txt", "dzejmod")
+	OS.crash(reason)

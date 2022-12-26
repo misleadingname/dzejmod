@@ -219,6 +219,7 @@ config/icon="res://icon.png"
 dzej="*res://scripts/engine/globalscript.gd"
 con="*res://scripts/engine/concommands.gd"
 dzej_settings="*res://scripts/engine/globalsettings.gd"
+ErrDump="*res://scripts/engine/globalErrDumping.gd"
 
 [display]
 
