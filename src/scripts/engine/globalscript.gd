@@ -474,7 +474,7 @@ func mpCreateSession():
 	msg("[INFO] creating server")
 	if(mpSession != null):
 		fatal(mpSession, "session running", null)
-		return false
+		return false	
 		
 	mpSession = NetworkedMultiplayerENet.new()
 
@@ -573,34 +573,64 @@ func mpSceneAddToParentToId(id : int, resname : String, parent : Node):
 	scene.set_network_master(id)
 	return scene
 
-func mpSendPacketReliable(id, title, content):
+func mpSendToPeer(id : int, funcname : String, args : Array):
 	if(mpSession == null):
 		fatal(mpSession, "session is null", null)
 		return false
 
-	rpc_id(id, title, content)
-
-func mpSetVariableReliable(id, varname, value):
-	if(mpSession == null):
-		fatal(mpSession, "session is null", null)
+	if funcname == null || funcname == "":
+		fatal(null, "Invalid function name", funcname)
 		return false
 
-	rset_id(id, varname, value)
+	if args == null:
+		fatal(null, "Invalid arguments", funcname)
+		return false
+
+	msg("[INFO] sending '" + funcname + "' to " + str(id))
+	var result = rpc_id(id, funcname, args)
+	print(result)
+	return true
 
 func mpSendChat(text):
 	if(gameplayMap == null):
 		msg("[WARN] gameplayMap is null")
 		return false
 
-	chat.addText(text)
+	if(text == null || text == ""):
+		msg("[WARN] text is null or empty")
+		return false
+	
+	if(mpSession == null):
+		msg("[WARN] mpSession is null")
+		return false
+	
+	if(mpRole == null):
+		msg("[WARN] mpRole is null")
+		return false
+	
+	rpc("internalChatText", text, get_tree().get_network_unique_id())
+
+	chat.addText("Player " + str(get_tree().get_network_unique_id()) + ": " + text)
+
+func mpRPC(id : int, data : Array):
+	if(mpSession == null):
+		fatal(mpSession, "session is null", null)
+		return false
+
+	if(data == null):
+		fatal(null, "Invalid data", null)
+		return false
+
+	msg("[INFO] sending \"netUpdate\" from " + str(id))
+	var result = rpc("netUpdate", [id] + data)
+	print(result)
+	return true
 
 # HOOKS
 
 func mpHookConnected():
 	dzej.msg("[INFO] connected to server as " + str(get_tree().get_network_unique_id()))
 	lpChatText("Connected to server")
-
-	gameplayMap.peerConnected(get_tree().get_network_unique_id())
 
 func mpHookDisconnected():
 	msg("[INFO] disconnected from server")
@@ -627,3 +657,18 @@ func mpHookPeerDisconnected(id):
 	lpChatText("Peer " + str(id) + " disconnected")
 
 	gameplayMap.peerDisconnected(id)
+
+# INTERNAL
+
+remote func internalServerInfo(info : Array):
+	dzej.msg("[INFO] server info received")
+	dzej.targetGamemode = info[0]
+	dzej.targetScene = info[1]
+	dzej.addonMapFrom = info[2]
+
+remote func internalChatText(text : String, id : int):
+	chat.addText("Player " + str(id) + ": " + text)
+
+remote func netUpdate(data : Array):
+	gameplayMap.netUpdate(data)
+	print(data)

@@ -11,25 +11,21 @@ var loadedScene: Node = null
 
 var serverInfo = []
 
-func peerConnected(id: int):
-	if(id != get_tree().get_network_unique_id()):
-		dzej.msg("[INFO] Peer connected, sending map info...")
-		rset_id(id, "serverInfo", [dzej.targetScene, dzej.targetGamemode, dzej.addonMapFrom])
-		dzej.msg("[INFO] Map info sent.")
-	else:
-		dzej.msg("[INFO] Peer connected, it's us.")
-		while true:
-			if(dzej.targetGamemode != "" && dzej.targetScene != "" && dzej.addonMapFrom != ""):
-				dzej.lpShowNotification("Got info from server, loading map...")
-				break
+func peerConnected(id):
+	dzej.msg("[INFO] Peer connected: " + str(id))
 
-	dzej.msg("[INFO] Calling peerConnected() on gamemode script...")
-
+	if(dzej.mpRole == "host"):
+		dzej.msg("[INFO] Sending server info to client...")
+		dzej.mpSendToPeer(id, "internalServerInfo", [dzej.targetGamemode, dzej.targetScene, dzej.addonMapFrom])
+	
 	dzej.root.get_node("gamemodescript").peerConnected(id)
 
-func peerDisconnected(id: int):
-	dzej.msg("[INFO] Peer disconnected, calling peerDisconnected() on gamemode script...")
+func peerDisconnected(id):
+	dzej.msg("[INFO] Peer disconnected: " + str(id))
 	dzej.root.get_node("gamemodescript").peerDisconnected(id)
+
+func netUpdate(data : Array):
+	dzej.root.get_node("gamemodescript").netUpdate(data)
 
 func _process(delta):
 	devSpatial.visible = dzej.developer
@@ -41,12 +37,6 @@ func _process(delta):
 			addons += meta.name + "	\n"
 
 		devSpatial.get_node("topleft").get_child(0).text = "FPS: " + str(Engine.get_frames_per_second()) + "\nMap: " + dzej.targetScene + "\nGamemode: " + dzej.targetGamemode + "\nAddons:\n" + addons
-
-sync func mapinfo(data: Array):
-	dzej.msg("[INFO] Got map info from server.")
-	dzej.targetScene = data[0]
-	dzej.targetGamemode = data[1]
-	dzej.addonMapFrom = data[2]
 
 func _ready():
 	dzej.gameplayMap = self
@@ -75,6 +65,7 @@ func _ready():
 			bannerText.text = "Error, check console for details."
 			return false
 	elif(dzej.mpRole == "client"):
+		dzej.msg("[INFO] Ready to request server info...")
 		dzej.targetGamemode = ""
 		dzej.targetScene = ""
 		dzej.addonMapFrom = ""
@@ -86,6 +77,7 @@ func _ready():
 			bannerText.text = "Error, check console for details."
 			return false
 		
+		dzej.msg("[INFO] Waiting for server info...")
 		while true:
 			yield(get_tree(), "idle_frame")
 			if(dzej.targetGamemode != "" && dzej.targetScene != "" && dzej.addonMapFrom != ""):
@@ -96,10 +88,10 @@ func _ready():
 		bannerText.text = "Error, check console for details."
 		dzej.fatal(dzej.mpRole, "Invalid multiplayer role", null)
 		return false
-
-
-	bannerText.text = "Now loading\n" + dzej.targetScene
-	dzej.msg(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
+	
+	bannerText.text = "Loading map..."
+	dzej.msg("[INFO] Loading map: " + dzej.targetScene)
+	
 	var loader = ResourceLoader.load_interactive(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
 	var loadingStatus = loader.poll()
 	while true:
@@ -163,9 +155,10 @@ func _ready():
 
 				dzej.nodeAddToParent(pluginNode, dzej.root)
 				yield(get_tree(), "idle_frame")
-
-	if(dzej.mpRole == "host"):
-		peerConnected(get_tree().get_network_unique_id())
+	
+	initNode.peerConnected(get_tree().get_network_unique_id())
+	
+	dzej.msg("[INFO] All addons loaded.")
 
 	finishSound.play()
 	spinnerAnimation.play("slideDown")

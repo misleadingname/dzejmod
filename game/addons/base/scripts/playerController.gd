@@ -35,10 +35,18 @@ onready var viewmodelViewport = $RotationHelper/ViewportContainer/Viewport
 onready var ogViewmodelPos = viewmodel.translation
 onready var viewmodelPos = ogViewmodelPos
 
+var tickTimer : Timer = null
+
 func _ready():
 	dzej.lpMouseLock(true)
 	dzej.root.connect("size_changed", self, "screenResized")
 	screenResized()
+
+	tickTimer = Timer.new()
+	tickTimer.connect("timeout", self, "tick")
+	tickTimer.wait_time = 0.1
+	tickTimer.one_shot = false
+	tickTimer.start()
 
 func screenResized():
 	viewmodelViewport.size = dzej.root.size
@@ -110,6 +118,10 @@ func _physics_process(delta):
 	viewmodel.translation.x = sin(OS.get_ticks_msec() * 0.005) * clamp(movement.length(), 0, 50) * 0.000625 + viewmodel.translation.linear_interpolate(viewmodelPos, 10 * delta).x
 
 	move_and_slide_with_snap(movement, snap, Vector3.UP, false, 4, PI4, false)
+
+func tick():
+	dzej.lpShowNotification("Tick!", 0.2)
+	dzej.mpRPC(get_tree().get_network_unique_id(), [global_transform.origin, rotation_degrees, viewmodel.translation, viewmodel.rotation_degrees])
 
 func _input(event):
 	if(event is InputEventMouseMotion):

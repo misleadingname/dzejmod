@@ -2,6 +2,8 @@ extends Node
 
 var map : Node = null
 
+var puppets = []
+
 func onLoad(loadedScene):
 	map = loadedScene
 	
@@ -23,6 +25,18 @@ func peerConnected(id):
 	if(id == get_tree().get_network_unique_id()):
 		var script = dzej.resLoadToMem(dzej.addonGetPath("base") + "/scripts/playerController.gd")
 		dzej.nodeSetScript(player.get_node("KinematicBody"), script, true)
+	else:
+		var script = dzej.resLoadToMem(dzej.addonGetPath("base") + "/scripts/remotePlayer.gd")
+		dzej.nodeSetScript(player.get_node("KinematicBody"), script)
+		puppets.append(player)
 
 func peerDisconnected(id):
 	dzej.sceneRemove(map.get_node("Player_" + str(id)))
+	for i in range(puppets.size()):
+		if(puppets[i].name == "Player_" + str(id)):
+			puppets.remove(i)
+			break
+
+func netUpdate(data : Array):
+	for i in range(puppets.size()):
+		puppets[i].get_node("KinematicBody").netUpdate(data)

@@ -1,7 +1,7 @@
 extends WindowDialog
 
 onready var joinButton = $joinButton
-onready var ipInput = $ipInput
+onready var ipInput = $VBoxContainer/ipInput
 
 func ready():
 	print(dzej.mpHost)
