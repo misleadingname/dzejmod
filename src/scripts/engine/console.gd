@@ -68,7 +68,7 @@ func parseCommand(text):
 # CONSOLE TOGGLE
 
 func _input(event):
-	if(event.is_action_pressed("ui_console")):
+	if(event.is_action_pressed("engine_console")):
 		if(!self.is_visible()):
 			self.popup()
 		else:

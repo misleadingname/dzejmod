@@ -18,6 +18,8 @@ var targetGamemode: String = "Sandbox"
 var paused: bool = false
 var developer = false
 
+var chatting = false
+
 var path: String = OS.get_executable_path().get_base_dir()
 var addonpath = path + "/addons/"
 
@@ -417,3 +419,14 @@ func lpShowNotification(text: String, time: float = 5):
 
 	notif.visible = true
 	notif.call("displaynotif", text, time)
+
+# MULTIPLAYER MANAGEMENT
+
+func mpSendChat(text):
+	if(gameplayMap == null):
+		msg("[WARN] gameplayMap is null")
+		return false
+	
+	var chat = gameplayMap.get_node("UI_ontop/hacky/chatbox")
+
+	chat.addText(text)

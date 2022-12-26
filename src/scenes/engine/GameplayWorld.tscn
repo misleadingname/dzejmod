@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://scripts/engine/worldloader.gd" type="Script" id=1]
 [ext_resource path="res://mat/ui/spinner.png" type="Texture" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://mat/ui/logo.png" type="Texture" id=4]
 [ext_resource path="res://sound/engine/notification.wav" type="AudioStream" id=5]
 [ext_resource path="res://scripts/engine/notificationPanel.gd" type="Script" id=6]
+[ext_resource path="res://mat/ui/font/FreeSans-outline.tres" type="DynamicFont" id=7]
+[ext_resource path="res://scripts/engine/chatbox.gd" type="Script" id=8]
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -285,6 +287,38 @@ margin_top = 9.0
 margin_right = 72.0
 margin_bottom = 30.0
 text = "developer"
+
+[node name="chatbox" type="Control" parent="UI_ontop/hacky"]
+anchor_left = 0.05
+anchor_top = 0.65
+anchor_right = 0.4
+anchor_bottom = 0.9
+script = ExtResource( 8 )
+
+[node name="VBox" type="VBoxContainer" parent="UI_ontop/hacky/chatbox"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+alignment = 2
+
+[node name="ChatOutput" type="RichTextLabel" parent="UI_ontop/hacky/chatbox/VBox"]
+margin_right = 358.0
+margin_bottom = 123.0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = ExtResource( 7 )
+scroll_following = true
+
+[node name="ChatInput" type="LineEdit" parent="UI_ontop/hacky/chatbox/VBox"]
+margin_top = 127.0
+margin_right = 358.0
+margin_bottom = 150.0
+max_length = 100
+editable = false
+secret_character = "x"
+expand_to_text_length = true
+clear_button_enabled = true
+caret_blink = true
 
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0

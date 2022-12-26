@@ -43,12 +43,13 @@ func _on_disconnectButton_pressed():
 
 func _input(event):
 	if(event.is_action_pressed("ui_cancel")):
-		if(self.get_parent().visible and get_parent().name != "mainmenu"):
+		if(self.get_parent().visible and get_parent().name != "mainmenu" && dzej.chatting == false):
 			self.get_parent().visible = false
 			dzej.lpMouseLock(true)
 		else:
-			self.get_parent().visible = true
-			dzej.lpMouseLock(false)
+			if(dzej.chatting == false):
+				self.get_parent().visible = true
+				dzej.lpMouseLock(false)
 
 func _on_optionsButton_pressed():
 	buttonClick()
