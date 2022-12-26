@@ -1,14 +1,14 @@
 extends WindowDialog
 
-onready var gamemodeButtonPreset = $gamemodes/VBoxContainer/VBoxContainer/Button
-onready var gamemodeLabel = $gamemodes/VBoxContainer/Label
+onready var gamemodeButtonPreset = $"%modebut"
+onready var gamemodeLabel = $"%Label"
 
-onready var mapButtonPreset = $maps/ScrollContainer/GridContainer/Map
+onready var mapButtonPreset = $"%Map"
 
-onready var mapname = $options/VBoxContainer/name
-onready var mapgamemode = $options/VBoxContainer/gamemode
+onready var mapname = $"%name"
+onready var mapgamemode = $"%gamemode"
 
-onready var playbutton = $options/VBoxContainer/Button
+onready var playbutton = $"%Button"
 
 var gamemode = null
 var map = null

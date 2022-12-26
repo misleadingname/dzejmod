@@ -121,10 +121,6 @@ margin_left = 1.0
 margin_right = 1.0
 margin_top = 1.0
 margin_bottom = 1.0
-expand_margin_left = 6.0
-expand_margin_right = 6.0
-expand_margin_top = 2.0
-expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxTexture" id=24]
 texture = ExtResource( 5 )
@@ -159,14 +155,14 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.741176, 0.741176, 0.741176, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 8.0
-expand_margin_right = 8.0
-expand_margin_top = 24.0
-expand_margin_bottom = 8.0
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+expand_margin_left = 6.0
+expand_margin_right = 6.0
+expand_margin_top = 26.0
+expand_margin_bottom = 6.0
 
 [resource]
 Button/fonts/font = ExtResource( 12 )
