@@ -1,4 +1,81 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="GDScript" id=6]
+resource_name = "spawnmenu"
+script/source = "extends Control
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	var spawnTemp = load(dzej.addonGetPath(\"base\") + \"/ui/spawnmenu.tscn\")
+	var instance = spawnTemp.instance()
+	add_child(instance)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
+
+[sub_resource type="GDScript" id=3]
+resource_name = "wepsel"
+script/source = "extends Panel
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	$AnimationPlayer.play(\"in\")
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name==\"in\":
+		$AnimationPlayer.play(\"out\")
+"
+
+[sub_resource type="Animation" id=4]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 0.0769466, 4.43828 ),
+"update": 0,
+"values": [ Vector2( 134, -1000 ), Vector2( 134, 10 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "out"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 4.43828, 0.0769466 ),
+"update": 0,
+"values": [ Vector2( 134, 10 ), Vector2( 134, -1000 ) ]
+}
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.35
@@ -8,6 +85,7 @@ radius = 0.35
 [node name="UI" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = SubResource( 6 )
 
 [node name="Panel" type="Panel" parent="UI"]
 anchor_left = 1.0
@@ -52,7 +130,105 @@ margin_right = 2.0
 margin_bottom = 2.0
 color = Color( 0.392157, 0.392157, 0.392157, 1 )
 
+[node name="wepSel" type="Panel" parent="UI"]
+modulate = Color( 1, 1, 1, 0.87451 )
+margin_left = 134.0
+margin_top = 10.0
+margin_right = 888.0
+margin_bottom = 126.0
+script = SubResource( 3 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/wepSel"]
+margin_right = 753.0
+margin_bottom = 116.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/wepSel/HBoxContainer"]
+margin_right = 116.0
+margin_bottom = 116.0
+rect_min_size = Vector2( 116, 116 )
+
+[node name="Button" type="Button" parent="UI/wepSel/HBoxContainer/MarginContainer"]
+margin_right = 116.0
+margin_bottom = 116.0
+toggle_mode = true
+
+[node name="Label" type="Label" parent="UI/wepSel/HBoxContainer/MarginContainer/Button"]
+margin_left = 13.0
+margin_top = 93.0
+margin_right = 100.0
+margin_bottom = 107.0
+text = "weaponName"
+
+[node name="Panel" type="Panel" parent="UI/wepSel/HBoxContainer/MarginContainer/Button"]
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 108.0
+margin_bottom = 90.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/wepSel"]
+margin_left = 8.0
+margin_top = 115.0
+margin_right = 110.0
+margin_bottom = 514.0
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/wepSel/VBoxContainer"]
+margin_right = 102.0
+margin_bottom = 102.0
+rect_min_size = Vector2( 102, 102 )
+
+[node name="Button" type="Button" parent="UI/wepSel/VBoxContainer/MarginContainer"]
+margin_right = 102.0
+margin_bottom = 102.0
+toggle_mode = true
+
+[node name="Label" type="Label" parent="UI/wepSel/VBoxContainer/MarginContainer/Button"]
+margin_left = 8.0
+margin_top = 83.0
+margin_right = 95.0
+margin_bottom = 97.0
+text = "weaponName"
+
+[node name="Panel" type="Panel" parent="UI/wepSel/VBoxContainer/MarginContainer/Button"]
+margin_left = 8.0
+margin_top = 7.0
+margin_right = 93.0
+margin_bottom = 78.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/wepSel"]
+anims/in = SubResource( 4 )
+anims/out = SubResource( 5 )
+
+[node name="Panel2" type="Panel" parent="UI"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -103.0
+margin_right = 294.0
+margin_bottom = -20.0
+
+[node name="Sprite" type="Sprite" parent="UI/Panel2"]
+scale = Vector2( 4, 4 )
+
+[node name="Label" type="Label" parent="UI/Panel2/Sprite"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "69"
+
+[node name="Sprite2" type="Sprite" parent="UI/Panel2"]
+scale = Vector2( 2, 2 )
+
+[node name="Label" type="Label" parent="UI/Panel2/Sprite2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 36.5
+margin_top = 3.5
+margin_right = 51.5
+margin_bottom = 16.5
+text = "hp"
+
 [node name="KinematicBody" type="KinematicBody" parent="."]
+
+[node name="PlayerModel" type="MeshInstance" parent="KinematicBody"]
 
 [node name="playerName" type="Label3D" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
@@ -66,6 +242,7 @@ shape = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0 )
 
 [node name="ViewportContainer" type="ViewportContainer" parent="KinematicBody/RotationHelper"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 
@@ -75,11 +252,14 @@ size_override_stretch = true
 transparent_bg = true
 handle_input_locally = false
 render_target_clear_mode = 1
-render_target_update_mode = 3
+render_target_update_mode = 0
 
 [node name="viewmodelCam" type="Camera" parent="KinematicBody/RotationHelper/ViewportContainer/Viewport"]
 cull_mask = 2
 far = 5.0
+
+[node name="Weapon" type="MeshInstance" parent="KinematicBody/RotationHelper/ViewportContainer/Viewport/viewmodelCam"]
+transform = Transform( 0.74833, 0, 0, 0, 0.74833, 0, 0, 0, 0.74833, 0, 0, 0 )
 
 [node name="Camera" type="Camera" parent="KinematicBody/RotationHelper"]
 cull_mask = 1048573
@@ -90,3 +270,5 @@ far = 1000.0
 
 [node name="view" type="Spatial" parent="KinematicBody/RotationHelper"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.35, -0.55, -1.5 )
+
+[connection signal="animation_finished" from="UI/wepSel/AnimationPlayer" to="UI/wepSel" method="_on_AnimationPlayer_animation_finished"]

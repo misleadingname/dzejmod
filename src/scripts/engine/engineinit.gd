@@ -3,7 +3,7 @@ extends Control
 onready var statusLabel = $Label
 
 func _ready():
-	dzej.crash("skill issue", 0000)
+	# dzej.crash("skill issue", 0000)
 	statusLabel.text = "Godot is ready!"
 	yield(get_tree().create_timer(0.5), "timeout")
 	statusLabel.text = "Waiting for dzejscript."
@@ -22,6 +22,7 @@ func _ready():
 	yield(get_tree().create_timer(0.25), "timeout")
 	if addonList == null || addonList.size() <= 0:
 		statusLabel.text += " (FAIL)"
+		
 		return false
 	statusLabel.text += " (OK)"
 
@@ -32,6 +33,7 @@ func _ready():
 		var addoninfo = dzej.addonGetInfo(addonList[i])
 		if addoninfo == null:
 			statusLabel.text += " (FAIL)"
+			dzej.crash("Failed to get addon info for "+addonList[i], 2)
 			return false
 		if addoninfo.tag == "engine":
 			statusLabel.text += " (Loading...)"

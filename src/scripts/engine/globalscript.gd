@@ -685,5 +685,5 @@ remote func netUpdate(data : Array):
 
 func crash(reason:String,errcode:int):
 	ErrDump.dump(getallconsole(), ErrDump.ErrType.CRASH)
-	OS.alert("Your game crashed!\n\n      Here is the error code: " + str(errcode) + "\n      And here is the reason: " + reason + "\n\nThe console has been dumped to crashes/crashlog.txt", "dzejmod")
+	OS.alert("Your game crashed!\n\n      Here is the error code: " + str(errcode) + "\n      And here is the reason: " + reason + "\n\nThe console has been dumped to crashes/crashlog.txt", "Engine Error")
 	OS.crash(reason)

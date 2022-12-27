@@ -11,3 +11,17 @@ func onLoad(scene):
 		playerPrefab.transform = spawnNode.transform
 	else:
 		dzej.msg("[marble] Spawn node not found, spawning at 0 to the power of 3 :(")
+		
+		
+		
+	
+	
+func peerConnected(id):
+	pass
+
+
+func peerDisconnected(id):
+	pass
+
+func netUpdate(data : Array):
+	pass

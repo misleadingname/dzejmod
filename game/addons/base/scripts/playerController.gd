@@ -20,6 +20,16 @@ var velocity : Vector3 = Vector3.ZERO
 var gravity_vec : Vector3 = Vector3.ZERO
 var movement : Vector3 = Vector3.ZERO
 
+var weapon = "weapon_physgun"
+var weapons = ["weapon_physgun"]
+var weaponData = [{
+	"name": "Physics Gun",
+	"className": "weapon_physgun",
+	"model": "",
+	"damage":0,
+	"canDamage":false
+}]
+
 var mouseDelta : Vector2 = Vector2.ZERO
 var snap : Vector3 = Vector3.ZERO
 
@@ -38,6 +48,9 @@ onready var viewmodelPos = ogViewmodelPos
 var tickTimer : Timer = null
 
 func _ready():
+	#weapon = null
+	#weapons = null
+	#weaponData = null
 	dzej.lpMouseLock(true)
 	dzej.root.connect("size_changed", self, "screenResized")
 	screenResized()
@@ -47,6 +60,7 @@ func _ready():
 	tickTimer.wait_time = 0.1
 	tickTimer.one_shot = false
 	tickTimer.start()
+	var viewmodel = $KinematicBody/RotationHelper/ViewportContainer/Viewport/viewmodelCam/Weapon
 
 func screenResized():
 	viewmodelViewport.size = dzej.root.size
@@ -122,6 +136,14 @@ func _physics_process(delta):
 func tick():
 	dzej.lpShowNotification("Tick!", 0.2)
 	dzej.mpRPC(get_tree().get_network_unique_id(), [global_transform.origin, rotation_degrees, viewmodel.translation, viewmodel.rotation_degrees])
+
+
+func addWeapon(meta:Dictionary, script):
+	var display = meta.name
+	var classname = meta.className
+	var damage = meta.damage
+	
+	
 
 func _input(event):
 	if(event is InputEventMouseMotion):

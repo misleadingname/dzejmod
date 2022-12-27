@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://addons/qodot/src/nodes/qodot_map.gd" type="Script" id=1]
 [ext_resource path="res://addons/qodot/game_definitions/fgd/qodot_fgd.tres" type="Resource" id=2]
-[ext_resource path="res://mat/textures/grass.tres" type="Material" id=3]
-[ext_resource path="res://mat/textures/concrete_smooth.tres" type="Material" id=4]
 
 [sub_resource type="ProceduralSky" id=7]
 
 [sub_resource type="Environment" id=8]
-background_mode = 2
+background_mode = 5
 background_sky = SubResource( 7 )
 tonemap_mode = 3
 
@@ -22,7 +20,6 @@ surfaces/0 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": ExtResource( 3 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24
@@ -34,7 +31,6 @@ surfaces/1 = {
 "blend_shape_data": [  ],
 "format": 2194711,
 "index_count": 36,
-"material": ExtResource( 4 ),
 "primitive": 4,
 "skeleton_aabb": [  ],
 "vertex_count": 24

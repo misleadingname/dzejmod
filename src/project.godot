@@ -230,6 +230,10 @@ window/size/test_height=600
 
 enabled=PoolStringArray( "res://addons/qodot/plugin.cfg" )
 
+[global]
+
+use3DPlayerNames=false
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

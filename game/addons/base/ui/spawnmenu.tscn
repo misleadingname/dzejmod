@@ -16,17 +16,14 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
-func _input(event):
 	open = false
 	if Input.is_key_pressed(KEY_Q):
 		open = true
 	
 	if open:
-		$WindowDialog.visible = true
+		$CanvasLayer/WindowDialog.visible = true
 	else:
-		$WindowDialog.visible = false
-		
+		$CanvasLayer/WindowDialog.visible = false
 "
 
 [node name="Control" type="Control"]
@@ -38,27 +35,31 @@ margin_right = -441.0
 margin_bottom = -63.0
 script = SubResource( 1 )
 
-[node name="WindowDialog" type="WindowDialog" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WindowDialog" type="WindowDialog" parent="CanvasLayer"]
 visible = true
-margin_left = 18.0
-margin_top = 21.0
-margin_right = 494.0
-margin_bottom = 417.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
 window_title = "spawnmenu"
 
-[node name="GridContainer" type="GridContainer" parent="WindowDialog"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/WindowDialog"]
 margin_left = -2.0
 margin_top = 8.0
 margin_right = 477.0
 margin_bottom = 406.0
 
-[node name="cube" type="Button" parent="WindowDialog/GridContainer"]
-margin_right = 52.0
-margin_bottom = 33.0
+[node name="cube" type="Button" parent="CanvasLayer/WindowDialog/GridContainer"]
+margin_right = 56.0
+margin_bottom = 20.0
 text = "cube"
 
-[node name="monke" type="Button" parent="WindowDialog/GridContainer"]
-margin_top = 37.0
-margin_right = 52.0
-margin_bottom = 70.0
+[node name="monke" type="Button" parent="CanvasLayer/WindowDialog/GridContainer"]
+margin_top = 24.0
+margin_right = 56.0
+margin_bottom = 44.0
 text = "monke"

@@ -226,7 +226,7 @@ window/size/test_height=640
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/qodot/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [gui]
 
