@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://models/maps/testmap.glb" type="PackedScene" id=1]
 [ext_resource path="res://scenes/defaultmap.lmbake" type="BakedLightmapData" id=4]
 
 [sub_resource type="BoxShape" id=6]
 extents = Vector3( 0.5, 0.5, 0.5 )
+
+[sub_resource type="SpatialMaterial" id=9]
+albedo_color = Color( 1, 0.913725, 0, 1 )
+emission_enabled = true
+emission = Color( 0.945098, 1, 0, 1 )
+emission_energy = 1.0
+emission_operator = 0
+emission_on_uv2 = false
+
+[sub_resource type="CubeMesh" id=10]
+material = SubResource( 9 )
+
+[sub_resource type="BoxShape" id=11]
 
 [sub_resource type="ProceduralSky" id=7]
 sun_longitude = 135.0
@@ -13,11 +26,16 @@ sun_longitude = 135.0
 background_mode = 2
 background_sky = SubResource( 7 )
 fog_sun_amount = 1.0
-tonemap_mode = 4
+tonemap_mode = 3
 auto_exposure_enabled = true
 auto_exposure_min_luma = 0.3
 auto_exposure_max_luma = 10.0
 auto_exposure_speed = 2.0
+ssao_enabled = true
+glow_enabled = true
+glow_strength = 1.13
+glow_bicubic_upscale = true
+glow_high_quality = true
 
 [node name="Spatial" type="Spatial"]
 
@@ -34,11 +52,12 @@ linear_velocity = Vector3( 0, 10, 0 )
 shape = SubResource( 6 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 0.866025, -0.353553, 0.353553, 0, 0.707107, 0.707107, -0.5, -0.612372, 0.612372, 0, 3, 0 )
+transform = Transform( 0.866025, -0.353553, 0.353554, 0, 0.707107, 0.707106, -0.5, -0.612372, 0.612373, 0, 3, 0 )
 light_size = 0.05
 light_specular = 1.0
 shadow_enabled = true
-shadow_bias = 0.232
+shadow_bias = 0.367
+shadow_contact = 1.0
 directional_shadow_mode = 0
 directional_shadow_normal_bias = 0.0
 directional_shadow_max_distance = 70.0
@@ -46,7 +65,7 @@ directional_shadow_max_distance = 70.0
 [node name="BakedLightmap" type="BakedLightmap" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 5, -3 )
 extents = Vector3( 42, 10, 32 )
-quality = 0
+quality = 3
 bounces = 5
 bounce_indirect_energy = 2.0
 environment_mode = 1
@@ -68,6 +87,16 @@ cast_shadow = 2
 
 [node name="Building" parent="testmap" index="3"]
 cast_shadow = 2
+
+[node name="RigidBody" type="RigidBody" parent="testmap"]
+transform = Transform( 0.639494, 0.492459, -0.590366, -0.610131, 0.7923, 0, 0.467747, 0.360201, 0.807136, 15.2213, 15.6952, 0 )
+
+[node name="MeshInstance" type="MeshInstance" parent="testmap/RigidBody"]
+mesh = SubResource( 10 )
+skeleton = NodePath("../..")
+
+[node name="CollisionShape" type="CollisionShape" parent="testmap/RigidBody"]
+shape = SubResource( 11 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 8 )

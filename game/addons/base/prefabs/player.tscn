@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [sub_resource type="GDScript" id=6]
 resource_name = "spawnmenu"
@@ -79,6 +79,42 @@ tracks/0/keys = {
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.35
+
+[sub_resource type="GDScript" id=7]
+resource_name = "spotlight"
+script/source = "extends SpotLight
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+var defEnergy = 6;
+
+var open = false;
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+
+func _input(event):
+	if Input.is_action_just_pressed(\"engine_global_flashlight\"):
+		if open==true:
+			open = false;
+		else:
+			open = true;
+	
+	if open==true:
+		visible=true
+	else:
+		visible=false
+"
 
 [node name="Player" type="Spatial"]
 
@@ -267,6 +303,12 @@ doppler_tracking = 2
 fov = 90.0
 size = 5.0
 far = 1000.0
+
+[node name="SpotLight" type="SpotLight" parent="KinematicBody/RotationHelper/Camera"]
+light_energy = 6.0
+light_indirect_energy = 1.904
+shadow_enabled = true
+script = SubResource( 7 )
 
 [node name="view" type="Spatial" parent="KinematicBody/RotationHelper"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.35, -0.55, -1.5 )

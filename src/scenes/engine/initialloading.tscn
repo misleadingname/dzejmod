@@ -9,8 +9,7 @@ colors = PoolColorArray( 0.313726, 0.313726, 0.313726, 1, 0.392157, 0.392157, 0.
 [sub_resource type="GradientTexture2D" id=3]
 gradient = SubResource( 2 )
 width = 1
-fill_from = Vector2( 0, 1 )
-fill_to = Vector2( 0, 0 )
+fill_from = Vector2( 1, 1 )
 
 [sub_resource type="Animation" id=1]
 resource_name = "infscroll"
@@ -73,13 +72,3 @@ margin_top = -10.5
 margin_bottom = 10.5
 text = "%insert funny random text here%"
 align = 1
-
-[node name="Label2" type="Label" parent="."]
-margin_left = 99.0
-margin_top = 42.0
-margin_right = 462.0
-margin_bottom = 111.0
-rect_pivot_offset = Vector2( 101, 40 )
-text = "this will be changed and will be made nicer later......
-
-fuck you vix it wont, i like it that way :D - japannt"

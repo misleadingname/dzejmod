@@ -91,7 +91,6 @@ func _ready():
 	
 	bannerText.text = "Loading map..."
 	dzej.msg("[INFO] Loading map: " + dzej.targetScene)
-	
 	var loader = ResourceLoader.load_interactive(dzej.addonGetPath(dzej.addonMapFrom) + "/maps/" + dzej.targetScene)
 	var loadingStatus = loader.poll()
 	while true:
