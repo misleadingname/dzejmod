@@ -3,13 +3,14 @@ extends KinematicBody
 class_name dzejPlayer
 
 export var walkSpeed : float = 5
+export var crouchSpeed : float = 2.5
 export var sprintSpeed : float = 7
-export var jumpForce : float = 5
-export var pushStrength : float = 2
+export var jumpForce : float = 7
+export var pushStrength : float = 3
 
-export var gravityDefault : float = 9.8
+export var gravityDefault : float = 16
 export var accelDefault : float = 8
-export var accelAir : float = 1
+export var accelAir : float = 0.6
 
 onready var accel : float = accelDefault
 onready var gravity : float = gravityDefault
@@ -29,6 +30,9 @@ var weaponData = [{
 	"damage":0,
 	"canDamage":false
 }]
+
+
+var crouch = 1
 
 var mouseDelta : Vector2 = Vector2.ZERO
 var snap : Vector3 = Vector3.ZERO
@@ -66,6 +70,7 @@ func screenResized():
 	viewmodelViewport.size = dzej.root.size
 
 func _process(_delta):
+	scale.y = lerp(scale.y, crouch, 0.1)
 	var mouseSens = dzej_settings.all_settings.get("mouse_sens")
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rothelper.rotation_degrees.x -= mouseDelta.y * mouseSens
@@ -107,8 +112,16 @@ func _physics_process(delta):
 	if(dzej.lpMouseIsLocked()):
 		if(Input.is_action_pressed("movement_sprint") and is_on_floor()):
 			movementSpeed = sprintSpeed
+
+		elif(Input.is_action_pressed("movement_crouch")):
+			if !self==null:
+				crouch = .5
+				movementSpeed = crouchSpeed
 		else:
+			crouch = 1
 			movementSpeed = walkSpeed
+
+
 
 		if(Input.is_action_just_pressed("movement_jump") and is_on_floor()):
 			snap = Vector3.ZERO

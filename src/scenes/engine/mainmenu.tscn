@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://mat/ui/logo.png" type="Texture" id=1]
+[ext_resource path="res://mat/nooooo.png" type="Texture" id=1]
 [ext_resource path="res://scripts/engine/menuscript.gd" type="Script" id=2]
 [ext_resource path="res://sound/engine/ui_hover.wav" type="AudioStream" id=3]
 [ext_resource path="res://sound/engine/ui_click.wav" type="AudioStream" id=4]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/engine/addonsmenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/engine/newGameNew.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/engine/joingamepanel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://mat/ui/border-logo.png" type="Texture" id=9]
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -22,7 +23,7 @@ margin_right = 884.0
 margin_bottom = 904.0
 rect_rotation = -4.8
 rect_scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 1 )
+texture = ExtResource( 9 )
 stretch_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -88,6 +89,82 @@ shortcut_in_tooltip = false
 text = "quit"
 underline = 2
 
+[node name="News" type="Panel" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -338.0
+margin_top = -336.0
+rect_pivot_offset = Vector2( -864, 0 )
+
+[node name="Content" type="Panel" parent="News"]
+margin_left = 6.0
+margin_top = 26.0
+margin_right = 332.0
+margin_bottom = 329.0
+rect_pivot_offset = Vector2( -864, 0 )
+rect_clip_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="News/Content"]
+margin_right = 326.0
+margin_bottom = 302.0
+
+[node name="Entry" type="MarginContainer" parent="News/Content/VBoxContainer"]
+margin_right = 326.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="Panel" type="Panel" parent="News/Content/VBoxContainer/Entry"]
+margin_right = 326.0
+margin_bottom = 100.0
+
+[node name="Panel2" type="Panel" parent="News/Content/VBoxContainer/Entry/Panel"]
+margin_left = 4.0
+margin_top = 25.0
+margin_right = 230.0
+margin_bottom = 95.0
+
+[node name="Label" type="Label" parent="News/Content/VBoxContainer/Entry/Panel"]
+margin_left = 6.0
+margin_top = 4.0
+margin_right = 232.0
+margin_bottom = 25.0
+text = "news or something im not exactl"
+clip_text = true
+
+[node name="Label2" type="Label" parent="News/Content/VBoxContainer/Entry/Panel"]
+margin_left = 6.0
+margin_top = 28.0
+margin_right = 242.0
+margin_bottom = 91.0
+text = "Basically we are on 0.2 oh mah gawd!!!!!"
+autowrap = true
+
+[node name="Panel" type="Panel" parent="News/Content/VBoxContainer/Entry/Panel"]
+margin_left = 232.0
+margin_top = 5.0
+margin_right = 320.0
+margin_bottom = 94.0
+
+[node name="Nooooo" type="Sprite" parent="News/Content/VBoxContainer/Entry/Panel/Panel"]
+position = Vector2( 44, 44.5351 )
+scale = Vector2( 0.190476, 0.188314 )
+texture = ExtResource( 1 )
+
+[node name="Panel2" type="Panel" parent="News"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 337.0
+margin_bottom = 23.0
+rect_pivot_offset = Vector2( -864, 0 )
+
+[node name="Label" type="Label" parent="News/Panel2"]
+margin_left = 8.0
+margin_right = 49.0
+margin_bottom = 21.0
+text = "News"
+
 [node name="Settings" parent="." instance=ExtResource( 5 )]
 visible = false
 anchor_right = 0.0
@@ -110,8 +187,8 @@ margin_bottom = 425.0
 [node name="multiplayerJoin" parent="." instance=ExtResource( 8 )]
 margin_left = -28.496
 margin_top = 38.2
-margin_right = -28.496
-margin_bottom = 38.2
+margin_right = -28.416
+margin_bottom = -92.8
 
 [connection signal="mouse_entered" from="VBoxContainer/newgameButton" to="VBoxContainer" method="buttonHover"]
 [connection signal="pressed" from="VBoxContainer/newgameButton" to="VBoxContainer" method="_on_newgameButton_pressed"]

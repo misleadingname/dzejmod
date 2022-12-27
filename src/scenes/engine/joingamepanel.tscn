@@ -9,13 +9,13 @@ anchor_right = 0.809
 anchor_bottom = 0.548
 margin_left = -84.496
 margin_top = 3.2
-margin_right = -84.496
-margin_bottom = 3.20001
+margin_right = -84.416
+margin_bottom = -127.8
 
 [node name="WindowDialog" type="WindowDialog" parent="."]
 visible = true
-margin_right = 593.0
-margin_bottom = 231.0
+margin_right = 594.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
 window_title = "Join Game"
 resizable = true
@@ -26,19 +26,19 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Label" type="Label" parent="WindowDialog/VBoxContainer"]
-margin_right = 593.0
+margin_right = 594.0
 margin_bottom = 21.0
 text = "Enter the Server IP:"
 
 [node name="ipInput" type="LineEdit" parent="WindowDialog/VBoxContainer"]
 margin_top = 25.0
-margin_right = 593.0
+margin_right = 594.0
 margin_bottom = 48.0
 placeholder_text = "IP address"
 
 [node name="joinButton" type="Button" parent="WindowDialog/VBoxContainer"]
 margin_top = 52.0
-margin_right = 593.0
+margin_right = 594.0
 margin_bottom = 85.0
 size_flags_horizontal = 3
 text = "Join Server"
