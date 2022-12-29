@@ -1,7 +1,7 @@
 [gd_resource type="SpatialMaterial" load_steps=3 format=2]
 
 [ext_resource path="res://mat/textures/normal_maps/grass-normal.png" type="Texture" id=1]
-[ext_resource path="res://mat/textures/Grass001_1K_Color.jpg" type="Texture" id=2]
+[ext_resource path="res://mat/default.png" type="Texture" id=2]
 
 [resource]
 albedo_color = Color( 0.815686, 0.835294, 0.658824, 1 )
@@ -10,4 +10,4 @@ metallic_specular = 0.0
 normal_enabled = true
 normal_scale = 2.0
 normal_texture = ExtResource( 1 )
-uv1_scale = Vector3( 4, 4, 4 )
+uv1_scale = Vector3( 20, 20, 5 )
