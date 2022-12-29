@@ -220,6 +220,7 @@ dzej="*res://scripts/engine/globalscript.gd"
 con="*res://scripts/engine/concommands.gd"
 dzej_settings="*res://scripts/engine/globalsettings.gd"
 ErrDump="*res://scripts/engine/globalErrDumping.gd"
+Versioning="*res://bnum.gd"
 
 [display]
 
@@ -229,6 +230,10 @@ window/size/test_height=600
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/qodot/plugin.cfg" )
+
+[gdnative]
+
+singletons=[  ]
 
 [global]
 

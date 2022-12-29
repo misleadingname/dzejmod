@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION = "0.1"
+onready var VERSION = Versioning.ver
 
 onready var pauseScene: Node = load("res://scenes/engine/pausemenu.tscn").instance()
 onready var consoleScene: Node = load("res://scenes/engine/console.tscn").instance()

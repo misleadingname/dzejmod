@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [sub_resource type="GDScript" id=6]
 resource_name = "spawnmenu"
@@ -13,6 +13,7 @@ script/source = "extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var spawnTemp = load(dzej.addonGetPath(\"base\") + \"/ui/spawnmenu.tscn\")
+	$Panel/Label.text = \"dzejmod \" + Versioning.ver 
 	var instance = spawnTemp.instance()
 	add_child(instance)
 
@@ -76,6 +77,10 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 134, 10 ), Vector2( 134, -1000 ) ]
 }
+
+[sub_resource type="CapsuleMesh" id=8]
+radius = 0.3
+mid_height = 2.0
 
 [sub_resource type="CylinderShape" id=2]
 radius = 0.35
@@ -265,6 +270,8 @@ text = "hp"
 [node name="KinematicBody" type="KinematicBody" parent="."]
 
 [node name="PlayerModel" type="MeshInstance" parent="KinematicBody"]
+transform = Transform( 1, 0, 0, 0, -3.72203e-08, -0.851502, 0, 1, -4.37114e-08, 0, 0.948093, 0 )
+mesh = SubResource( 8 )
 
 [node name="playerName" type="Label3D" parent="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0 )
@@ -312,5 +319,8 @@ script = SubResource( 7 )
 
 [node name="view" type="Spatial" parent="KinematicBody/RotationHelper"]
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.35, -0.55, -1.5 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.505401, 0.862884, 0, -0.862884, 0.505401, 0, 0, 0 )
 
 [connection signal="animation_finished" from="UI/wepSel/AnimationPlayer" to="UI/wepSel" method="_on_AnimationPlayer_animation_finished"]

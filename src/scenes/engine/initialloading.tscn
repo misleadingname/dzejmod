@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://mat/ui/border-logo.png" type="Texture" id=1]
 [ext_resource path="res://scripts/engine/engineinit.gd" type="Script" id=2]
@@ -27,6 +27,23 @@ tracks/0/keys = {
 "update": 0,
 "values": [ -1.0, 0.0 ]
 }
+
+[sub_resource type="GDScript" id=4]
+resource_name = "asda"
+script/source = "extends Label
+
+var e = Versioning.bnum
+var a = Versioning.ver
+var t = Versioning.codename
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	text = \"dzejmod \" + \" v\" + a + \"-\" + t +\" b[\" +e + \"]\"
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [node name="Control" type="Control"]
 anchor_right = 1.0
@@ -72,3 +89,10 @@ margin_top = -10.5
 margin_bottom = 10.5
 text = "%insert funny random text here%"
 align = 1
+
+[node name="Label2" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 21.0
+text = "dzejmod"
+align = 2
+script = SubResource( 4 )
