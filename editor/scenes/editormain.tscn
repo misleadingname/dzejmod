@@ -1,0 +1,253 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/editormain.gd" type="Script" id=1]
+[ext_resource path="res://addons/dzejlink/viewport.gd" type="Script" id=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Tree
+
+
+# Connect signals from the Tree
+func _ready():
+	var _err = connect(\"item_selected\", self, \"_on_tree_item_selected\")
+	_err = connect(\"item_edited\", self, \"_on_tree_item_edited\")
+
+
+# This draws the tree from a data structure provided (\"model\")
+func update_tree(model):
+
+	clear()
+
+	# Create the root TreeItem (\"model\")
+	var item_model = create_item()
+
+	# Set the text label for this item (the 0 specifies the Tree column)
+	item_model.set_text(0, model.name) 
+
+	# Set the actual model node as the TreeItem's metadata.
+	# This means I can get the actual model node from the TreeItem using tree_item.get_metadata(0)
+	item_model.set_metadata(0, model) 
+
+	# Create a subheading / child TreeItem (\"bodies\")
+	var item_bodies = create_item(item_model)
+	item_bodies.set_text(0, \"Bodies\")
+	item_bodies.set_selectable(0, false)
+
+	# Few lines to sort all the bodies in the model into alphabetical order and add them to the tree as children to the Bodies subheading
+	var bodies_array = []
+	for body_name in model.bodies.keys():
+		bodies_array.append(body_name)
+		bodies_array.sort()
+		if !bodies_array.empty():
+			for asd in bodies_array:
+				create_tree_item(model.bodies[asd], item_bodies)
+
+
+# Sub function to create a TreeItem for a body or joint (_item)
+# Creates a selectable text label in column 0 and a check box in column 1
+func create_tree_item(_item, _parent_item):
+	var item = create_item(_parent_item)
+	item.set_text(0, _item.name)
+	item.set_metadata(0, _item)
+	item.set_cell_mode(1, TreeItem.CELL_MODE_CHECK)
+	if !_item.get(\"visible\")==null:
+		item.set_checked(1, _item.visible)
+	item.set_tooltip(1, \"Show/Hide\")
+	item.set_editable(1, true)
+	item.set_tooltip(0, \"this shows when you mouse hover over the item\")
+
+
+# item selected (if the TreeItem is set to selectable, clicking it will fire this signal)
+func _on_tree_item_selected():
+	# Get the node from the selected tree_item
+	if get_selected().get_metadata(0) == null:
+		return
+	var selected_node = get_selected().get_metadata(0)
+	selected_node._on_selected() # Do something with it
+
+
+# Name change (if the TreeItem is set to editable, clicking it lets you change the TreeItem's label)
+# Here we use the updated label to change the name of the node represented by the tree_item
+func _on_tree_item_edited():
+	if get_edited_column() == 0:
+		if get_edited().get_metadata(0) == null:
+			return
+		var edited_node = get_edited().get_metadata(0)
+		var new_name = get_edited().get_text(0)
+		edited_node.name = new_name
+"
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 596.0
+
+[node name="Panel2" type="Panel" parent="."]
+margin_right = 1024.0
+margin_bottom = 25.0
+
+[node name="side" type="TabContainer" parent="."]
+margin_top = 25.0
+margin_right = 183.0
+margin_bottom = 597.0
+tab_align = 0
+
+[node name="addon" type="Tabs" parent="side"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="entities" type="Tabs" parent="side"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Properties" type="TabContainer" parent="."]
+margin_left = 840.0
+margin_top = 26.0
+margin_right = 1020.0
+margin_bottom = 597.0
+tab_align = 2
+
+[node name="tree" type="Tabs" parent="Properties"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Tree" type="Tree" parent="Properties/tree"]
+margin_right = 171.0
+margin_bottom = 562.0
+script = SubResource( 1 )
+
+[node name="inspector" type="Tabs" parent="Properties"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="midview" type="TabContainer" parent="."]
+margin_left = 190.0
+margin_top = 49.0
+margin_right = 832.0
+margin_bottom = 480.0
+rect_pivot_offset = Vector2( -688, 138 )
+tab_align = 0
+
+[node name="game" type="Tabs" parent="midview"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" type="Panel" parent="midview/game"]
+margin_left = 7.0
+margin_top = 4.0
+margin_right = 630.0
+margin_bottom = 393.0
+
+[node name="ViewportContainer" type="ViewportContainer" parent="midview/game/Panel"]
+margin_left = 6.0
+margin_top = 8.0
+margin_right = 617.0
+margin_bottom = 383.0
+
+[node name="DzejGame" type="Viewport" parent="midview/game/Panel/ViewportContainer"]
+size = Vector2( 611, 375 )
+handle_input_locally = false
+render_target_update_mode = 3
+script = ExtResource( 2 )
+
+[node name="assets" type="Tabs" parent="midview"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="BottomView" type="TabContainer" parent="."]
+margin_left = 190.0
+margin_top = 487.0
+margin_right = 832.0
+margin_bottom = 599.0
+rect_pivot_offset = Vector2( -688, 138 )
+tab_align = 0
+
+[node name="console" type="Tabs" parent="BottomView"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" type="Panel" parent="BottomView/console"]
+margin_left = 7.0
+margin_top = 4.0
+margin_right = 630.0
+margin_bottom = 71.0
+
+[node name="TextEdit" type="TextEdit" parent="BottomView/console/Panel"]
+margin_right = 623.0
+margin_bottom = 67.0
+text = "console initialised"
+readonly = true
+
+[node name="errors" type="Tabs" parent="BottomView"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Panel" type="Panel" parent="BottomView/errors"]
+margin_left = 7.0
+margin_top = 4.0
+margin_right = 630.0
+margin_bottom = 71.0
+
+[node name="TextEdit" type="TextEdit" parent="BottomView/errors/Panel"]
+margin_right = 622.0
+margin_bottom = 66.0
+readonly = true
+
+[node name="OptionButton" type="OptionButton" parent="."]
+margin_left = 620.0
+margin_top = 36.0
+margin_right = 667.0
+margin_bottom = 67.0
+text = "map"
+
+[node name="play" type="Button" parent="OptionButton"]
+margin_left = 56.0
+margin_right = 90.0
+margin_bottom = 33.0
+text = "play"
+
+[node name="close" type="Button" parent="OptionButton"]
+margin_left = 96.0
+margin_right = 130.0
+margin_bottom = 33.0
+text = "close"
+
+[connection signal="button_down" from="OptionButton/play" to="." method="_on_play_button_down"]
