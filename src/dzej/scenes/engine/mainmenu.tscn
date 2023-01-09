@@ -10,7 +10,6 @@
 [ext_resource path="res://dzej/scenes/engine/joingamepanel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://dzej/mat/ui/border-logo.png" type="Texture" id=9]
 
-
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -43,8 +42,8 @@ stream = ExtResource( 4 )
 
 [node name="newgameButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_right = 74.0
-margin_bottom = 21.0
+margin_right = 65.0
+margin_bottom = 14.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "new game"
@@ -52,9 +51,9 @@ underline = 2
 
 [node name="joingameButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 25.0
-margin_right = 74.0
-margin_bottom = 46.0
+margin_top = 18.0
+margin_right = 65.0
+margin_bottom = 32.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "join game"
@@ -62,9 +61,9 @@ underline = 2
 
 [node name="optionsButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 50.0
-margin_right = 74.0
-margin_bottom = 71.0
+margin_top = 36.0
+margin_right = 65.0
+margin_bottom = 50.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "options"
@@ -72,9 +71,9 @@ underline = 2
 
 [node name="addonsButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 75.0
-margin_right = 74.0
-margin_bottom = 96.0
+margin_top = 54.0
+margin_right = 65.0
+margin_bottom = 68.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "addons"
@@ -82,9 +81,9 @@ underline = 2
 
 [node name="exitButton" type="LinkButton" parent="VBoxContainer"]
 pause_mode = 2
-margin_top = 100.0
-margin_right = 74.0
-margin_bottom = 121.0
+margin_top = 72.0
+margin_right = 65.0
+margin_bottom = 86.0
 focus_mode = 2
 shortcut_in_tooltip = false
 text = "quit"

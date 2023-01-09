@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION = "0.1"
+const VERSION = "0.2a"
 
 onready var pauseScene: Node = load("res://dzej/scenes/engine/pausemenu.tscn").instance()
 onready var consoleScene: Node = load("res://dzej/scenes/engine/console.tscn").instance()
@@ -684,6 +684,5 @@ remote func netUpdate(data : Array):
 # Crashes
 
 func crash(reason:String,errcode:int):
-	ErrDump.dump(getallconsole(), ErrDump.ErrType.CRASH)
 	OS.alert("Your game crashed!\n\n      Here is the error code: " + str(errcode) + "\n      And here is the reason: " + reason + "\n\nThe console has been dumped to crashes/crashlog.txt", "Engine Error")
 	OS.crash(reason)

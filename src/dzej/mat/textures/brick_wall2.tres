@@ -3,7 +3,6 @@
 [ext_resource path="res://dzej/mat/textures/brick_wall2.png" type="Texture" id=1]
 [ext_resource path="res://dzej/mat/textures/normal_maps/brick_wall2-normal.png" type="Texture" id=2]
 
-
 [resource]
 albedo_texture = ExtResource( 1 )
 metallic_specular = 0.0
