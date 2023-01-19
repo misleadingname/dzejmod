@@ -11,21 +11,26 @@ var loadedScene: Node = null
 
 var serverInfo = []
 
+var ready : bool = false
+
 func peerConnected(id):
 	dzej.msg("[INFO] Peer connected: " + str(id))
 
 	if(dzej.mpRole == "host"):
 		dzej.msg("[INFO] Sending server info to client...")
-		dzej.mpSendToPeer(id, "internalServerInfo", [dzej.targetGamemode, dzej.targetScene, dzej.addonMapFrom])
+		dzej.mpSendToPeer(id, "internalServerInfo", [dzej.targetGamemode, dzej.targetScene, dzej.addonMapFrom, dzej.hostPlayerList])
 	
 	dzej.root.get_node("gamemodescript").peerConnected(id)
+
+	rpc("internalPlayerConnected", id)
 
 func peerDisconnected(id):
 	dzej.msg("[INFO] Peer disconnected: " + str(id))
 	dzej.root.get_node("gamemodescript").peerDisconnected(id)
 
 func netUpdate(data : Array):
-	dzej.root.get_node("gamemodescript").netUpdate(data)
+	if ready:
+		dzej.root.get_node("gamemodescript").netUpdate(data)
 
 func _process(delta):
 	devSpatial.visible = dzej.developer
@@ -60,17 +65,23 @@ func _ready():
 	if(dzej.mpRole == "host"):
 		dzej.msg("[INFO] Creating multiplayer session...")
 
+		dzej.hostPlayerList = [1]
+
 		var result = dzej.mpCreateSession()
 		if(result != true):
 			bannerText.text = "Error, check console for details."
 			return false
+			
 	elif(dzej.mpRole == "client"):
-		dzej.msg("[INFO] Ready to request server info...")
+		dzej.msg("[INFO] Ready to join server...")
 		dzej.targetGamemode = ""
 		dzej.targetScene = ""
 		dzej.addonMapFrom = ""
+		dzej.hostPlayerList = []
 
 		dzej.msg("[INFO] Joining multiplayer session...")
+
+		dzej.mpSendToPeer(1, "clientInfo", [dzej.mpNickname])
 
 		var result = dzej.mpJoinSession()
 		if(result != true):
@@ -80,9 +91,10 @@ func _ready():
 		dzej.msg("[INFO] Waiting for server info...")
 		while true:
 			yield(get_tree(), "idle_frame")
-			if(dzej.targetGamemode != "" && dzej.targetScene != "" && dzej.addonMapFrom != ""):
+			if(dzej.targetGamemode != "" && dzej.targetScene != "" && dzej.addonMapFrom != "" && dzej.hostPlayerList != []):
 				dzej.lpShowNotification("Got info from server, loading map...")
 				break
+				
 
 	else:
 		bannerText.text = "Error, check console for details."
@@ -165,5 +177,13 @@ func _ready():
 	finishSound.play()
 	spinnerAnimation.play("slideDown")
 	dzej.msg("[INFO] Scene loaded: " + dzej.targetScene)
+	
+	if (dzej.mpRole == "client"):
+		dzej.msg("[INFO] Sending playerlist to gamemode...")
+		for id in dzej.hostPlayerList:
+			if id != get_tree().get_network_unique_id():
+				initNode.peerConnected(id)
+
+	ready = true
 	bannerText.text = "Done! :D"
 	$UI/Image.visible = false

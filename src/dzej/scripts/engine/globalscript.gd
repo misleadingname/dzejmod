@@ -32,8 +32,11 @@ var mpPort = 3621
 var mpMaxClients = 32
 var mpHost = ""
 var mpRole = null
+var mpNickname = "Mingebag"
 
 var mpSession : NetworkedMultiplayerENet = null
+
+var hostPlayerList = []
 
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_CRASH:
@@ -651,24 +654,31 @@ func mpHookConnectionFailed():
 	sceneSwtich("res://dzej/scenes/engine/backgroundmainmenu.tscn", true)
 
 func mpHookPeerConnected(id):
+	lpShowNotification("Player " + str(id) + " connected")
 	msg("[INFO] peer " + str(id) + " connected")
 	lpChatText("Peer " + str(id) + " connected")
 
+	hostPlayerList.append(id)
 	gameplayMap.peerConnected(id)
 
 func mpHookPeerDisconnected(id):
 	msg("[INFO] peer " + str(id) + " disconnected")
 	lpChatText("Peer " + str(id) + " disconnected")
 
+	hostPlayerList.erase(id)
 	gameplayMap.peerDisconnected(id)
 
 # INTERNAL
 
+remote func internalPlayerConnected(id : int):
+	mpHookPeerConnected(id)
+
 remote func internalServerInfo(info : Array):
-	dzej.msg("[INFO] server info received")
-	dzej.targetGamemode = info[0]
-	dzej.targetScene = info[1]
-	dzej.addonMapFrom = info[2]
+	msg("[INFO] server info received")
+	targetGamemode = info[0]
+	targetScene = info[1]
+	addonMapFrom = info[2]
+	hostPlayerList = info[3]
 
 remote func internalChatText(text : String, id : int):
 	chat.addText("Player " + str(id) + ": " + text)
@@ -676,8 +686,11 @@ remote func internalChatText(text : String, id : int):
 remote func netUpdate(data : Array):
 	gameplayMap.netUpdate(data)	
 
+remote func clientInfo(id : int, info : Array):
+	gameplayMap.clientInfo(id, info)
+
 # Crashes
 
-func crash(reason:String,errcode:int):
+func crash(reason : String, errcode : int):
 	OS.alert("Your game crashed!\n\n      Here is the error code: " + str(errcode) + "\n      And here is the reason: " + reason + "\n\nThe console has been dumped to crashes/crashlog.txt", "Engine Error")
 	OS.crash(reason)

@@ -38,6 +38,8 @@ var mpRole = null
 
 var mpSession : NetworkedMultiplayerENet = null
 
+var hostPlayerList : Array = []
+
 func _notification(what):
 	if what == MainLoop.NOTIFICATION_CRASH:
 		fatal(null, null, null)
@@ -671,10 +673,11 @@ func mpHookPeerDisconnected(id):
 # INTERNAL
 
 remote func internalServerInfo(info : Array):
-	dzej.msg("[INFO] server info received")
-	dzej.targetGamemode = info[0]
-	dzej.targetScene = info[1]
-	dzej.addonMapFrom = info[2]
+	msg("[INFO] server info received")
+	targetGamemode = info[0]
+	targetScene = info[1]
+	addonMapFrom = info[2]
+	hostPlayerList = info[3]
 
 remote func internalChatText(text : String, id : int):
 	chat.addText("Player " + str(id) + ": " + text)
