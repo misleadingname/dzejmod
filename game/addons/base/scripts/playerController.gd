@@ -63,6 +63,7 @@ func _ready():
 	tickTimer.connect("timeout", self, "tick")
 	tickTimer.wait_time = 0.1
 	tickTimer.one_shot = false
+	add_child(tickTimer)
 	tickTimer.start()
 	var viewmodel = $KinematicBody/RotationHelper/ViewportContainer/Viewport/viewmodelCam/Weapon
 
@@ -147,7 +148,6 @@ func _physics_process(delta):
 	move_and_slide_with_snap(movement, snap, Vector3.UP, false, 4, PI4, false)
 
 func tick():
-	dzej.lpShowNotification("Tick!", 0.2)
 	dzej.mpRPC(get_tree().get_network_unique_id(), [global_transform.origin, rotation_degrees, viewmodel.translation, viewmodel.rotation_degrees])
 
 
@@ -155,8 +155,6 @@ func addWeapon(meta:Dictionary, script):
 	var display = meta.name
 	var classname = meta.className
 	var damage = meta.damage
-	
-	
 
 func _input(event):
 	if(event is InputEventMouseMotion):

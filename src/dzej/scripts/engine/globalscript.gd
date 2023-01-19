@@ -627,9 +627,7 @@ func mpRPC(id : int, data : Array):
 		fatal(null, "Invalid data", null)
 		return false
 
-	msg("[INFO] sending \"netUpdate\" from " + str(id))
 	var result = rpc("netUpdate", [id] + data)
-	print(result)
 	return true
 
 # HOOKS
@@ -676,10 +674,7 @@ remote func internalChatText(text : String, id : int):
 	chat.addText("Player " + str(id) + ": " + text)
 
 remote func netUpdate(data : Array):
-	gameplayMap.netUpdate(data)
-	print(data)
-	
-	
+	gameplayMap.netUpdate(data)	
 
 # Crashes
 
