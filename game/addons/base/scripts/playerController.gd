@@ -72,7 +72,7 @@ func screenResized():
 
 func _process(_delta):
 	scale.y = lerp(scale.y, crouch, 0.1)
-	var mouseSens = dzej_settings.all_settings.get("mouse_sens")
+	var mouseSens = dzej_settings.all_settings.get("mouse_sens") / 5
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		rothelper.rotation_degrees.x -= mouseDelta.y * mouseSens
 		rothelper.rotation_degrees.x = clamp(rothelper.rotation_degrees.x, -90, 90)
