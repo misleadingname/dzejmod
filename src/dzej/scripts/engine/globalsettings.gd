@@ -3,7 +3,7 @@ extends Node
 var all_settings : Dictionary = {
 	"max_players": 8,
 	"fxaa": false,
-	"mouse_sens": 0.25
+	"mouse_sens": 0.5
 }
 
 func _input(event):
