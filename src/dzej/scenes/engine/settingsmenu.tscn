@@ -56,6 +56,7 @@ margin_left = 549.0
 margin_right = 599.0
 margin_bottom = 30.0
 placeholder_text = "1"
+placeholder_alpha = 0.8
 
 [node name="VideoSettings" type="Label" parent="SettingsDialog/EntireContents/SettingsContainer"]
 margin_top = 59.0
@@ -125,6 +126,7 @@ margin_bottom = 33.0
 size_flags_horizontal = 3
 text = "Ok"
 
+[connection signal="about_to_show" from="SettingsDialog" to="." method="_on_SettingsDialog_about_to_show"]
 [connection signal="value_changed" from="SettingsDialog/EntireContents/SettingsContainer/HBoxContainer2/MouseSens" to="." method="_on_MouseSens_value_changed"]
 [connection signal="text_entered" from="SettingsDialog/EntireContents/SettingsContainer/HBoxContainer2/LineEdit" to="." method="_on_LineEdit_text_entered"]
 [connection signal="pressed" from="SettingsDialog/EntireContents/ConfirmationContainer/Cancel" to="." method="_on_Cancel_pressed"]

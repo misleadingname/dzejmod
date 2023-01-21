@@ -12,7 +12,6 @@ func apply_settings():
 	
 	#temporarily applies mouse sensitivity
 	dzej_settings.all_settings["mouse_sens"] = mouse_sens.value
-	dzej_settings.all_settings["mouse_sens"] = float(mouse_sens_value.get_text())
 	
 	dzej.msg("settingsKeys: " + str(settingsKeys[1]))
 
@@ -41,3 +40,7 @@ func _on_MouseSens_value_changed(value):
 
 func _on_LineEdit_text_entered():
 	mouse_sens.value = float(mouse_sens_value.get_text())
+
+
+func _on_SettingsDialog_about_to_show():
+	mouse_sens.value = dzej_settings.all_settings["mouse_sens"]
