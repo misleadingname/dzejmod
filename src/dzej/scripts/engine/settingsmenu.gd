@@ -11,8 +11,7 @@ func apply_settings():
 	var settingsKeys : Array = dzej_settings.all_settings.keys()
 	
 	#temporarily applies mouse sensitivity
-	dzej_settings.all_settings["mouse_sens"] = mouse_sens.value
-	dzej_settings.all_settings["mouse_sens"] = float(mouse_sens_value.get_text())
+	dzej_settings.all_settings["mouse_sens"] = mouse_sens.value / 2
 	
 	dzej.msg("settingsKeys: " + str(settingsKeys[1]))
 
