@@ -687,6 +687,7 @@ remote func netUpdate(data : Array):
 	gameplayMap.netUpdate(data)	
 
 remote func clientInfo(id : int, info : Array):
+	lpShowNotification("Player " + str(id) + " sends info:" + str(info))
 	dzej.msg("player " + str(id) + " sends info:" + str(info))
 	gameplayMap.clientInfo(id, info)
 
