@@ -95,8 +95,8 @@ func _physics_process(delta):
 		direction = Vector3(h_input, 0, f_input).rotated(Vector3.UP, h_rot).normalized()
 	
 	if(is_on_ceiling()):
-		gravity_vec = -gravity_vec / 4
-		# dzej.lpShowNotification("You are on the ceiling!", 1)
+		gravity_vec = Vector3.DOWN * 2
+		#dzej.lpShowNotification("You hit the ceiling!", 1)
 
 	if(is_on_floor()):
 		gravity = 0
@@ -113,8 +113,15 @@ func _physics_process(delta):
 	if(dzej.lpMouseIsLocked()):
 		if(Input.is_action_pressed("movement_sprint") and is_on_floor()):
 			movementSpeed = sprintSpeed
+			if(Input.is_action_pressed("movement_crouch")):
+				if self != null:
+					crouch = .5
+					movementSpeed = crouchSpeed
+			else:
+				crouch = 1
+				movementSpeed = sprintSpeed
 		elif(Input.is_action_pressed("movement_crouch")):
-			if !self==null:
+			if self != null:
 				crouch = .5
 				movementSpeed = crouchSpeed
 		else:
