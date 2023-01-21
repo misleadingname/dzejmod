@@ -43,6 +43,9 @@ func _process(delta):
 
 		devSpatial.get_node("topleft").get_child(0).text = "FPS: " + str(Engine.get_frames_per_second()) + "\nMap: " + dzej.targetScene + "\nGamemode: " + dzej.targetGamemode + "\nAddons:\n" + addons
 
+func clientInfo(id: int, info: Array):
+	dzej.msg("player " + str(id) + " sends info:" + str(info))
+
 func _ready():
 	dzej.gameplayMap = self
 	dzej.chat = $UI_ontop/hacky/chatbox
@@ -81,20 +84,21 @@ func _ready():
 
 		dzej.msg("[INFO] Joining multiplayer session...")
 
-		dzej.mpSendToPeer(1, "clientInfo", [dzej.mpNickname])
-
 		var result = dzej.mpJoinSession()
 		if(result != true):
 			bannerText.text = "Error, check console for details."
 			return false
-		
+
+		dzej.msg("[INFO] Sending info")
+		dzej.mpSendToPeer(1, "clientInfo", [dzej.mpNickname])
+		dzej.msg("[INFO] Sent info")
+
 		dzej.msg("[INFO] Waiting for server info...")
 		while true:
 			yield(get_tree(), "idle_frame")
 			if(dzej.targetGamemode != "" && dzej.targetScene != "" && dzej.addonMapFrom != "" && dzej.hostPlayerList != []):
 				dzej.lpShowNotification("Got info from server, loading map...")
 				break
-				
 
 	else:
 		bannerText.text = "Error, check console for details."
