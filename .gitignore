@@ -8,8 +8,8 @@ game/builds/
 
 src/.import/
 game/.import/
+editor/.import/
 
 src/addons/
 
 .import/
-*.import

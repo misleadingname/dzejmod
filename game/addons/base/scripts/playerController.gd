@@ -61,7 +61,7 @@ func _ready():
 
 	tickTimer = Timer.new()
 	tickTimer.connect("timeout", self, "tick")
-	tickTimer.wait_time = 0.1
+	tickTimer.wait_time = 0.05
 	tickTimer.one_shot = false
 	add_child(tickTimer)
 	tickTimer.start()
